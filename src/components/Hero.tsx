@@ -19,46 +19,50 @@ export const Hero: React.FC<HeroProps> = ({ user, totalProjects }) => {
         <div className="max-w-3xl">
           {/* Pill Badges */}
           <div className="flex flex-wrap items-center gap-2 mb-6">
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-semibold bg-swatch-lemon-bg text-swatch-lemon-text dark:bg-swatch-lemon-border/20 dark:text-swatch-lemon-darkText border border-swatch-lemon-border/70 dark:border-swatch-lemon-border/30 shadow-xs">
+            <span className="badge-spring inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold bg-swatch-lemon-bg text-swatch-lemon-text dark:bg-swatch-lemon-border/20 dark:text-swatch-lemon-darkText border border-swatch-lemon-border/70 dark:border-swatch-lemon-border/30 shadow-xs">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
               <Coffee className="w-3.5 h-3.5" />
               <span>Desarrollador de Software</span>
             </span>
 
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-medium bg-swatch-lavender-bg text-swatch-lavender-text dark:bg-swatch-lavender-border/20 dark:text-swatch-lavender-darkText border border-swatch-lavender-border/70 dark:border-swatch-lavender-border/30 shadow-xs">
+            <span className="badge-spring inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-medium bg-swatch-lavender-bg text-swatch-lavender-text dark:bg-swatch-lavender-border/20 dark:text-swatch-lavender-darkText border border-swatch-lavender-border/70 dark:border-swatch-lavender-border/30 shadow-xs">
               <MapPin className="w-3.5 h-3.5" />
               <span>{user.location}</span>
             </span>
           </div>
 
           {/* Title */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.15]">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-earth-ink-900 dark:text-stone-100 leading-[1.15]">
             Hola, soy{' '}
-            <span className="underline decoration-wavy decoration-earth-mocha/70 dark:decoration-swatch-lavender/70 underline-offset-8">
+            <span className="underline decoration-wavy decoration-earth-mocha/70 dark:decoration-swatch-lavender/70 underline-offset-8 hover:text-earth-mocha dark:hover:text-swatch-lavender transition-colors duration-300">
               {user.name}
             </span>
           </h1>
 
-          <p className="mt-5 text-lg sm:text-xl font-medium text-slate-700 dark:text-slate-300">
+          <p className="mt-5 text-lg sm:text-xl font-medium text-earth-ink-700 dark:text-stone-200">
             {user.subtitle}
           </p>
 
-          <p className="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl">
-            {user.bio} Construyo aplicaciones estructuradas, eficientes y modulares. Este portfolio interactivo es mi <strong className="text-slate-900 dark:text-slate-200">proyecto insignia</strong> para catalogar y visualizar mis desarrollos.
+          <p className="mt-4 text-sm sm:text-base text-earth-ink-600 dark:text-stone-400 leading-relaxed max-w-2xl">
+            {user.bio} Construyo aplicaciones estructuradas, eficientes y modulares. Este portfolio interactivo es mi <strong className="text-earth-ink-900 dark:text-stone-200">proyecto insignia</strong> para catalogar y visualizar mis desarrollos.
           </p>
 
           {/* Responsive Tactile CTA Buttons */}
           <div className="mt-8 flex flex-wrap items-center gap-3.5">
             <a
               href="#proyectos"
-              className="btn-tactile inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-earth-mocha hover:bg-earth-darkMocha text-white font-semibold text-xs sm:text-sm shadow-soft hover:shadow-soft-hover"
+              className="btn-tactile group/cta inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-earth-mocha hover:bg-earth-darkMocha text-white font-semibold text-xs sm:text-sm shadow-soft hover:shadow-soft-hover"
             >
               <span>Explorar Proyectos ({totalProjects})</span>
-              <ArrowDown className="w-4 h-4" />
+              <ArrowDown className="w-4 h-4 group-hover/cta:translate-y-0.5 transition-transform" />
             </a>
 
             <a
               href="#contacto"
-              className="btn-tactile inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-earth-linen dark:bg-earth-coffeeCard hover:bg-earth-sand/70 dark:hover:bg-earth-coffeeSubtle text-slate-800 dark:text-slate-200 font-semibold text-xs sm:text-sm border border-earth-sand dark:border-earth-coffeeBorder shadow-xs"
+              className="btn-tactile inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-earth-linen dark:bg-earth-coffeeCard hover:bg-earth-sand/70 dark:hover:bg-earth-coffeeSubtle text-earth-ink-800 dark:text-stone-200 font-semibold text-xs sm:text-sm border border-earth-sand dark:border-earth-coffeeBorder shadow-xs"
             >
               <Mail className="w-4 h-4 text-earth-mocha dark:text-swatch-peach-darkText" />
               <span>Contactar</span>
@@ -67,17 +71,17 @@ export const Hero: React.FC<HeroProps> = ({ user, totalProjects }) => {
 
           {/* Interactive Feature Tags */}
           <div className="mt-10 pt-6 border-t border-earth-sand/70 dark:border-earth-coffeeBorder/70 flex flex-wrap items-center gap-2.5">
-            <span className="inline-flex items-center gap-1.5 text-xs text-slate-700 dark:text-slate-300 bg-earth-linen/80 dark:bg-earth-coffeeCard px-3 py-1.5 rounded-xl border border-earth-sand dark:border-earth-coffeeBorder shadow-xs hover:border-earth-mocha/50 transition-colors">
+            <span className="badge-spring inline-flex items-center gap-1.5 text-xs text-earth-ink-700 dark:text-stone-300 bg-earth-linen/80 dark:bg-earth-coffeeCard px-3 py-1.5 rounded-xl border border-earth-sand dark:border-earth-coffeeBorder shadow-xs hover:border-earth-mocha/50 transition-colors">
               <Code2 className="w-3.5 h-3.5 text-emerald-600 dark:text-swatch-lemon-darkText" />
               <span>Python & C</span>
             </span>
 
-            <span className="inline-flex items-center gap-1.5 text-xs text-slate-700 dark:text-slate-300 bg-earth-linen/80 dark:bg-earth-coffeeCard px-3 py-1.5 rounded-xl border border-earth-sand dark:border-earth-coffeeBorder shadow-xs hover:border-earth-mocha/50 transition-colors">
+            <span className="badge-spring inline-flex items-center gap-1.5 text-xs text-earth-ink-700 dark:text-stone-300 bg-earth-linen/80 dark:bg-earth-coffeeCard px-3 py-1.5 rounded-xl border border-earth-sand dark:border-earth-coffeeBorder shadow-xs hover:border-earth-mocha/50 transition-colors">
               <Terminal className="w-3.5 h-3.5 text-purple-600 dark:text-swatch-lavender-darkText" />
               <span>React, Vite & TypeScript</span>
             </span>
 
-            <span className="inline-flex items-center gap-1.5 text-xs text-slate-700 dark:text-slate-300 bg-earth-linen/80 dark:bg-earth-coffeeCard px-3 py-1.5 rounded-xl border border-earth-sand dark:border-earth-coffeeBorder shadow-xs hover:border-earth-mocha/50 transition-colors">
+            <span className="badge-spring inline-flex items-center gap-1.5 text-xs text-earth-ink-700 dark:text-stone-300 bg-earth-linen/80 dark:bg-earth-coffeeCard px-3 py-1.5 rounded-xl border border-earth-sand dark:border-earth-coffeeBorder shadow-xs hover:border-earth-mocha/50 transition-colors">
               <Coffee className="w-3.5 h-3.5 text-earth-mocha dark:text-swatch-peach-darkText" />
               <span>CI/CD GitHub Actions</span>
             </span>

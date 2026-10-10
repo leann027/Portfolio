@@ -58,7 +58,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
         </div>
 
         {/* Title */}
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-earth-ink-900 dark:text-stone-100">
           {project.title}
         </h2>
         {project.tagline && (
@@ -68,7 +68,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
         )}
 
         {/* Full description */}
-        <div className="mt-5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed space-y-3">
+        <div className="mt-5 text-xs sm:text-sm text-earth-ink-600 dark:text-stone-300 leading-relaxed space-y-3">
           <p>{project.fullDescription}</p>
         </div>
 
@@ -80,7 +80,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             </h4>
             <ul className="space-y-2">
               {project.highlights.map((item, idx) => (
-                <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+                <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-earth-ink-700 dark:text-stone-200">
                   <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-swatch-mint-darkText shrink-0 mt-0.5" />
                   <span>{item}</span>
                 </li>
@@ -91,14 +91,14 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
         {/* Technologies Grid */}
         <div className="mt-6 pt-5 border-t border-earth-sand/70 dark:border-earth-coffeeBorder/70">
-          <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2">
+          <h4 className="text-[11px] font-bold uppercase tracking-wider text-earth-ink-400 dark:text-stone-400 mb-2">
             Tecnologías Empleadas
           </h4>
           <div className="flex flex-wrap gap-1.5">
             {project.technologies.map((tech) => (
               <span
                 key={tech}
-                className="text-xs px-2.5 py-1 rounded-xl font-medium bg-earth-sand/50 dark:bg-earth-coffeeSubtle text-slate-700 dark:text-slate-300 border border-earth-sand dark:border-earth-coffeeBorder"
+                className="badge-spring text-xs px-2.5 py-1 rounded-xl font-medium bg-earth-sand/50 dark:bg-earth-coffeeSubtle text-earth-ink-700 dark:text-stone-200 border border-earth-sand dark:border-earth-coffeeBorder"
               >
                 {tech}
               </span>
@@ -107,7 +107,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
         </div>
 
         {/* Metadata info */}
-        <div className="mt-4 flex items-center gap-4 text-xs text-slate-400">
+        <div className="mt-4 flex items-center gap-4 text-xs text-earth-ink-400 dark:text-stone-400">
           <span className="flex items-center gap-1">
             <Calendar className="w-3.5 h-3.5" />
             <span>Última actualización: {project.updatedAt}</span>

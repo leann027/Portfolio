@@ -61,4 +61,11 @@ describe('Interactive Portfolio UI (Pure Visualization)', () => {
     fireEvent.click(closeButton);
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
+
+  it('renders ambient background and status indicator', () => {
+    const { container } = render(<App />);
+    const ambientBg = container.querySelector('[aria-hidden="true"]');
+    expect(ambientBg).toBeInTheDocument();
+    expect(screen.getByText(/Desarrollador de Software/i)).toBeInTheDocument();
+  });
 });

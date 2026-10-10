@@ -3,6 +3,7 @@ import portfolioDataRaw from './data/projects.json';
 import { PortfolioData, Project } from './types/project';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { BackgroundAmbient } from './components/BackgroundAmbient';
 import { ProjectFilters } from './components/ProjectFilters';
 import { ProjectCard } from './components/ProjectCard';
 import { ProjectModal } from './components/ProjectModal';
@@ -89,7 +90,10 @@ export const App: React.FC = () => {
   }, [selectedCategory, searchQuery]);
 
   return (
-    <div className="min-h-screen bg-earth-light dark:bg-earth-coffeeBg text-slate-800 dark:text-slate-100 flex flex-col font-sans transition-colors duration-300">
+    <div className="relative min-h-screen bg-earth-light/85 dark:bg-earth-coffeeBg text-earth-ink-800 dark:text-stone-200 flex flex-col font-sans transition-colors duration-500 selection:bg-swatch-lavender/50">
+      {/* Dynamic Lo-Fi Ambient Background */}
+      <BackgroundAmbient />
+
       <Navbar
         darkMode={darkMode}
         toggleDarkMode={toggleDarkMode}
@@ -103,17 +107,17 @@ export const App: React.FC = () => {
         />
 
         {/* Projects Section */}
-        <section id="proyectos" className="py-16 sm:py-24 border-b border-earth-sand/70 dark:border-earth-coffeeBorder/70">
+        <section id="proyectos" className="py-16 sm:py-24 border-b border-earth-sand/70 dark:border-earth-coffeeBorder/70 relative">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-2xl mb-8">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-swatch-lavender-bg text-swatch-lavender-text dark:bg-swatch-lavender-border/20 dark:text-swatch-lavender-darkText border border-swatch-lavender-border/70 mb-3">
-                <Sparkles className="w-3.5 h-3.5" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-swatch-lavender-bg text-swatch-lavender-text dark:bg-swatch-lavender-border/20 dark:text-swatch-lavender-darkText border border-swatch-lavender-border/70 mb-3 badge-spring shadow-xs">
+                <Sparkles className="w-3.5 h-3.5 text-swatch-lavender" />
                 <span>Explorador de Software</span>
               </div>
-              <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+              <h2 className="text-3xl font-extrabold text-earth-ink-900 dark:text-stone-100 tracking-tight">
                 Proyectos & Desarrollos
               </h2>
-              <p className="mt-3 text-slate-600 dark:text-slate-400 text-xs sm:text-sm">
+              <p className="mt-3 text-earth-ink-600 dark:text-stone-400 text-xs sm:text-sm leading-relaxed">
                 Catálogo de proyectos personales y académicos. Filtra por tecnología o busca por palabras clave para ver especificaciones y código.
               </p>
             </div>
@@ -130,10 +134,11 @@ export const App: React.FC = () => {
             {/* Projects Grid (Pure Visualization) */}
             {filteredProjects.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredProjects.map((project) => (
+                {filteredProjects.map((project, index) => (
                   <ProjectCard
                     key={project.id}
                     project={project}
+                    index={index}
                     onOpenDetails={(p) => setSelectedProject(p)}
                   />
                 ))}

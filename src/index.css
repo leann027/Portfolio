@@ -4,18 +4,22 @@
 
 @layer base {
   body {
-    @apply bg-earth-light text-slate-800 dark:bg-earth-coffeeBg dark:text-slate-100 transition-colors duration-300 font-sans selection:bg-swatch-lavender selection:text-swatch-lavender-text;
+    @apply bg-earth-light text-earth-ink-800 dark:bg-earth-coffeeBg dark:text-stone-200 transition-colors duration-500 font-sans selection:bg-swatch-lavender selection:text-swatch-lavender-text antialiased;
   }
 }
 
-/* Custom interactive tactile button utility */
+/* Custom interactive tactile utilities & smooth transitions */
 @layer components {
   .btn-tactile {
-    @apply transition-all duration-200 ease-out active:scale-[0.97] hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+    @apply transition-all duration-200 ease-out active:scale-[0.97] hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 cursor-pointer;
   }
 
   .card-lift {
-    @apply transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-soft-hover dark:hover:shadow-soft-dark-hover;
+    @apply transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-soft-hover dark:hover:shadow-soft-dark-hover hover:border-earth-mocha/40 dark:hover:border-swatch-lavender/40;
+  }
+
+  .badge-spring {
+    @apply transition-transform duration-200 ease-out hover:scale-105 active:scale-95 inline-flex;
   }
 }
 

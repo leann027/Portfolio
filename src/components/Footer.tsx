@@ -11,7 +11,7 @@ export const Footer: React.FC<FooterProps> = ({ githubUser }) => {
   };
 
   return (
-    <footer className="border-t border-earth-sand/80 dark:border-earth-coffeeBorder/80 bg-earth-light dark:bg-earth-coffeeBg py-10 transition-colors duration-300">
+    <footer className="border-t border-earth-sand/80 dark:border-earth-coffeeBorder/80 bg-earth-light/80 dark:bg-earth-coffeeBg/80 backdrop-blur-sm py-10 transition-colors duration-500">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2.5">
@@ -19,10 +19,10 @@ export const Footer: React.FC<FooterProps> = ({ githubUser }) => {
               <Sparkles className="w-4 h-4" />
             </div>
             <div>
-              <p className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
+              <p className="text-xs sm:text-sm font-bold text-earth-ink-900 dark:text-stone-100">
                 Leandro (@{githubUser})
               </p>
-              <p className="text-[11px] text-slate-500 dark:text-slate-400">
+              <p className="text-[11px] text-earth-ink-500 dark:text-stone-400">
                 Portfolio de Software • React, TypeScript & Tailwind CSS
               </p>
             </div>
@@ -33,7 +33,7 @@ export const Footer: React.FC<FooterProps> = ({ githubUser }) => {
               href={`https://github.com/${githubUser}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-tactile p-2 rounded-xl text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white hover:bg-earth-sand/50 dark:hover:bg-earth-coffeeCard transition-colors"
+              className="btn-tactile p-2 rounded-xl text-earth-ink-600 hover:text-earth-ink-900 dark:text-stone-300 dark:hover:text-white hover:bg-earth-sand/60 dark:hover:bg-earth-coffeeCard transition-colors"
               aria-label="Perfil de GitHub"
             >
               <Github className="w-4 h-4" />
@@ -41,7 +41,7 @@ export const Footer: React.FC<FooterProps> = ({ githubUser }) => {
 
             <button
               onClick={scrollToTop}
-              className="btn-tactile flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-earth-linen dark:bg-earth-coffeeCard hover:bg-earth-sand/60 dark:hover:bg-earth-coffeeSubtle text-slate-700 dark:text-slate-200 border border-earth-sand dark:border-earth-coffeeBorder shadow-xs"
+              className="btn-tactile flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-earth-linen dark:bg-earth-coffeeCard hover:bg-earth-sand/60 dark:hover:bg-earth-coffeeSubtle text-earth-ink-800 dark:text-stone-200 border border-earth-sand dark:border-earth-coffeeBorder shadow-xs"
             >
               <span>Subir</span>
               <ArrowUp className="w-3.5 h-3.5" />
@@ -49,9 +49,9 @@ export const Footer: React.FC<FooterProps> = ({ githubUser }) => {
           </div>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-earth-sand/60 dark:border-earth-coffeeBorder/60 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 gap-3">
+        <div className="mt-8 pt-6 border-t border-earth-sand/60 dark:border-earth-coffeeBorder/60 flex flex-col sm:flex-row items-center justify-between text-[11px] text-earth-ink-500 dark:text-stone-400 gap-3">
           <p>© {new Date().getFullYear()} Leandro. Todos los derechos reservados.</p>
-          <p>Diseño Lo-Fi cálido & pastel.</p>
+          <p>Diseño Lo-Fi cálido & pastel relajante.</p>
         </div>
       </div>
     </footer>

@@ -22,14 +22,14 @@ export const Navbar: React.FC<NavbarProps> = ({
   ];
 
   return (
-    <header className="sticky top-0 z-40 w-full backdrop-blur-md bg-earth-light/90 dark:bg-earth-coffeeBg/90 border-b border-earth-sand/80 dark:border-earth-coffeeBorder transition-colors duration-300">
+    <header className="sticky top-0 z-40 w-full backdrop-blur-md bg-earth-light/85 dark:bg-earth-coffeeBg/85 border-b border-earth-sand/80 dark:border-earth-coffeeBorder transition-colors duration-500">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Brand / Logo */}
         <a href="#" className="flex items-center gap-2.5 group">
-          <div className="w-8 h-8 rounded-xl bg-earth-sand dark:bg-earth-coffeeBorder text-earth-mocha dark:text-swatch-lavender-darkText flex items-center justify-center group-hover:scale-105 group-hover:rotate-6 transition-transform duration-300 shadow-sm">
-            <Sparkles className="w-4 h-4" />
+          <div className="w-8 h-8 rounded-xl bg-earth-sand dark:bg-earth-coffeeBorder text-earth-mocha dark:text-swatch-lavender-darkText flex items-center justify-center group-hover:scale-105 group-hover:rotate-12 transition-transform duration-300 shadow-xs">
+            <Sparkles className="w-4 h-4 text-earth-mocha dark:text-swatch-lavender" />
           </div>
-          <span className="font-bold text-base sm:text-lg tracking-tight text-slate-900 dark:text-white">
+          <span className="font-bold text-base sm:text-lg tracking-tight text-earth-ink-900 dark:text-stone-100">
             leann027<span className="text-earth-mocha dark:text-swatch-lavender">.dev</span>
           </span>
         </a>
@@ -40,7 +40,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <a
               key={link.href}
               href={link.href}
-              className="text-xs sm:text-sm font-medium text-slate-600 hover:text-earth-mocha dark:text-slate-300 dark:hover:text-swatch-lavender-darkText transition-colors duration-200 relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-earth-mocha dark:after:bg-swatch-lavender hover:after:w-full after:transition-all after:duration-200"
+              className="text-xs sm:text-sm font-medium text-earth-ink-700 hover:text-earth-mocha dark:text-stone-300 dark:hover:text-swatch-lavender-darkText transition-colors duration-200 relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-earth-mocha dark:after:bg-swatch-lavender hover:after:w-full after:transition-all after:duration-200"
             >
               {link.label}
             </a>
@@ -52,12 +52,12 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             onClick={toggleDarkMode}
             aria-label="Cambiar modo claro / oscuro"
-            className="btn-tactile p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-earth-sand/50 dark:text-slate-300 dark:hover:text-white dark:hover:bg-earth-coffeeCard transition-colors"
+            className="btn-tactile p-2 rounded-xl text-earth-ink-700 hover:text-earth-ink-900 hover:bg-earth-sand/60 dark:text-stone-300 dark:hover:text-white dark:hover:bg-earth-coffeeCard transition-all"
           >
             {darkMode ? (
-              <Sun className="w-4 h-4 text-swatch-butter animate-pulse-subtle" />
+              <Sun className="w-4 h-4 text-swatch-butter animate-pulse-subtle hover:rotate-45 transition-transform duration-300" />
             ) : (
-              <Moon className="w-4 h-4 text-earth-mocha" />
+              <Moon className="w-4 h-4 text-earth-mocha hover:-rotate-12 transition-transform duration-300" />
             )}
           </button>
 
@@ -65,7 +65,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             href={`https://github.com/${githubUser}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-tactile flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-semibold rounded-2xl bg-earth-mocha hover:bg-earth-darkMocha text-white shadow-soft transition-all duration-200"
+            className="btn-tactile flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-semibold rounded-2xl bg-earth-mocha hover:bg-earth-darkMocha text-white shadow-soft hover:shadow-soft-hover transition-all duration-200"
           >
             <Github className="w-3.5 h-3.5" />
             <span>GitHub</span>

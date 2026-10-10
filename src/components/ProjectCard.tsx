@@ -5,9 +5,10 @@ import { Project } from '../types/project';
 interface ProjectCardProps {
   project: Project;
   onOpenDetails: (project: Project) => void;
+  index?: number;
 }
 
-export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails }) => {
+export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails, index = 0 }) => {
   const getTechBadgeClass = (tech: string) => {
     const lower = tech.toLowerCase();
     if (lower.includes('python')) {
@@ -26,7 +27,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails
   };
 
   return (
-    <article className="card-lift group flex flex-col justify-between rounded-3xl bg-earth-linen/80 dark:bg-earth-coffeeCard border border-earth-sand dark:border-earth-coffeeBorder shadow-soft p-6 sm:p-7">
+    <article
+      style={{ animationDelay: `${index * 70}ms` }}
+      className="card-lift animate-fade-up group flex flex-col justify-between rounded-3xl bg-earth-linen/85 dark:bg-earth-coffeeCard/90 border border-earth-sand/90 dark:border-earth-coffeeBorder shadow-soft hover:shadow-rim-card-hover p-6 sm:p-7 relative transition-all duration-300"
+    >
       <div>
         {/* Top Badges */}
         <div className="flex items-center justify-between gap-2 mb-4">
@@ -57,7 +61,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails
         </div>
 
         {/* Title */}
-        <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-earth-mocha dark:group-hover:text-swatch-lavender transition-colors duration-200">
+        <h3 className="text-xl font-bold text-earth-ink-900 dark:text-stone-100 group-hover:text-earth-mocha dark:group-hover:text-swatch-lavender transition-colors duration-200">
           {project.title}
         </h3>
 
@@ -68,7 +72,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails
         )}
 
         {/* Short Description */}
-        <p className="mt-3.5 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+        <p className="mt-3.5 text-xs sm:text-sm text-earth-ink-600 dark:text-stone-400 leading-relaxed line-clamp-3">
           {project.shortDescription}
         </p>
 
@@ -77,13 +81,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails
           {project.technologies.slice(0, 5).map((tech) => (
             <span
               key={tech}
-              className={`text-[11px] px-2.5 py-0.5 rounded-xl font-medium border shadow-2xs ${getTechBadgeClass(tech)}`}
+              className={`badge-spring text-[11px] px-2.5 py-0.5 rounded-xl font-medium border shadow-2xs ${getTechBadgeClass(tech)}`}
             >
               {tech}
             </span>
           ))}
           {project.technologies.length > 5 && (
-            <span className="text-[11px] px-2 py-0.5 rounded-xl font-medium bg-earth-sand/60 dark:bg-earth-coffeeSubtle text-slate-600 dark:text-slate-400">
+            <span className="badge-spring text-[11px] px-2 py-0.5 rounded-xl font-medium bg-earth-sand/60 dark:bg-earth-coffeeSubtle text-earth-ink-600 dark:text-stone-400">
               +{project.technologies.length - 5}
             </span>
           )}
