@@ -1,0 +1,165 @@
+{
+  "user": {
+    "name": "Leandro",
+    "github": "leann027",
+    "email": "leandro28rc@gmail.com",
+    "title": "Desarrollador de Software",
+    "subtitle": "Especializado en Python, C, arquitectura limpia y desarrollo web moderno",
+    "bio": "Estudiante de Desarrollo de Software (Terciario Urquiza) y entusiasta de la informática con sólida base algorítmica (CS50, C, Python). Enfocado en construir software estructurado, determinista y escalable.",
+    "location": "Rosario, Argentina",
+    "availableForHire": true
+  },
+  "projects": [
+    {
+      "id": "portfolio-hub",
+      "repoName": "Portfolio",
+      "title": "Portfolio Interactivo & Motor de Proyectos",
+      "tagline": "Plataforma web moderna con arquitectura de 3 capas y CI/CD automatizado",
+      "shortDescription": "Plataforma web interactiva desarrollada con React, TypeScript y Tailwind CSS, respaldada por un pipeline determinista en Python y despliegue continuo con GitHub Actions.",
+      "fullDescription": "Mi primer gran proyecto insignia: un portfolio web interactivo diseñado para centralizar y exhibir mis proyectos de desarrollo de software. Implementa la arquitectura de 3 capas (Directivas, Orquestación y Ejecución) según las directivas de ingeniería de Agents.md. Cuenta con filtrado reactivo por categorías, búsqueda en tiempo real, modales con especificaciones técnicas detalladas, soporte completo de modo oscuro/claro y un pipeline de CI/CD que valida datos y despliega en GitHub Pages con cada actualización.",
+      "category": "web",
+      "languages": ["TypeScript", "Python"],
+      "technologies": ["React 19", "TypeScript", "Tailwind CSS", "Vite", "Python", "GitHub Actions"],
+      "githubUrl": "https://github.com/leann027/Portfolio",
+      "demoUrl": "https://leann027.github.io/Portfolio/",
+      "isPrivate": false,
+      "academic": false,
+      "featured": true,
+      "status": "Producción / Insignia",
+      "updatedAt": "2026-10-10",
+      "highlights": [
+        "Arquitectura de 3 capas (Agents.md) separando especificaciones, orquestación y scripts deterministas",
+        "Pipeline de CI/CD automatizado con GitHub Actions para testing y despliegue a GitHub Pages",
+        "Filtrado reactivo instantáneo por tecnologías, categorías y búsqueda en vivo",
+        "Diseño moderno y responsivo con Tailwind CSS y soporte de tema oscuro / claro",
+        "Motor de datos en Python extensible para incorporar futuros proyectos en segundos"
+      ]
+    },
+    {
+      "id": "proyges-software-2",
+      "repoName": "ProyGesSoftware2",
+      "title": "Sistema de Gestión de Depósito e Inventario",
+      "tagline": "Software de escritorio para control de stock y generación de reportes ejecutivos en PDF",
+      "shortDescription": "Aplicación de escritorio en Python con interfaz gráfica Tkinter, persistencia JSON y generación automática de reportes PDF para almacenes.",
+      "fullDescription": "Proyecto final de Gestión de Software 2 (Terciario Urquiza). Una solución completa de gestión de depósito orientada a objetos que permite registrar productos, auditar entradas y salidas, calcular valuaciones de inventario y generar resúmenes ejecutivos en formato PDF listos para imprimir.",
+      "category": "desktop",
+      "languages": ["Python"],
+      "technologies": ["Python 3", "Tkinter", "POO", "JSON", "ReportLab"],
+      "githubUrl": "https://github.com/leann027/ProyGesSoftware2",
+      "demoUrl": null,
+      "isPrivate": true,
+      "academic": true,
+      "institution": "Terciario Urquiza",
+      "featured": true,
+      "status": "Proyecto Académico Finalizado",
+      "updatedAt": "2026-10-10",
+      "highlights": [
+        "Arquitectura modular orientada a objetos (separación de Clases, Lógica de Dominio e Interfaz)",
+        "Persistencia de datos y catálogo de productos en formato JSON estructurado",
+        "Generación automática de resúmenes de depósito en PDF utilizando ReportLab",
+        "Interfaz intuitiva de escritorio con validaciones de entrada en tiempo real"
+      ]
+    },
+    {
+      "id": "estructuras-datos-c",
+      "repoName": "Estructura-de-datos-y-algoritmos-I",
+      "title": "Estructuras de Datos y Algoritmos en C",
+      "tagline": "Implementación de bajo nivel de estructuras dinámicas y análisis asintótico",
+      "shortDescription": "Implementación en C de estructuras de datos fundamentales (listas, pilas, colas, árboles binarios) con gestión manual de memoria y análisis Big-O.",
+      "fullDescription": "Colección de implementaciones de estructuras de datos y algoritmos clásicos de ciencias de la computación escritos en lenguaje C. Enfocado en la gestión rigurosa de memoria dinámica (evitando memory leaks mediante punteros seguros), estructuras recursivas y análisis de complejidad computacional.",
+      "category": "algorithms",
+      "languages": ["C"],
+      "technologies": ["C", "Punteros", "Gestión Dinámica de Memoria", "Algoritmos", "GCC"],
+      "githubUrl": "https://github.com/leann027/Estructura-de-datos-y-algoritmos-I",
+      "demoUrl": null,
+      "isPrivate": true,
+      "academic": true,
+      "institution": "Terciario Urquiza",
+      "featured": true,
+      "status": "Fundamento Algorítmico",
+      "updatedAt": "2026-09-15",
+      "highlights": [
+        "Gestión manual y segura de memoria dinámica (`malloc`, `free`) con prevención de fugas",
+        "Implementación de listas enlazadas simples/dobles, pilas (LIFO) y colas (FIFO)",
+        "Árboles binarios de búsqueda y recorridos (Inorden, Preorden, Postorden)",
+        "Algoritmos de ordenamiento y análisis de complejidad Big-O (tiempo y espacio)"
+      ]
+    },
+    {
+      "id": "cs50-harvard",
+      "repoName": "CS50",
+      "title": "Desafíos de Ciencias de la Computación (CS50)",
+      "tagline": "Resolución de problemas algorítmicos y fundamentos de ingeniería de software",
+      "shortDescription": "Soluciones y proyectos de ciencias de la computación del curso CS50 de Harvard University abarcando C, algoritmos, memoria y SQL.",
+      "fullDescription": "Prácticas y proyectos del curso CS50 de Harvard University. Abarca resolución de problemas algorítmicos complejos, manipulación de imágenes a nivel de bytes, criptografía, estructuras de datos dinámicas, bases de datos relacionales con SQL y transición a desarrollo web.",
+      "category": "algorithms",
+      "languages": ["C", "Python", "SQL"],
+      "technologies": ["C", "Python", "SQL", "Algoritmos", "Estructuras de Datos"],
+      "githubUrl": "https://github.com/leann027/CS50",
+      "demoUrl": null,
+      "isPrivate": true,
+      "academic": true,
+      "institution": "Harvard CS50",
+      "featured": false,
+      "status": "Certificación / Formación",
+      "updatedAt": "2026-09-15",
+      "highlights": [
+        "Algoritmos de ordenamiento, búsqueda binaria y análisis de eficiencia",
+        "Filtros de imágenes y manipulación de archivos binarios a nivel de píxeles",
+        "Modelado de datos relacionales y consultas complejas en SQL",
+        "Construcción de scripts y utilidades en Python"
+      ]
+    },
+    {
+      "id": "n8n-automation",
+      "repoName": "n8n-prueba",
+      "title": "Automatización e Integraciones con n8n",
+      "tagline": "Orquestación de flujos de trabajo basados en eventos y APIs REST",
+      "shortDescription": "Exploración y configuración de flujos de automatización de código justo (fair-code) integrando servicios y APIs externas.",
+      "fullDescription": "Proyectos de automatización de flujos de trabajo utilizando la plataforma n8n. Configuración de disparadores por eventos (webhooks), transformación y enriquecimiento de datos JSON, e integración con servicios y herramientas de productividad.",
+      "category": "automation",
+      "languages": ["TypeScript"],
+      "technologies": ["n8n", "TypeScript", "REST APIs", "Webhooks", "JSON"],
+      "githubUrl": "https://github.com/leann027/n8n-prueba",
+      "demoUrl": null,
+      "isPrivate": false,
+      "academic": false,
+      "featured": false,
+      "status": "Exploración Tecnológica",
+      "updatedAt": "2026-01-14",
+      "highlights": [
+        "Diseño de flujos de automatización visuales con lógica condicional",
+        "Transformación y manipulación de payloads JSON complejos",
+        "Integración con webhooks para disparadores en tiempo real"
+      ]
+    }
+  ],
+  "categories": [
+    { "id": "all", "label": "Todos los Proyectos" },
+    { "id": "web", "label": "Web & Fullstack" },
+    { "id": "desktop", "label": "Escritorio & Python" },
+    { "id": "algorithms", "label": "Algoritmos & C" },
+    { "id": "automation", "label": "Automatización & APIs" }
+  ],
+  "skills": {
+    "languages": [
+      { "name": "Python", "level": "Avanzado", "description": "POO, Tkinter, scripts de automatización, procesamiento de datos" },
+      { "name": "C", "level": "Intermedio / Avanzado", "description": "Punteros, estructuras de datos dinámicas, gestión de memoria" },
+      { "name": "TypeScript / JavaScript", "level": "Intermedio", "description": "Desarrollo frontend moderno, tipado estático, React" },
+      { "name": "SQL", "level": "Intermedio", "description": "Consultas relacionales, modelado de esquemas, persistencia" }
+    ],
+    "frameworks": [
+      { "name": "React", "description": "Componentes funcionales, hooks, estado reactivo" },
+      { "name": "Tailwind CSS", "description": "Diseño UI utilitario, responsive, modo oscuro" },
+      { "name": "Vite", "description": "Bundling ultrarrápido, HMR, optimización de producción" },
+      { "name": "Tkinter / GUI", "description": "Interfaces de escritorio para aplicaciones Python" }
+    ],
+    "tools": [
+      { "name": "Git & GitHub", "description": "Control de versiones, ramas, pull requests, gh CLI" },
+      { "name": "GitHub Actions", "description": "Pipelines CI/CD automatizados para testeo y despliegue" },
+      { "name": "Linux / Bash", "description": "Terminal POSIX, scripts shell, gestión de entornos" },
+      { "name": "VS Code", "description": "Entorno principal de desarrollo y depuración" }
+    ]
+  }
+}
+
