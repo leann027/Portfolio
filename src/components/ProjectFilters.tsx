@@ -32,12 +32,12 @@ export const ProjectFilters: React.FC<ProjectFiltersProps> = ({
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
             placeholder="Buscar por tecnología, lenguaje o nombre..."
-            className="w-full pl-10 pr-9 py-2 text-xs sm:text-sm rounded-2xl bg-lofi-card dark:bg-lofi-darkCard border border-lofi-border dark:border-lofi-darkBorder text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-pastel-lavender-border dark:focus:ring-pastel-lavender-text shadow-lofi transition"
+            className="w-full pl-10 pr-9 py-2.5 text-xs sm:text-sm rounded-2xl bg-earth-linen/70 dark:bg-earth-coffeeCard border border-earth-sand dark:border-earth-coffeeBorder text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-earth-mocha/40 dark:focus:ring-swatch-lavender/40 shadow-xs transition"
           />
           {searchQuery && (
             <button
               onClick={() => onSearchChange('')}
-              className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+              className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"
               aria-label="Limpiar búsqueda"
             >
               <X className="w-4 h-4" />
@@ -45,14 +45,14 @@ export const ProjectFilters: React.FC<ProjectFiltersProps> = ({
           )}
         </div>
 
-        <div className="flex items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400">
-          <Sparkles className="w-3.5 h-3.5 text-purple-400" />
-          <span>Filtro reactivo</span>
+        <div className="flex items-center gap-1.5 text-xs font-medium text-slate-500 dark:text-slate-400">
+          <Sparkles className="w-3.5 h-3.5 text-earth-mocha dark:text-swatch-lavender-darkText" />
+          <span>Filtro reactivo instantáneo</span>
         </div>
       </div>
 
-      {/* Lo-Fi Category Pills */}
-      <div className="flex flex-wrap gap-2 pt-1">
+      {/* Responsive Category Pills */}
+      <div className="flex gap-2 overflow-x-auto pb-1 sm:pb-0 sm:flex-wrap scrollbar-thin">
         {categories.map((cat) => {
           const count = projectCountsByCategory[cat.id] ?? 0;
           const isSelected = selectedCategory === cat.id;
@@ -61,18 +61,18 @@ export const ProjectFilters: React.FC<ProjectFiltersProps> = ({
             <button
               key={cat.id}
               onClick={() => onSelectCategory(cat.id)}
-              className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all ${
+              className={`btn-tactile shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-2xl text-xs sm:text-sm font-medium transition-all ${
                 isSelected
-                  ? 'bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900 shadow-sm'
-                  : 'bg-lofi-card dark:bg-lofi-darkCard text-slate-600 dark:text-slate-300 hover:bg-lofi-subtle dark:hover:bg-lofi-darkSubtle border border-lofi-border dark:border-lofi-darkBorder'
+                  ? 'bg-earth-mocha text-white shadow-soft font-semibold'
+                  : 'bg-earth-linen dark:bg-earth-coffeeCard text-slate-700 dark:text-slate-300 hover:bg-earth-sand dark:hover:bg-earth-coffeeSubtle border border-earth-sand dark:border-earth-coffeeBorder shadow-xs'
               }`}
             >
               <span>{cat.label}</span>
               <span
-                className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
+                className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold transition-colors ${
                   isSelected
-                    ? 'bg-white/20 text-white dark:bg-slate-900/20 dark:text-slate-900'
-                    : 'bg-lofi-subtle dark:bg-lofi-darkSubtle text-slate-500 dark:text-slate-400'
+                    ? 'bg-white/25 text-white'
+                    : 'bg-earth-sand/60 dark:bg-earth-coffeeSubtle text-slate-600 dark:text-slate-400'
                 }`}
               >
                 {count}

@@ -8,12 +8,12 @@ interface AboutSectionProps {
 
 export const AboutSection: React.FC<AboutSectionProps> = ({ user }) => {
   return (
-    <section id="sobre-mi" className="py-16 sm:py-24 border-b border-lofi-border/70 dark:border-lofi-darkBorder/70">
+    <section id="sobre-mi" className="py-16 sm:py-24 border-b border-earth-sand/70 dark:border-earth-coffeeBorder/70">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Left Column: Bio */}
           <div className="lg:col-span-7">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-pastel-lavender-badge dark:bg-pastel-lavender-bg/30 text-pastel-lavender-text dark:text-pastel-lavender-darkText border border-pastel-lavender-border/80 dark:border-pastel-lavender-border/30 mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-swatch-lavender-bg text-swatch-lavender-text dark:bg-swatch-lavender-border/20 dark:text-swatch-lavender-darkText border border-swatch-lavender-border/70 mb-3">
               <User className="w-3.5 h-3.5" />
               <span>Perfil & Trayectoria</span>
             </div>
@@ -36,8 +36,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ user }) => {
 
             {/* Education Cards */}
             <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="p-4 rounded-2xl bg-lofi-card dark:bg-lofi-darkCard border border-lofi-border dark:border-lofi-darkBorder shadow-lofi">
-                <div className="flex items-center gap-2 text-pastel-matcha-text dark:text-pastel-matcha-darkText font-semibold text-xs sm:text-sm mb-1">
+              <div className="card-lift p-4 rounded-2xl bg-earth-linen/80 dark:bg-earth-coffeeCard border border-earth-sand dark:border-earth-coffeeBorder shadow-soft">
+                <div className="flex items-center gap-2 text-emerald-700 dark:text-swatch-lemon-darkText font-semibold text-xs sm:text-sm mb-1">
                   <GraduationCap className="w-4 h-4" />
                   <span>Terciario Urquiza</span>
                 </div>
@@ -46,8 +46,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ user }) => {
                 </p>
               </div>
 
-              <div className="p-4 rounded-2xl bg-lofi-card dark:bg-lofi-darkCard border border-lofi-border dark:border-lofi-darkBorder shadow-lofi">
-                <div className="flex items-center gap-2 text-pastel-peach-text dark:text-pastel-peach-darkText font-semibold text-xs sm:text-sm mb-1">
+              <div className="card-lift p-4 rounded-2xl bg-earth-linen/80 dark:bg-earth-coffeeCard border border-earth-sand dark:border-earth-coffeeBorder shadow-soft">
+                <div className="flex items-center gap-2 text-earth-mocha dark:text-swatch-peach-darkText font-semibold text-xs sm:text-sm mb-1">
                   <Award className="w-4 h-4" />
                   <span>CS50 Harvard University</span>
                 </div>
@@ -60,7 +60,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ user }) => {
 
           {/* Right Column: Contact Card */}
           <div id="contacto" className="lg:col-span-5">
-            <div className="rounded-3xl bg-lofi-card dark:bg-lofi-darkCard border border-lofi-border dark:border-lofi-darkBorder p-7 sm:p-8 shadow-lofi">
+            <div className="card-lift rounded-3xl bg-earth-linen dark:bg-earth-coffeeCard border border-earth-sand dark:border-earth-coffeeBorder p-7 sm:p-8 shadow-soft">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">Contacto & Redes</h3>
               <p className="text-xs text-slate-500 dark:text-slate-400 mb-6">
                 Abierto a proyectos, prácticas profesionales y colaboración técnica.
@@ -69,9 +69,9 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ user }) => {
               <div className="space-y-3">
                 <a
                   href={`mailto:${user.email}`}
-                  className="flex items-center gap-3.5 p-3 rounded-2xl bg-lofi-subtle/70 dark:bg-lofi-darkSubtle/70 hover:bg-lofi-subtle dark:hover:bg-lofi-darkSubtle transition text-xs sm:text-sm text-slate-700 dark:text-slate-200 border border-lofi-border/60 dark:border-lofi-darkBorder/60"
+                  className="btn-tactile flex items-center gap-3.5 p-3 rounded-2xl bg-earth-sand/50 dark:bg-earth-coffeeSubtle hover:bg-earth-sand dark:hover:bg-earth-coffeeBorder text-xs sm:text-sm text-slate-800 dark:text-slate-200 border border-earth-sand/70 dark:border-earth-coffeeBorder shadow-xs"
                 >
-                  <div className="w-8 h-8 rounded-xl bg-pastel-lavender-badge text-pastel-lavender-text dark:bg-pastel-lavender-bg/30 dark:text-pastel-lavender-darkText flex items-center justify-center shrink-0">
+                  <div className="w-8 h-8 rounded-xl bg-swatch-lavender-bg text-swatch-lavender-text dark:bg-swatch-lavender-border/20 dark:text-swatch-lavender-darkText flex items-center justify-center shrink-0">
                     <Mail className="w-4 h-4" />
                   </div>
                   <div className="min-w-0">
@@ -84,9 +84,9 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ user }) => {
                   href={`https://github.com/${user.github}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3.5 p-3 rounded-2xl bg-lofi-subtle/70 dark:bg-lofi-darkSubtle/70 hover:bg-lofi-subtle dark:hover:bg-lofi-darkSubtle transition text-xs sm:text-sm text-slate-700 dark:text-slate-200 border border-lofi-border/60 dark:border-lofi-darkBorder/60"
+                  className="btn-tactile flex items-center gap-3.5 p-3 rounded-2xl bg-earth-sand/50 dark:bg-earth-coffeeSubtle hover:bg-earth-sand dark:hover:bg-earth-coffeeBorder text-xs sm:text-sm text-slate-800 dark:text-slate-200 border border-earth-sand/70 dark:border-earth-coffeeBorder shadow-xs"
                 >
-                  <div className="w-8 h-8 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 flex items-center justify-center shrink-0">
+                  <div className="w-8 h-8 rounded-xl bg-earth-mocha/20 text-earth-mocha dark:bg-earth-mocha/30 dark:text-swatch-peach-darkText flex items-center justify-center shrink-0">
                     <Github className="w-4 h-4" />
                   </div>
                   <div>
@@ -95,8 +95,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ user }) => {
                   </div>
                 </a>
 
-                <div className="flex items-center gap-3.5 p-3 rounded-2xl bg-lofi-subtle/70 dark:bg-lofi-darkSubtle/70 text-xs sm:text-sm text-slate-700 dark:text-slate-200 border border-lofi-border/60 dark:border-lofi-darkBorder/60">
-                  <div className="w-8 h-8 rounded-xl bg-pastel-matcha-badge text-pastel-matcha-text dark:bg-pastel-matcha-bg/30 dark:text-pastel-matcha-darkText flex items-center justify-center shrink-0">
+                <div className="flex items-center gap-3.5 p-3 rounded-2xl bg-earth-sand/50 dark:bg-earth-coffeeSubtle text-xs sm:text-sm text-slate-800 dark:text-slate-200 border border-earth-sand/70 dark:border-earth-coffeeBorder shadow-xs">
+                  <div className="w-8 h-8 rounded-xl bg-swatch-mint-bg text-swatch-mint-text dark:bg-swatch-mint-border/20 dark:text-swatch-mint-darkText flex items-center justify-center shrink-0">
                     <MapPin className="w-4 h-4" />
                   </div>
                   <div>
@@ -106,9 +106,9 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ user }) => {
                 </div>
               </div>
 
-              <div className="mt-6 pt-5 border-t border-lofi-border/70 dark:border-lofi-darkBorder/70 flex items-center justify-between text-xs text-slate-400">
+              <div className="mt-6 pt-5 border-t border-earth-sand/70 dark:border-earth-coffeeBorder/70 flex items-center justify-between text-xs text-slate-400">
                 <span className="flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                   <span>Disponible para nuevos desafíos</span>
                 </span>
                 <span className="font-mono text-[11px]">2026</span>

@@ -4,14 +4,25 @@
 
 @layer base {
   body {
-    @apply bg-lofi-bg text-slate-800 dark:bg-lofi-darkBg dark:text-slate-100 transition-colors duration-300 font-sans;
+    @apply bg-earth-light text-slate-800 dark:bg-earth-coffeeBg dark:text-slate-100 transition-colors duration-300 font-sans selection:bg-swatch-lavender selection:text-swatch-lavender-text;
   }
 }
 
-/* Lo-Fi Smooth scrollbars */
+/* Custom interactive tactile button utility */
+@layer components {
+  .btn-tactile {
+    @apply transition-all duration-200 ease-out active:scale-[0.97] hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+  }
+
+  .card-lift {
+    @apply transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-soft-hover dark:hover:shadow-soft-dark-hover;
+  }
+}
+
+/* Custom Lo-Fi Earth Scrollbars */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 }
 
 ::-webkit-scrollbar-track {
@@ -19,14 +30,5 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-slate-300/70 dark:bg-slate-700/70 rounded-full hover:bg-slate-400 dark:hover:bg-slate-600 transition-colors;
-}
-
-/* Subtle Lo-Fi glow accents */
-.lofi-glow {
-  box-shadow: 0 0 35px -8px rgba(184, 169, 201, 0.25);
-}
-
-.dark .lofi-glow {
-  box-shadow: 0 0 35px -8px rgba(157, 136, 181, 0.15);
+  @apply bg-earth-taupe/50 dark:bg-earth-coffeeBorder rounded-full hover:bg-earth-taupe dark:hover:bg-earth-mocha transition-colors;
 }

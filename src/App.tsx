@@ -89,7 +89,7 @@ export const App: React.FC = () => {
   }, [selectedCategory, searchQuery]);
 
   return (
-    <div className="min-h-screen bg-lofi-bg dark:bg-lofi-darkBg text-slate-800 dark:text-slate-100 flex flex-col font-sans transition-colors duration-300">
+    <div className="min-h-screen bg-earth-light dark:bg-earth-coffeeBg text-slate-800 dark:text-slate-100 flex flex-col font-sans transition-colors duration-300">
       <Navbar
         darkMode={darkMode}
         toggleDarkMode={toggleDarkMode}
@@ -103,10 +103,10 @@ export const App: React.FC = () => {
         />
 
         {/* Projects Section */}
-        <section id="proyectos" className="py-16 sm:py-24 border-b border-lofi-border/70 dark:border-lofi-darkBorder/70">
+        <section id="proyectos" className="py-16 sm:py-24 border-b border-earth-sand/70 dark:border-earth-coffeeBorder/70">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-2xl mb-8">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-pastel-lavender-badge dark:bg-pastel-lavender-bg/30 text-pastel-lavender-text dark:text-pastel-lavender-darkText border border-pastel-lavender-border/80 dark:border-pastel-lavender-border/30 mb-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-swatch-lavender-bg text-swatch-lavender-text dark:bg-swatch-lavender-border/20 dark:text-swatch-lavender-darkText border border-swatch-lavender-border/70 mb-3">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>Explorador de Software</span>
               </div>
@@ -139,8 +139,8 @@ export const App: React.FC = () => {
                 ))}
               </div>
             ) : (
-              <div className="py-16 text-center rounded-3xl bg-lofi-card dark:bg-lofi-darkCard border border-lofi-border dark:border-lofi-darkBorder p-8 shadow-lofi">
-                <div className="w-10 h-10 rounded-2xl bg-lofi-subtle dark:bg-lofi-darkSubtle flex items-center justify-center mx-auto text-slate-400 mb-3">
+              <div className="card-lift py-16 text-center rounded-3xl bg-earth-linen dark:bg-earth-coffeeCard border border-earth-sand dark:border-earth-coffeeBorder p-8 shadow-soft">
+                <div className="w-10 h-10 rounded-2xl bg-earth-sand/60 dark:bg-earth-coffeeSubtle flex items-center justify-center mx-auto text-slate-400 mb-3">
                   <SearchX className="w-5 h-5" />
                 </div>
                 <h3 className="text-base font-bold text-slate-900 dark:text-white">
@@ -154,7 +154,7 @@ export const App: React.FC = () => {
                     setSelectedCategory('all');
                     setSearchQuery('');
                   }}
-                  className="mt-4 px-4 py-1.5 rounded-full bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900 text-xs font-semibold hover:opacity-90 transition"
+                  className="btn-tactile mt-4 px-5 py-2 rounded-2xl bg-earth-mocha hover:bg-earth-darkMocha text-white text-xs font-semibold shadow-soft"
                 >
                   Limpiar filtros
                 </button>

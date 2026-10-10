@@ -11,12 +11,12 @@ export const Footer: React.FC<FooterProps> = ({ githubUser }) => {
   };
 
   return (
-    <footer className="border-t border-lofi-border/70 dark:border-lofi-darkBorder/70 bg-lofi-bg dark:bg-lofi-darkBg py-10 transition-colors duration-300">
+    <footer className="border-t border-earth-sand/80 dark:border-earth-coffeeBorder/80 bg-earth-light dark:bg-earth-coffeeBg py-10 transition-colors duration-300">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded-lg bg-pastel-lavender-badge text-pastel-lavender-text dark:bg-pastel-lavender-bg/30 dark:text-pastel-lavender-darkText flex items-center justify-center">
-              <Sparkles className="w-3.5 h-3.5" />
+            <div className="w-8 h-8 rounded-xl bg-earth-sand dark:bg-earth-coffeeBorder text-earth-mocha dark:text-swatch-lavender-darkText flex items-center justify-center shadow-xs">
+              <Sparkles className="w-4 h-4" />
             </div>
             <div>
               <p className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
@@ -33,7 +33,7 @@ export const Footer: React.FC<FooterProps> = ({ githubUser }) => {
               href={`https://github.com/${githubUser}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-xl text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-lofi-subtle dark:hover:bg-lofi-darkSubtle transition-colors"
+              className="btn-tactile p-2 rounded-xl text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white hover:bg-earth-sand/50 dark:hover:bg-earth-coffeeCard transition-colors"
               aria-label="Perfil de GitHub"
             >
               <Github className="w-4 h-4" />
@@ -41,17 +41,17 @@ export const Footer: React.FC<FooterProps> = ({ githubUser }) => {
 
             <button
               onClick={scrollToTop}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-lofi-card dark:bg-lofi-darkCard hover:bg-lofi-subtle dark:hover:bg-lofi-darkSubtle text-slate-700 dark:text-slate-200 border border-lofi-border dark:border-lofi-darkBorder shadow-sm transition-colors"
+              className="btn-tactile flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-earth-linen dark:bg-earth-coffeeCard hover:bg-earth-sand/60 dark:hover:bg-earth-coffeeSubtle text-slate-700 dark:text-slate-200 border border-earth-sand dark:border-earth-coffeeBorder shadow-xs"
             >
               <span>Subir</span>
-              <ArrowUp className="w-3 h-3" />
+              <ArrowUp className="w-3.5 h-3.5" />
             </button>
           </div>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-lofi-border/60 dark:border-lofi-darkBorder/60 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-400 gap-3">
+        <div className="mt-8 pt-6 border-t border-earth-sand/60 dark:border-earth-coffeeBorder/60 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 gap-3">
           <p>© {new Date().getFullYear()} Leandro. Todos los derechos reservados.</p>
-          <p>Desarrollado con dedicación y diseño lo-fi pastel.</p>
+          <p>Diseño Lo-Fi cálido & pastel.</p>
         </div>
       </div>
     </footer>
