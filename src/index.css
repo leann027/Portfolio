@@ -4,11 +4,11 @@
 
 @layer base {
   body {
-    @apply font-sans antialiased text-slate-800 dark:text-slate-100 bg-slate-50 dark:bg-slate-950 transition-colors duration-200;
+    @apply bg-lofi-bg text-slate-800 dark:bg-lofi-darkBg dark:text-slate-100 transition-colors duration-300 font-sans;
   }
 }
 
-/* Custom scrollbars */
+/* Lo-Fi Smooth scrollbars */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -19,10 +19,14 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-slate-300 dark:bg-slate-700 rounded-full;
+  @apply bg-slate-300/70 dark:bg-slate-700/70 rounded-full hover:bg-slate-400 dark:hover:bg-slate-600 transition-colors;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-slate-400 dark:bg-slate-600;
+/* Subtle Lo-Fi glow accents */
+.lofi-glow {
+  box-shadow: 0 0 35px -8px rgba(184, 169, 201, 0.25);
 }
 
+.dark .lofi-glow {
+  box-shadow: 0 0 35px -8px rgba(157, 136, 181, 0.15);
+}

@@ -2,7 +2,7 @@
 """
 execution/fetch_projects.py
 Deterministic pipeline script to fetch, merge, and normalize project metadata
-for the interactive portfolio, adhering to the 3-layer architecture defined in Agents.md.
+for the interactive software portfolio.
 """
 
 import json

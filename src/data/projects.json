@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generatedAt": "2026-10-10T10:35:30.082454",
+    "generatedAt": "2026-10-10T11:27:44.567804",
     "totalProjects": 5,
     "featuredCount": 3
   },
@@ -101,9 +101,9 @@
       "id": "portfolio-hub",
       "repoName": "Portfolio",
       "title": "Portfolio Interactivo & Motor de Proyectos",
-      "tagline": "Plataforma web moderna con arquitectura de 3 capas y CI/CD automatizado",
-      "shortDescription": "Plataforma web interactiva desarrollada con React, TypeScript y Tailwind CSS, respaldada por un pipeline determinista en Python y despliegue continuo con GitHub Actions.",
-      "fullDescription": "Mi primer gran proyecto insignia: un portfolio web interactivo diseñado para centralizar y exhibir mis proyectos de desarrollo de software. Implementa la arquitectura de 3 capas (Directivas, Orquestación y Ejecución) según las directivas de ingeniería de Agents.md. Cuenta con filtrado reactivo por categorías, búsqueda en tiempo real, modales con especificaciones técnicas detalladas, soporte completo de modo oscuro/claro y un pipeline de CI/CD que valida datos y despliega en GitHub Pages con cada actualización.",
+      "tagline": "Plataforma web interactiva con arquitectura modular y CI/CD automatizado",
+      "shortDescription": "Plataforma web interactiva desarrollada con React, TypeScript y Tailwind CSS, respaldada por un pipeline en Python y despliegue continuo con GitHub Actions.",
+      "fullDescription": "Mi primer gran proyecto insignia: un portfolio web interactivo diseñado para centralizar y exhibir mis proyectos de desarrollo de software. Desarrollado bajo una arquitectura limpia y desacoplada con React, TypeScript y Tailwind CSS, respaldado por un motor de datos en Python y despliegue continuo con GitHub Actions. Cuenta con filtrado reactivo por categorías, búsqueda en tiempo real, modales con especificaciones técnicas detalladas y soporte completo de modo oscuro/claro.",
       "category": "web",
       "languages": [
         "TypeScript",
@@ -128,11 +128,11 @@
       "stars": 0,
       "forks": 0,
       "highlights": [
-        "Arquitectura de 3 capas (Agents.md) separando especificaciones, orquestación y scripts deterministas",
+        "Arquitectura modular desacoplando fuentes de datos, validación y renderizado reactivo",
         "Pipeline de CI/CD automatizado con GitHub Actions para testing y despliegue a GitHub Pages",
         "Filtrado reactivo instantáneo por tecnologías, categorías y búsqueda en vivo",
-        "Diseño moderno y responsivo con Tailwind CSS y soporte de tema oscuro / claro",
-        "Motor de datos en Python extensible para incorporar futuros proyectos en segundos"
+        "Diseño lo-fi responsivo con Tailwind CSS y soporte de tema oscuro / claro",
+        "Motor de datos en Python para sincronización determinista de proyectos"
       ]
     },
     {

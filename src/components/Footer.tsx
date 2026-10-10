@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUp, Github, Terminal } from 'lucide-react';
+import { ArrowUp, Github, Sparkles } from 'lucide-react';
 
 interface FooterProps {
   githubUser: string;
@@ -11,49 +11,47 @@ export const Footer: React.FC<FooterProps> = ({ githubUser }) => {
   };
 
   return (
-    <footer className="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 py-12 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="border-t border-lofi-border/70 dark:border-lofi-darkBorder/70 bg-lofi-bg dark:bg-lofi-darkBg py-10 transition-colors duration-300">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-brand-500/10 dark:bg-brand-400/10 flex items-center justify-center text-brand-600 dark:text-brand-400">
-              <Terminal className="w-4 h-4" />
+          <div className="flex items-center gap-2.5">
+            <div className="w-7 h-7 rounded-lg bg-pastel-lavender-badge text-pastel-lavender-text dark:bg-pastel-lavender-bg/30 dark:text-pastel-lavender-darkText flex items-center justify-center">
+              <Sparkles className="w-3.5 h-3.5" />
             </div>
             <div>
-              <p className="text-sm font-bold text-slate-900 dark:text-white">
+              <p className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
                 Leandro (@{githubUser})
               </p>
-              <p className="text-xs text-slate-500 dark:text-slate-400">
-                Construido con React, TypeScript, Tailwind CSS & arquitectura de 3 capas.
+              <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                Portfolio de Software • React, TypeScript & Tailwind CSS
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <a
               href={`https://github.com/${githubUser}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-lg text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"
+              className="p-2 rounded-xl text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-lofi-subtle dark:hover:bg-lofi-darkSubtle transition-colors"
               aria-label="Perfil de GitHub"
             >
-              <Github className="w-5 h-5" />
+              <Github className="w-4 h-4" />
             </a>
 
             <button
               onClick={scrollToTop}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-lofi-card dark:bg-lofi-darkCard hover:bg-lofi-subtle dark:hover:bg-lofi-darkSubtle text-slate-700 dark:text-slate-200 border border-lofi-border dark:border-lofi-darkBorder shadow-sm transition-colors"
             >
               <span>Subir</span>
-              <ArrowUp className="w-3.5 h-3.5" />
+              <ArrowUp className="w-3 h-3" />
             </button>
           </div>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-slate-100 dark:border-slate-900 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
+        <div className="mt-8 pt-6 border-t border-lofi-border/60 dark:border-lofi-darkBorder/60 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-400 gap-3">
           <p>© {new Date().getFullYear()} Leandro. Todos los derechos reservados.</p>
-          <p className="flex items-center gap-1">
-            Diseñado para crecimiento continuo y modularidad.
-          </p>
+          <p>Desarrollado con dedicación y diseño lo-fi pastel.</p>
         </div>
       </div>
     </footer>

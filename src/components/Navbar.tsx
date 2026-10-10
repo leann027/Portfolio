@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
-import { Sun, Moon, Github, Menu, X, Terminal, FolderPlus } from 'lucide-react';
+import { Sun, Moon, Github, Menu, X, Sparkles } from 'lucide-react';
 
 interface NavbarProps {
   darkMode: boolean;
   toggleDarkMode: () => void;
   githubUser: string;
-  onOpenAddGuide: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   darkMode,
   toggleDarkMode,
   githubUser,
-  onOpenAddGuide,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -24,25 +22,25 @@ export const Navbar: React.FC<NavbarProps> = ({
   ];
 
   return (
-    <header className="sticky top-0 z-40 w-full backdrop-blur-md bg-white/80 dark:bg-slate-950/80 border-b border-slate-200 dark:border-slate-800 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <header className="sticky top-0 z-40 w-full backdrop-blur-md bg-lofi-bg/85 dark:bg-lofi-darkBg/85 border-b border-lofi-border/70 dark:border-lofi-darkBorder/70 transition-colors duration-300">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Brand / Logo */}
-        <a href="#" className="flex items-center gap-2 group">
-          <div className="w-9 h-9 rounded-lg bg-brand-500/10 dark:bg-brand-400/10 flex items-center justify-center text-brand-600 dark:text-brand-400 group-hover:scale-105 transition-transform">
-            <Terminal className="w-5 h-5" />
+        <a href="#" className="flex items-center gap-2.5 group">
+          <div className="w-8 h-8 rounded-xl bg-pastel-lavender-badge dark:bg-pastel-lavender-bg/30 text-pastel-lavender-text dark:text-pastel-lavender-darkText flex items-center justify-center group-hover:rotate-6 transition-transform">
+            <Sparkles className="w-4 h-4" />
           </div>
-          <span className="font-bold text-lg tracking-tight text-slate-900 dark:text-white">
-            leann027<span className="text-brand-500 dark:text-brand-400">.dev</span>
+          <span className="font-bold text-base sm:text-lg tracking-tight text-slate-900 dark:text-white">
+            leann027<span className="text-purple-400 dark:text-purple-300">.dev</span>
           </span>
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-7">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-slate-600 hover:text-brand-600 dark:text-slate-300 dark:hover:text-brand-400 transition-colors"
+              className="text-xs sm:text-sm font-medium text-slate-600 hover:text-purple-600 dark:text-slate-300 dark:hover:text-purple-300 transition-colors"
             >
               {link.label}
             </a>
@@ -52,29 +50,20 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Action Buttons */}
         <div className="hidden md:flex items-center gap-3">
           <button
-            onClick={onOpenAddGuide}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 transition-colors"
-            title="Aprende a incorporar nuevos proyectos"
-          >
-            <FolderPlus className="w-3.5 h-3.5 text-brand-500" />
-            <span>+ Agregar Proyecto</span>
-          </button>
-
-          <button
             onClick={toggleDarkMode}
             aria-label="Cambiar modo claro / oscuro"
-            className="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800 transition-colors"
+            className="p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-lofi-subtle dark:text-slate-300 dark:hover:text-white dark:hover:bg-lofi-darkSubtle transition-colors"
           >
-            {darkMode ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5 text-slate-700" />}
+            {darkMode ? <Sun className="w-4 h-4 text-amber-300" /> : <Moon className="w-4 h-4 text-slate-600" />}
           </button>
 
           <a
             href={`https://github.com/${githubUser}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-3.5 py-1.5 text-sm font-medium rounded-lg bg-slate-900 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 text-white shadow-sm transition-colors"
+            className="flex items-center gap-2 px-3.5 py-1.5 text-xs sm:text-sm font-semibold rounded-full bg-slate-900 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 text-white shadow-sm transition-all"
           >
-            <Github className="w-4 h-4" />
+            <Github className="w-3.5 h-3.5" />
             <span>GitHub</span>
           </a>
         </div>
@@ -84,50 +73,40 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             onClick={toggleDarkMode}
             aria-label="Cambiar modo claro / oscuro"
-            className="p-2 rounded-lg text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
+            className="p-2 rounded-xl text-slate-600 hover:bg-lofi-subtle dark:text-slate-300 dark:hover:bg-lofi-darkSubtle"
           >
-            {darkMode ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5" />}
+            {darkMode ? <Sun className="w-4 h-4 text-amber-300" /> : <Moon className="w-4 h-4" />}
           </button>
 
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Abrir menú"
-            className="p-2 rounded-lg text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
+            className="p-2 rounded-xl text-slate-600 hover:bg-lofi-subtle dark:text-slate-300 dark:hover:bg-lofi-darkSubtle"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 px-4 pt-2 pb-6 space-y-3">
+        <div className="md:hidden border-b border-lofi-border dark:border-lofi-darkBorder bg-lofi-bg dark:bg-lofi-darkBg px-4 pt-2 pb-6 space-y-2">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"
+              className="block px-3 py-2 rounded-xl text-sm font-medium text-slate-700 hover:bg-lofi-subtle dark:text-slate-200 dark:hover:bg-lofi-darkSubtle"
             >
               {link.label}
             </a>
           ))}
-          <div className="pt-2 border-t border-slate-200 dark:border-slate-800 flex flex-col gap-2">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenAddGuide();
-              }}
-              className="flex items-center justify-center gap-2 w-full py-2 px-4 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-medium"
-            >
-              <FolderPlus className="w-4 h-4 text-brand-500" />
-              <span>Cómo Agregar Futuros Proyectos</span>
-            </button>
+          <div className="pt-2 border-t border-lofi-border dark:border-lofi-darkBorder">
             <a
               href={`https://github.com/${githubUser}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full py-2 px-4 rounded-lg bg-slate-900 text-white dark:bg-slate-800 font-medium"
+              className="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-slate-900 text-white dark:bg-slate-800 text-xs font-semibold"
             >
               <Github className="w-4 h-4" />
               <span>Ver Perfil de GitHub</span>
@@ -138,4 +117,3 @@ export const Navbar: React.FC<NavbarProps> = ({
     </header>
   );
 };
-

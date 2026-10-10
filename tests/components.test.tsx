@@ -2,7 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, beforeEach } from 'vitest';
 import { App } from '../src/App';
 
-describe('Interactive Portfolio UI', () => {
+describe('Interactive Portfolio UI (Pure Visualization)', () => {
   beforeEach(() => {
     // Mock matchMedia
     Object.defineProperty(window, 'matchMedia', {
@@ -25,6 +25,12 @@ describe('Interactive Portfolio UI', () => {
     expect(screen.getByText(/Hola, soy/i)).toBeInTheDocument();
     expect(screen.getAllByText(/Leandro/i).length).toBeGreaterThan(0);
     expect(screen.getByText(/Portfolio Interactivo & Motor de Proyectos/i)).toBeInTheDocument();
+  });
+
+  it('is strictly a visualization portfolio with no public add project buttons', () => {
+    render(<App />);
+    expect(screen.queryByText(/\+ Agregar Proyecto/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/¿Cómo sumar futuros proyectos\?/i)).not.toBeInTheDocument();
   });
 
   it('allows live filtering by search query', () => {
@@ -54,19 +60,5 @@ describe('Interactive Portfolio UI', () => {
     const closeButton = screen.getByRole('button', { name: /Cerrar modal/i });
     fireEvent.click(closeButton);
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-  });
-
-  it('opens and closes add project guide modal', () => {
-    render(<App />);
-    const addGuideLabels = screen.getAllByText(/¿Cómo sumar futuros proyectos\?/i);
-    const addBtn = addGuideLabels[0].closest('button') || addGuideLabels[0];
-    fireEvent.click(addBtn);
-
-    expect(screen.getByText(/Cómo incorporar futuros proyectos/i)).toBeInTheDocument();
-    expect(screen.getByText(/data\/projects_config\.json/i)).toBeInTheDocument();
-
-    const understandBtn = screen.getByRole('button', { name: /Entendido/i });
-    fireEvent.click(understandBtn);
-    expect(screen.queryByText(/Cómo incorporar futuros proyectos/i)).not.toBeInTheDocument();
   });
 });
