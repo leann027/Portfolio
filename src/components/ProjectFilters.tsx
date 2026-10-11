@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, X, Sparkles } from 'lucide-react';
+import { Search, X } from 'lucide-react';
 import { Category } from '../types/project';
 
 interface ProjectFiltersProps {
@@ -52,11 +52,6 @@ export const ProjectFilters: React.FC<ProjectFiltersProps> = ({
               <X className="w-4 h-4" />
             </button>
           )}
-        </div>
-
-        <div className="flex items-center gap-1.5 text-xs font-medium text-earth-ink-600 dark:text-stone-300">
-          <Sparkles className="w-3.5 h-3.5 text-earth-darkMocha dark:text-swatch-lavender-darkText" />
-          <span>Filtro reactivo instantáneo</span>
         </div>
       </div>
 

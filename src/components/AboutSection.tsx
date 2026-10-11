@@ -41,9 +41,9 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ user }) => {
                 procesamiento de datos en <strong>Python</strong>.
               </p>
               <p>
-                Este portfolio interactivo representa mi primer gran proyecto integral, consolidando
-                arquitectura modular, diseño responsivo, pruebas automatizadas y despliegue continuo
-                con GitHub Actions para centralizar y exhibir mis desarrollos.
+                Me enfoco en el desarrollo con arquitectura modular, diseño responsivo, pruebas
+                automatizadas e integración continua con GitHub Actions para entregar software
+                robusto y mantenible.
               </p>
             </div>
 

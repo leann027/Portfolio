@@ -67,11 +67,6 @@ export const ProjectVisual: React.FC<ProjectVisualProps> = ({
               </span>
             </div>
           </div>
-
-          <div className="mt-3 flex items-center justify-between text-[10px] text-earth-ink-700 dark:text-stone-400 font-mono">
-            <span>● 100% Determinista</span>
-            <span>● WCAG AA Certificado</span>
-          </div>
         </div>
       );
 
@@ -119,11 +114,6 @@ export const ProjectVisual: React.FC<ProjectVisualProps> = ({
                 ReportLab Engine
               </span>
             </div>
-          </div>
-
-          <div className="mt-2.5 flex items-center justify-between text-[10px] text-earth-ink-700 dark:text-stone-400 font-mono">
-            <span>● Persistencia JSON</span>
-            <span>● Valuación Automática</span>
           </div>
         </div>
       );
@@ -183,11 +173,6 @@ export const ProjectVisual: React.FC<ProjectVisualProps> = ({
               </span>
             </div>
           </div>
-
-          <div className="mt-2.5 flex items-center justify-between text-[10px] text-earth-ink-700 dark:text-stone-400 font-mono">
-            <span>● Control Manual de Memoria</span>
-            <span>● Valgrind: 0 Leaks</span>
-          </div>
         </div>
       );
 
@@ -234,11 +219,6 @@ export const ProjectVisual: React.FC<ProjectVisualProps> = ({
                 O(1) Promedio
               </span>
             </div>
-          </div>
-
-          <div className="mt-2.5 flex items-center justify-between text-[10px] text-earth-ink-700 dark:text-stone-400 font-mono">
-            <span>● Harvard University</span>
-            <span>● C & Algoritmos Base</span>
           </div>
         </div>
       );
@@ -288,11 +268,6 @@ export const ProjectVisual: React.FC<ProjectVisualProps> = ({
                 API Dispatch
               </span>
             </div>
-          </div>
-
-          <div className="mt-2.5 flex items-center justify-between text-[10px] text-earth-ink-700 dark:text-stone-400 font-mono">
-            <span>● 0 Errores de Sincronización</span>
-            <span>● 100% Sin Fuga de Datos</span>
           </div>
         </div>
       );

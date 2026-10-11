@@ -16,7 +16,7 @@
       "title": "Portfolio Interactivo & Motor de Proyectos",
       "tagline": "Plataforma web interactiva con arquitectura modular y CI/CD automatizado",
       "shortDescription": "Plataforma web interactiva desarrollada con React, TypeScript y Tailwind CSS, respaldada por un pipeline en Python y despliegue continuo con GitHub Actions.",
-      "fullDescription": "Mi primer gran proyecto insignia: un portfolio web interactivo diseñado para centralizar y exhibir mis proyectos de desarrollo de software. Desarrollado bajo una arquitectura limpia y desacoplada con React, TypeScript y Tailwind CSS, respaldado por un motor de datos en Python y despliegue continuo con GitHub Actions. Cuenta con filtrado reactivo por categorías, búsqueda en tiempo real, modales con especificaciones técnicas detalladas y soporte completo de modo oscuro/claro.",
+      "fullDescription": "Portfolio web diseñado para centralizar y exhibir proyectos de desarrollo de software. Desarrollado con React, TypeScript y Tailwind CSS, respaldado por un motor de datos en Python y despliegue continuo con GitHub Actions. Incluye filtrado por categorías, búsqueda en tiempo real, modales con especificaciones técnicas detalladas y soporte para modo oscuro y claro.",
       "category": "web",
       "languages": ["TypeScript", "Python"],
       "technologies": [
@@ -33,7 +33,7 @@
       "academic": false,
       "featured": true,
       "status": "Producción / Insignia",
-      "role": "Desarrollador Principal & Arquitecto Frontend",
+      "role": "Desarrollador Frontend",
       "skillsDemonstrated": [
         "Arquitectura de Componentes React & TypeScript",
         "Diseño de Sistemas UI & Tailwind CSS",
@@ -44,10 +44,10 @@
       "visualType": "portfolio-hub",
       "updatedAt": "2026-10-10",
       "highlights": [
-        "Arquitectura modular desacoplando fuentes de datos, validación y renderizado reactivo",
+        "Arquitectura modular desacoplando fuentes de datos, validación y renderizado",
         "Pipeline de CI/CD automatizado con GitHub Actions para testing y despliegue a GitHub Pages",
-        "Filtrado reactivo instantáneo por tecnologías, categorías y búsqueda en vivo",
-        "Diseño lo-fi responsivo con Tailwind CSS y soporte de tema oscuro / claro",
+        "Búsqueda y filtrado por tecnologías y categorías en tiempo real",
+        "Diseño responsivo con Tailwind CSS y soporte para modo oscuro y claro",
         "Motor de datos en Python para sincronización determinista de proyectos"
       ]
     },

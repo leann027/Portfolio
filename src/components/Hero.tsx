@@ -47,10 +47,8 @@ export const Hero: React.FC<HeroProps> = ({ user, totalProjects }) => {
           </p>
 
           <p className="mt-4 text-sm sm:text-base text-earth-ink-600 dark:text-stone-300 leading-relaxed max-w-2xl">
-            {user.bio} Construyo aplicaciones estructuradas, eficientes y modulares. Este portfolio
-            interactivo es mi{' '}
-            <strong className="text-earth-ink-900 dark:text-stone-200">proyecto insignia</strong>{' '}
-            para catalogar y visualizar mis desarrollos.
+            {user.bio} Construyo aplicaciones estructuradas, eficientes y modulares, enfocadas en
+            buenas prácticas y código limpio.
           </p>
 
           {/* Responsive Tactile CTA Buttons */}
