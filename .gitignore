@@ -49,6 +49,11 @@ directives/
 .directives/
 .agent/
 .agents/
+.codex/
+.impeccable/
+.github/agents/
+.github/hooks/
+.github/skills/
 PROJECT.md
 TEST_INFRA.md
 TEST_READY.md

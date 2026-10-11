@@ -1,5 +1,5 @@
 import React from 'react';
-import { Code, Layout, Wrench, Sparkles } from 'lucide-react';
+import { Code, Layout, Wrench } from 'lucide-react';
 import { SkillItem } from '../types/project';
 
 interface SkillsSectionProps {
@@ -18,10 +18,6 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-swatch-lemon-bg text-swatch-lemon-text dark:bg-swatch-lemon-border/20 dark:text-swatch-lemon-darkText border border-swatch-lemon-border/70 mb-3 badge-spring shadow-xs">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Habilidades Técnicas</span>
-          </div>
           <h2 className="text-3xl font-extrabold text-earth-ink-900 dark:text-stone-100 tracking-tight">
             Tecnologías & Entornos
           </h2>
@@ -33,9 +29,9 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Lenguajes */}
-          <div className="card-lift rounded-3xl bg-earth-linen/85 dark:bg-earth-coffeeCard border border-earth-sand dark:border-earth-coffeeBorder p-6 sm:p-7 shadow-soft">
+          <div className="card-lift rounded-2xl bg-earth-linen/85 dark:bg-earth-coffeeCard border border-earth-sand dark:border-earth-coffeeBorder p-6 sm:p-7 shadow-soft">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-2xl bg-swatch-peach-bg text-swatch-peach-text dark:bg-swatch-peach-border/20 dark:text-swatch-peach-darkText flex items-center justify-center shadow-xs">
+              <div className="w-10 h-10 rounded-xl bg-swatch-peach-bg text-swatch-peach-text dark:bg-swatch-peach-border/20 dark:text-swatch-peach-darkText flex items-center justify-center shadow-xs">
                 <Code className="w-5 h-5" />
               </div>
               <div>
@@ -48,14 +44,11 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
               </div>
             </div>
 
-            <div className="space-y-3">
+            <div className="divide-y divide-earth-sand/60 dark:divide-earth-coffeeBorder/60">
               {skills.languages.map((skill) => (
-                <div
-                  key={skill.name}
-                  className="p-3.5 rounded-2xl bg-earth-sand/40 dark:bg-earth-coffeeSubtle/60 border border-earth-sand/60 dark:border-earth-coffeeBorder/60"
-                >
+                <div key={skill.name} className="py-3 first:pt-0 last:pb-0">
                   <div className="flex items-center justify-between mb-1">
-                    <span className="font-semibold text-xs sm:text-sm text-earth-ink-800 dark:text-stone-200">
+                    <span className="font-semibold text-xs sm:text-sm text-earth-ink-900 dark:text-stone-100">
                       {skill.name}
                     </span>
                     {skill.level && (
@@ -64,7 +57,7 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
                       </span>
                     )}
                   </div>
-                  <p className="text-[11px] text-earth-ink-700 dark:text-stone-300 leading-relaxed">
+                  <p className="text-[11px] text-earth-ink-600 dark:text-stone-300 leading-relaxed">
                     {skill.description}
                   </p>
                 </div>
@@ -73,9 +66,9 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
           </div>
 
           {/* Frameworks & UI */}
-          <div className="card-lift rounded-3xl bg-earth-linen/85 dark:bg-earth-coffeeCard border border-earth-sand dark:border-earth-coffeeBorder p-6 sm:p-7 shadow-soft">
+          <div className="card-lift rounded-2xl bg-earth-linen/85 dark:bg-earth-coffeeCard border border-earth-sand dark:border-earth-coffeeBorder p-6 sm:p-7 shadow-soft">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-2xl bg-swatch-lavender-bg text-swatch-lavender-text dark:bg-swatch-lavender-border/20 dark:text-swatch-lavender-darkText flex items-center justify-center shadow-xs">
+              <div className="w-10 h-10 rounded-xl bg-swatch-lavender-bg text-swatch-lavender-text dark:bg-swatch-lavender-border/20 dark:text-swatch-lavender-darkText flex items-center justify-center shadow-xs">
                 <Layout className="w-5 h-5" />
               </div>
               <div>
@@ -88,18 +81,15 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
               </div>
             </div>
 
-            <div className="space-y-3">
+            <div className="divide-y divide-earth-sand/60 dark:divide-earth-coffeeBorder/60">
               {skills.frameworks.map((skill) => (
-                <div
-                  key={skill.name}
-                  className="p-3.5 rounded-2xl bg-earth-sand/40 dark:bg-earth-coffeeSubtle/60 border border-earth-sand/60 dark:border-earth-coffeeBorder/60"
-                >
+                <div key={skill.name} className="py-3 first:pt-0 last:pb-0">
                   <div className="flex items-center justify-between mb-1">
-                    <span className="font-semibold text-xs sm:text-sm text-earth-ink-800 dark:text-stone-200">
+                    <span className="font-semibold text-xs sm:text-sm text-earth-ink-900 dark:text-stone-100">
                       {skill.name}
                     </span>
                   </div>
-                  <p className="text-[11px] text-earth-ink-700 dark:text-stone-300 leading-relaxed">
+                  <p className="text-[11px] text-earth-ink-600 dark:text-stone-300 leading-relaxed">
                     {skill.description}
                   </p>
                 </div>
@@ -108,9 +98,9 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
           </div>
 
           {/* Herramientas & DevOps */}
-          <div className="card-lift rounded-3xl bg-earth-linen/85 dark:bg-earth-coffeeCard border border-earth-sand dark:border-earth-coffeeBorder p-6 sm:p-7 shadow-soft">
+          <div className="card-lift rounded-2xl bg-earth-linen/85 dark:bg-earth-coffeeCard border border-earth-sand dark:border-earth-coffeeBorder p-6 sm:p-7 shadow-soft">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-2xl bg-swatch-sky-bg text-swatch-sky-text dark:bg-swatch-sky-border/20 dark:text-swatch-sky-darkText flex items-center justify-center shadow-xs">
+              <div className="w-10 h-10 rounded-xl bg-swatch-sky-bg text-swatch-sky-text dark:bg-swatch-sky-border/20 dark:text-swatch-sky-darkText flex items-center justify-center shadow-xs">
                 <Wrench className="w-5 h-5" />
               </div>
               <div>
@@ -123,18 +113,15 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
               </div>
             </div>
 
-            <div className="space-y-3">
+            <div className="divide-y divide-earth-sand/60 dark:divide-earth-coffeeBorder/60">
               {skills.tools.map((skill) => (
-                <div
-                  key={skill.name}
-                  className="p-3.5 rounded-2xl bg-earth-sand/40 dark:bg-earth-coffeeSubtle/60 border border-earth-sand/60 dark:border-earth-coffeeBorder/60"
-                >
+                <div key={skill.name} className="py-3 first:pt-0 last:pb-0">
                   <div className="flex items-center justify-between mb-1">
-                    <span className="font-semibold text-xs sm:text-sm text-earth-ink-800 dark:text-stone-200">
+                    <span className="font-semibold text-xs sm:text-sm text-earth-ink-900 dark:text-stone-100">
                       {skill.name}
                     </span>
                   </div>
-                  <p className="text-[11px] text-earth-ink-700 dark:text-stone-300 leading-relaxed">
+                  <p className="text-[11px] text-earth-ink-600 dark:text-stone-300 leading-relaxed">
                     {skill.description}
                   </p>
                 </div>

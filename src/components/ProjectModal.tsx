@@ -91,7 +91,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
     >
       <div
         ref={modalRef}
-        className="relative w-full max-w-2xl bg-earth-linen dark:bg-earth-coffeeCard border border-earth-sand dark:border-earth-coffeeBorder rounded-3xl shadow-2xl p-6 sm:p-8 overflow-hidden my-8 animate-fade-up max-h-[90vh] overflow-y-auto scrollbar-thin"
+        className="relative w-full max-w-2xl bg-earth-linen dark:bg-earth-coffeeCard border border-earth-sand dark:border-earth-coffeeBorder rounded-2xl shadow-2xl p-6 sm:p-8 overflow-hidden my-8 animate-fade-up max-h-[90vh] overflow-y-auto scrollbar-thin"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}

@@ -13,7 +13,7 @@ export const FlagshipProject: React.FC<FlagshipProjectProps> = ({ project, onOpe
     <article
       data-testid="flagship-project-card"
       aria-labelledby="flagship-project-title"
-      className="mb-12 rounded-3xl bg-earth-linen/95 dark:bg-earth-coffeeCard/95 border-2 border-swatch-lavender/40 dark:border-swatch-lavender/30 shadow-soft hover:shadow-rim-card-hover p-6 sm:p-8 lg:p-10 relative transition-all duration-300"
+      className="mb-12 rounded-2xl bg-earth-linen/95 dark:bg-earth-coffeeCard/95 border-2 border-swatch-lavender/40 dark:border-swatch-lavender/30 shadow-soft hover:shadow-rim-card-hover p-6 sm:p-8 lg:p-10 relative transition-all duration-300"
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         {/* Left Column: Project Overview & Meta */}

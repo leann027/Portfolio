@@ -1,5 +1,5 @@
 import React from 'react';
-import { User, Mail, MapPin, Github, GraduationCap, Award } from 'lucide-react';
+import { Mail, MapPin, Github, GraduationCap, Award } from 'lucide-react';
 import { UserProfile } from '../types/project';
 
 interface AboutSectionProps {
@@ -16,11 +16,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ user }) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Left Column: Bio */}
           <div className="lg:col-span-7">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-swatch-lavender-bg text-swatch-lavender-text dark:bg-swatch-lavender-border/20 dark:text-swatch-lavender-darkText border border-swatch-lavender-border/70 mb-3 badge-spring shadow-xs">
-              <User className="w-3.5 h-3.5" />
-              <span>Perfil & Trayectoria</span>
-            </div>
-
             <h2 className="text-3xl font-extrabold text-earth-ink-900 dark:text-stone-100 tracking-tight">
               Sobre Mí
             </h2>
@@ -73,7 +68,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ user }) => {
 
           {/* Right Column: Contact Card */}
           <section id="contacto" aria-labelledby="contacto-heading" className="lg:col-span-5">
-            <div className="card-lift rounded-3xl bg-earth-linen/85 dark:bg-earth-coffeeCard border border-earth-sand dark:border-earth-coffeeBorder p-7 sm:p-8 shadow-soft">
+            <div className="card-lift rounded-2xl bg-earth-linen/85 dark:bg-earth-coffeeCard border border-earth-sand dark:border-earth-coffeeBorder p-7 sm:p-8 shadow-soft">
               <h3
                 id="contacto-heading"
                 className="text-lg font-bold text-earth-ink-900 dark:text-stone-100 mb-1"

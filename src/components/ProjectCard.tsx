@@ -43,7 +43,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails
   return (
     <article
       style={{ animationDelay: `${index * 70}ms` }}
-      className="card-lift animate-fade-up group flex flex-col justify-between rounded-3xl bg-earth-linen/85 dark:bg-earth-coffeeCard/90 border border-earth-sand/90 dark:border-earth-coffeeBorder shadow-soft hover:shadow-rim-card-hover p-6 sm:p-7 relative transition-all duration-300"
+      className="card-lift animate-fade-up group flex flex-col justify-between rounded-2xl bg-earth-linen/85 dark:bg-earth-coffeeCard/90 border border-earth-sand/90 dark:border-earth-coffeeBorder shadow-soft hover:shadow-rim-card-hover p-6 sm:p-7 relative transition-all duration-300"
     >
       <div>
         {/* Project Visual Schema */}

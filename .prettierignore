@@ -12,6 +12,11 @@ node_modules/
 .agents/
 Agents.md
 directives/
+.codex/
+.impeccable/
+.github/agents/
+.github/hooks/
+.github/skills/
 
 # Pipeline generated dynamic data (prevents Python JSON formatting clash)
 src/data/projects.json

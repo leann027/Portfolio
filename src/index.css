@@ -3,23 +3,34 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    @apply scroll-smooth text-earth-ink-800 dark:text-stone-200;
+    text-underline-offset: 3px;
+  }
+
   body {
-    @apply bg-earth-light text-earth-ink-800 dark:bg-earth-coffeeBg dark:text-stone-200 transition-colors duration-500 font-sans selection:bg-swatch-lavender selection:text-swatch-lavender-text antialiased;
+    @apply bg-earth-light text-earth-ink-800 dark:bg-earth-coffeeBg dark:text-stone-200 transition-colors duration-500 font-sans selection:bg-swatch-lavender/40 selection:text-earth-ink-900 dark:selection:bg-swatch-lavender/30 dark:selection:text-stone-100 antialiased;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11', 'tnum';
+    caret-color: #826049;
+  }
+
+  .dark body {
+    caret-color: #c3a2e2;
   }
 }
 
 /* Custom interactive tactile utilities & smooth transitions */
 @layer components {
   .btn-tactile {
-    @apply transition-all duration-200 ease-out active:scale-[0.97] hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 cursor-pointer;
+    @apply transition-all duration-200 ease-out active:scale-[0.98] hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-earth-darkMocha/60 dark:focus-visible:ring-swatch-lavender/60 focus-visible:ring-offset-earth-light dark:focus-visible:ring-offset-earth-coffeeBg cursor-pointer;
   }
 
   .card-lift {
-    @apply transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-soft-hover dark:hover:shadow-soft-dark-hover hover:border-earth-mocha/40 dark:hover:border-swatch-lavender/40;
+    @apply transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-soft-hover dark:hover:shadow-soft-dark-hover hover:border-earth-mocha/50 dark:hover:border-swatch-lavender/50;
   }
 
   .badge-spring {
-    @apply transition-transform duration-200 ease-out hover:scale-105 active:scale-95 inline-flex;
+    @apply transition-transform duration-200 ease-out hover:scale-[1.03] active:scale-[0.97] inline-flex;
   }
 }
 
