@@ -9,6 +9,7 @@ Plataforma web interactiva desarrollada con **React**, **TypeScript**, **Tailwin
 Este portfolio constituye mi **primer gran proyecto insignia**: una plataforma interactiva diseñada para catalogar, explorar y exhibir mis desarrollos de software (sistemas de escritorio en Python, algoritmos y estructuras de datos en C, aplicaciones web y automatizaciones).
 
 ### Características Principales
+
 - 🎨 **Estética Lo-Fi Pastel**: Diseño cálido, moderno y visualmente acogedor con paleta de tonos pastel y soporte completo de tema claro y oscuro con persistencia.
 - ⚡ **Filtrado Reactivo en Tiempo Real**: Búsqueda instantánea y filtros dinámicos por categorías (Web, Escritorio, Algoritmos, Automatización) y tecnologías.
 - 📑 **Modales de Especificación Técnica**: Fichas detalladas con arquitectura, aspectos destacados, tecnologías y enlaces al repositorio y demo.
@@ -53,12 +54,14 @@ Portfolio/
 ## 🚀 Cómo Ejecutar en Local
 
 1. Clonar el repositorio:
+
    ```bash
    git clone https://github.com/leann027/Portfolio.git
    cd Portfolio
    ```
 
 2. Instalar dependencias:
+
    ```bash
    npm install
    ```
@@ -73,11 +76,13 @@ Portfolio/
 ## 🧪 Pruebas Automatizadas
 
 1. **Validación de Datos (Python)**:
+
    ```bash
    npm run data:test
    ```
 
 2. **Pruebas de Componentes UI (Vitest)**:
+
    ```bash
    npm test
    ```
@@ -90,6 +95,7 @@ Portfolio/
 ---
 
 ## 📬 Contacto
+
 - **Desarrollador**: Leandro ([@leann027](https://github.com/leann027))
 - **Email**: `leandro28rc@gmail.com`
 - **Ubicación**: Rosario, Argentina

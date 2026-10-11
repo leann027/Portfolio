@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generatedAt": "2026-10-10T11:27:44.567804",
+    "generatedAt": "2026-10-10T22:18:26.716334",
     "totalProjects": 5,
     "featuredCount": 3
   },
@@ -124,6 +124,15 @@
       "institution": null,
       "featured": true,
       "status": "Producción / Insignia",
+      "role": "Desarrollador Principal & Arquitecto Frontend",
+      "skillsDemonstrated": [
+        "Arquitectura de Componentes React & TypeScript",
+        "Diseño de Sistemas UI & Tailwind CSS",
+        "Automatización CI/CD con GitHub Actions",
+        "Pipelines de Datos Deterministas con Python",
+        "Accesibilidad Web (a11y) & Testing"
+      ],
+      "visualType": "portfolio-hub",
       "updatedAt": "2026-10-10",
       "stars": 0,
       "forks": 0,
@@ -160,6 +169,15 @@
       "institution": "Terciario Urquiza",
       "featured": true,
       "status": "Proyecto Académico Finalizado",
+      "role": "Desarrollador de Software (Proyecto Académico)",
+      "skillsDemonstrated": [
+        "Programación Orientada a Objetos (POO)",
+        "Desarrollo de Interfaces Gráficas con Tkinter",
+        "Generación Programática de Reportes en PDF (ReportLab)",
+        "Modelado y Persistencia de Datos en JSON",
+        "Validación de Entradas y Manejo de Estados"
+      ],
+      "visualType": "proyges-software-2",
       "updatedAt": "2026-10-10",
       "stars": 0,
       "forks": 0,
@@ -195,6 +213,15 @@
       "institution": "Terciario Urquiza",
       "featured": true,
       "status": "Fundamento Algorítmico",
+      "role": "Implementador de Algoritmos & Estructuras de Datos",
+      "skillsDemonstrated": [
+        "Gestión Manual y Dinámica de Memoria (malloc / free)",
+        "Manejo Riguroso de Punteros y Estructuras Enlazadas",
+        "Estructuras Dinámicas (Listas, Pilas, Colas, Árboles)",
+        "Análisis de Complejidad Asintótica (Big-O)",
+        "Compilación y Depuración en C con GCC"
+      ],
+      "visualType": "estructuras-datos-c",
       "updatedAt": "2026-09-15",
       "stars": 0,
       "forks": 0,
@@ -232,6 +259,15 @@
       "institution": "Harvard CS50",
       "featured": false,
       "status": "Certificación / Formación",
+      "role": "Estudiante & Desarrollador (Certificación CS50x)",
+      "skillsDemonstrated": [
+        "Fundamentos de Ciencias de la Computación y Algoritmia",
+        "Manipulación de Archivos Binarios y Memoria a Nivel de Bytes",
+        "Bases de Datos Relacionales y Consultas con SQL",
+        "Desarrollo Políglota en C y Python",
+        "Resolución Estructurada de Problemas de Ingeniería"
+      ],
+      "visualType": "cs50-harvard",
       "updatedAt": "2026-09-15",
       "stars": 0,
       "forks": 0,
@@ -267,7 +303,15 @@
       "institution": null,
       "featured": false,
       "status": "Exploración Tecnológica",
-      "updatedAt": "2026-01-14",
+      "role": "Desarrollador de Integraciones & Automatizaciones",
+      "skillsDemonstrated": [
+        "Orquestación de Flujos de Trabajo Basados en Eventos",
+        "Integración y Consumo de APIs REST",
+        "Transformación y Manipulación de Payloads JSON",
+        "Configuración y Gestión de Webhooks en Tiempo Real"
+      ],
+      "visualType": "n8n-automation",
+      "updatedAt": "2026-10-10",
       "stars": 0,
       "forks": 0,
       "highlights": [

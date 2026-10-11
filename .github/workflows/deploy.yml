@@ -12,7 +12,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: false
 
 jobs:
@@ -25,31 +25,39 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: '3.12'
+
+      - name: Refresh Portfolio Data Pipeline
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 execution/fetch_projects.py
 
       - name: Run Python Data Integrity Tests
         run: |
           python3 -m unittest discover tests -v
 
-      - name: Refresh Portfolio Data Pipeline
-        run: |
-          python3 execution/fetch_projects.py
-
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
-          cache: "npm"
+          node-version: '20'
+          cache: 'npm'
 
       - name: Install Node Dependencies
         run: npm ci
+
+      - name: Run Code Linter (ESLint)
+        run: npm run lint
+
+      - name: Run Code Formatting Check (Prettier)
+        run: npm run format:check
 
       - name: Run Frontend Tests (Vitest)
         run: npm test
 
       - name: Build Production Static Site
         env:
-          GITHUB_PAGES: "true"
+          GITHUB_PAGES: 'true'
         run: npm run build
 
       - name: Setup GitHub Pages
@@ -60,7 +68,7 @@ jobs:
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./dist"
+          path: './dist'
 
   deploy:
     environment:
@@ -72,4 +80,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-

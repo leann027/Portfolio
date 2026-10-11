@@ -1,30 +1,27 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   darkMode: 'class',
   theme: {
     extend: {
       colors: {
         // Paleta Neutra Terrosa / Lino (Extraída de la Imagen 1) con ajuste anti-fatiga ocular
         earth: {
-          light: '#F6F3EB',   // Soft warm matte linen (descanso visual)
-          linen: '#ECE5D8',   // Gentle oatmeal cream
-          sand: '#DFD6C5',    // Muted warm sand
-          taupe: '#BCB19D',   // Soft warm taupe
-          mocha: '#A8826B',   // Warm caramel mocha accent
+          light: '#F6F3EB', // Soft warm matte linen (descanso visual)
+          linen: '#ECE5D8', // Gentle oatmeal cream
+          sand: '#DFD6C5', // Muted warm sand
+          taupe: '#BCB19D', // Soft warm taupe
+          mocha: '#A8826B', // Warm caramel mocha accent
           darkMocha: '#826049',
           ink: {
-            900: '#1A1716',   // Deep warm espresso heading
-            800: '#2D2826',   // Warm charcoal body text
+            900: '#1A1716', // Deep warm espresso heading
+            800: '#2D2826', // Warm charcoal body text
             700: '#463F3C',
-            600: '#655C58',   // Warm secondary text
+            600: '#655C58', // Warm secondary text
             500: '#8A807B',
             400: '#ADA49E',
           },
-          coffeeBg: '#181519',// Dark mode nocturnal warm background
+          coffeeBg: '#181519', // Dark mode nocturnal warm background
           coffeeCard: '#221E25',
           coffeeBorder: '#352E39',
           coffeeSubtle: '#2A252E',
@@ -87,14 +84,15 @@ export default {
         mono: ['JetBrains Mono', 'monospace'],
       },
       boxShadow: {
-        'soft': '0 4px 20px -2px rgba(168, 130, 107, 0.08)',
+        soft: '0 4px 20px -2px rgba(168, 130, 107, 0.08)',
         'soft-hover': '0 12px 28px -4px rgba(168, 130, 107, 0.16)',
         'soft-dark': '0 4px 20px -2px rgba(0, 0, 0, 0.45)',
         'soft-dark-hover': '0 12px 28px -4px rgba(0, 0, 0, 0.65)',
         'glow-mocha': '0 0 25px -4px rgba(168, 130, 107, 0.35)',
         'glow-lavender': '0 0 25px -4px rgba(195, 162, 226, 0.35)',
         'rim-card': '0 0 0 1px rgba(168, 130, 107, 0.15), 0 8px 24px -4px rgba(168, 130, 107, 0.1)',
-        'rim-card-hover': '0 0 0 1.5px rgba(195, 162, 226, 0.5), 0 16px 32px -6px rgba(195, 162, 226, 0.2)',
+        'rim-card-hover':
+          '0 0 0 1.5px rgba(195, 162, 226, 0.5), 0 16px 32px -6px rgba(195, 162, 226, 0.2)',
       },
       animation: {
         'fade-up': 'fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
@@ -136,4 +134,4 @@ export default {
     },
   },
   plugins: [],
-}
+};

@@ -19,13 +19,29 @@
       "fullDescription": "Mi primer gran proyecto insignia: un portfolio web interactivo diseñado para centralizar y exhibir mis proyectos de desarrollo de software. Desarrollado bajo una arquitectura limpia y desacoplada con React, TypeScript y Tailwind CSS, respaldado por un motor de datos en Python y despliegue continuo con GitHub Actions. Cuenta con filtrado reactivo por categorías, búsqueda en tiempo real, modales con especificaciones técnicas detalladas y soporte completo de modo oscuro/claro.",
       "category": "web",
       "languages": ["TypeScript", "Python"],
-      "technologies": ["React 19", "TypeScript", "Tailwind CSS", "Vite", "Python", "GitHub Actions"],
+      "technologies": [
+        "React 19",
+        "TypeScript",
+        "Tailwind CSS",
+        "Vite",
+        "Python",
+        "GitHub Actions"
+      ],
       "githubUrl": "https://github.com/leann027/Portfolio",
       "demoUrl": "https://leann027.github.io/Portfolio/",
       "isPrivate": false,
       "academic": false,
       "featured": true,
       "status": "Producción / Insignia",
+      "role": "Desarrollador Principal & Arquitecto Frontend",
+      "skillsDemonstrated": [
+        "Arquitectura de Componentes React & TypeScript",
+        "Diseño de Sistemas UI & Tailwind CSS",
+        "Automatización CI/CD con GitHub Actions",
+        "Pipelines de Datos Deterministas con Python",
+        "Accesibilidad Web (a11y) & Testing"
+      ],
+      "visualType": "portfolio-hub",
       "updatedAt": "2026-10-10",
       "highlights": [
         "Arquitectura modular desacoplando fuentes de datos, validación y renderizado reactivo",
@@ -52,6 +68,15 @@
       "institution": "Terciario Urquiza",
       "featured": true,
       "status": "Proyecto Académico Finalizado",
+      "role": "Desarrollador de Software (Proyecto Académico)",
+      "skillsDemonstrated": [
+        "Programación Orientada a Objetos (POO)",
+        "Desarrollo de Interfaces Gráficas con Tkinter",
+        "Generación Programática de Reportes en PDF (ReportLab)",
+        "Modelado y Persistencia de Datos en JSON",
+        "Validación de Entradas y Manejo de Estados"
+      ],
+      "visualType": "proyges-software-2",
       "updatedAt": "2026-10-10",
       "highlights": [
         "Arquitectura modular orientada a objetos (separación de Clases, Lógica de Dominio e Interfaz)",
@@ -77,6 +102,15 @@
       "institution": "Terciario Urquiza",
       "featured": true,
       "status": "Fundamento Algorítmico",
+      "role": "Implementador de Algoritmos & Estructuras de Datos",
+      "skillsDemonstrated": [
+        "Gestión Manual y Dinámica de Memoria (malloc / free)",
+        "Manejo Riguroso de Punteros y Estructuras Enlazadas",
+        "Estructuras Dinámicas (Listas, Pilas, Colas, Árboles)",
+        "Análisis de Complejidad Asintótica (Big-O)",
+        "Compilación y Depuración en C con GCC"
+      ],
+      "visualType": "estructuras-datos-c",
       "updatedAt": "2026-09-15",
       "highlights": [
         "Gestión manual y segura de memoria dinámica (`malloc`, `free`) con prevención de fugas",
@@ -102,6 +136,15 @@
       "institution": "Harvard CS50",
       "featured": false,
       "status": "Certificación / Formación",
+      "role": "Estudiante & Desarrollador (Certificación CS50x)",
+      "skillsDemonstrated": [
+        "Fundamentos de Ciencias de la Computación y Algoritmia",
+        "Manipulación de Archivos Binarios y Memoria a Nivel de Bytes",
+        "Bases de Datos Relacionales y Consultas con SQL",
+        "Desarrollo Políglota en C y Python",
+        "Resolución Estructurada de Problemas de Ingeniería"
+      ],
+      "visualType": "cs50-harvard",
       "updatedAt": "2026-09-15",
       "highlights": [
         "Algoritmos de ordenamiento, búsqueda binaria y análisis de eficiencia",
@@ -126,6 +169,14 @@
       "academic": false,
       "featured": false,
       "status": "Exploración Tecnológica",
+      "role": "Desarrollador de Integraciones & Automatizaciones",
+      "skillsDemonstrated": [
+        "Orquestación de Flujos de Trabajo Basados en Eventos",
+        "Integración y Consumo de APIs REST",
+        "Transformación y Manipulación de Payloads JSON",
+        "Configuración y Gestión de Webhooks en Tiempo Real"
+      ],
+      "visualType": "n8n-automation",
       "updatedAt": "2026-01-14",
       "highlights": [
         "Diseño de flujos de automatización visuales con lógica condicional",
@@ -143,23 +194,50 @@
   ],
   "skills": {
     "languages": [
-      { "name": "Python", "level": "Avanzado", "description": "POO, Tkinter, scripts de automatización, procesamiento de datos" },
-      { "name": "C", "level": "Intermedio / Avanzado", "description": "Punteros, estructuras de datos dinámicas, gestión de memoria" },
-      { "name": "TypeScript / JavaScript", "level": "Intermedio", "description": "Desarrollo frontend moderno, tipado estático, React" },
-      { "name": "SQL", "level": "Intermedio", "description": "Consultas relacionales, modelado de esquemas, persistencia" }
+      {
+        "name": "Python",
+        "level": "Avanzado",
+        "description": "POO, Tkinter, scripts de automatización, procesamiento de datos"
+      },
+      {
+        "name": "C",
+        "level": "Intermedio / Avanzado",
+        "description": "Punteros, estructuras de datos dinámicas, gestión de memoria"
+      },
+      {
+        "name": "TypeScript / JavaScript",
+        "level": "Intermedio",
+        "description": "Desarrollo frontend moderno, tipado estático, React"
+      },
+      {
+        "name": "SQL",
+        "level": "Intermedio",
+        "description": "Consultas relacionales, modelado de esquemas, persistencia"
+      }
     ],
     "frameworks": [
       { "name": "React", "description": "Componentes funcionales, hooks, estado reactivo" },
       { "name": "Tailwind CSS", "description": "Diseño UI utilitario, responsive, modo oscuro" },
       { "name": "Vite", "description": "Bundling ultrarrápido, HMR, optimización de producción" },
-      { "name": "Tkinter / GUI", "description": "Interfaces de escritorio para aplicaciones Python" }
+      {
+        "name": "Tkinter / GUI",
+        "description": "Interfaces de escritorio para aplicaciones Python"
+      }
     ],
     "tools": [
-      { "name": "Git & GitHub", "description": "Control de versiones, ramas, pull requests, gh CLI" },
-      { "name": "GitHub Actions", "description": "Pipelines CI/CD automatizados para testeo y despliegue" },
-      { "name": "Linux / Bash", "description": "Terminal POSIX, scripts shell, gestión de entornos" },
+      {
+        "name": "Git & GitHub",
+        "description": "Control de versiones, ramas, pull requests, gh CLI"
+      },
+      {
+        "name": "GitHub Actions",
+        "description": "Pipelines CI/CD automatizados para testeo y despliegue"
+      },
+      {
+        "name": "Linux / Bash",
+        "description": "Terminal POSIX, scripts shell, gestión de entornos"
+      },
       { "name": "VS Code", "description": "Entorno principal de desarrollo y depuración" }
     ]
   }
 }
-

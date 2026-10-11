@@ -37,7 +37,7 @@ export const Hero: React.FC<HeroProps> = ({ user, totalProjects }) => {
           {/* Title */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-earth-ink-900 dark:text-stone-100 leading-[1.15]">
             Hola, soy{' '}
-            <span className="underline decoration-wavy decoration-earth-mocha/70 dark:decoration-swatch-lavender/70 underline-offset-8 hover:text-earth-mocha dark:hover:text-swatch-lavender transition-colors duration-300">
+            <span className="underline decoration-wavy decoration-earth-mocha/70 dark:decoration-swatch-lavender/70 underline-offset-8 hover:text-earth-darkMocha dark:hover:text-swatch-lavender transition-colors duration-300">
               {user.name}
             </span>
           </h1>
@@ -46,15 +46,18 @@ export const Hero: React.FC<HeroProps> = ({ user, totalProjects }) => {
             {user.subtitle}
           </p>
 
-          <p className="mt-4 text-sm sm:text-base text-earth-ink-600 dark:text-stone-400 leading-relaxed max-w-2xl">
-            {user.bio} Construyo aplicaciones estructuradas, eficientes y modulares. Este portfolio interactivo es mi <strong className="text-earth-ink-900 dark:text-stone-200">proyecto insignia</strong> para catalogar y visualizar mis desarrollos.
+          <p className="mt-4 text-sm sm:text-base text-earth-ink-600 dark:text-stone-300 leading-relaxed max-w-2xl">
+            {user.bio} Construyo aplicaciones estructuradas, eficientes y modulares. Este portfolio
+            interactivo es mi{' '}
+            <strong className="text-earth-ink-900 dark:text-stone-200">proyecto insignia</strong>{' '}
+            para catalogar y visualizar mis desarrollos.
           </p>
 
           {/* Responsive Tactile CTA Buttons */}
           <div className="mt-8 flex flex-wrap items-center gap-3.5">
             <a
               href="#proyectos"
-              className="btn-tactile group/cta inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-earth-mocha hover:bg-earth-darkMocha text-white font-semibold text-xs sm:text-sm shadow-soft hover:shadow-soft-hover"
+              className="btn-tactile group/cta inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-earth-darkMocha hover:bg-earth-ink-800 text-white font-semibold text-xs sm:text-sm shadow-soft hover:shadow-soft-hover"
             >
               <span>Explorar Proyectos ({totalProjects})</span>
               <ArrowDown className="w-4 h-4 group-hover/cta:translate-y-0.5 transition-transform" />
@@ -64,7 +67,7 @@ export const Hero: React.FC<HeroProps> = ({ user, totalProjects }) => {
               href="#contacto"
               className="btn-tactile inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-earth-linen dark:bg-earth-coffeeCard hover:bg-earth-sand/70 dark:hover:bg-earth-coffeeSubtle text-earth-ink-800 dark:text-stone-200 font-semibold text-xs sm:text-sm border border-earth-sand dark:border-earth-coffeeBorder shadow-xs"
             >
-              <Mail className="w-4 h-4 text-earth-mocha dark:text-swatch-peach-darkText" />
+              <Mail className="w-4 h-4 text-earth-darkMocha dark:text-swatch-peach-darkText" />
               <span>Contactar</span>
             </a>
           </div>
@@ -82,7 +85,7 @@ export const Hero: React.FC<HeroProps> = ({ user, totalProjects }) => {
             </span>
 
             <span className="badge-spring inline-flex items-center gap-1.5 text-xs text-earth-ink-700 dark:text-stone-300 bg-earth-linen/80 dark:bg-earth-coffeeCard px-3 py-1.5 rounded-xl border border-earth-sand dark:border-earth-coffeeBorder shadow-xs hover:border-earth-mocha/50 transition-colors">
-              <Coffee className="w-3.5 h-3.5 text-earth-mocha dark:text-swatch-peach-darkText" />
+              <Coffee className="w-3.5 h-3.5 text-earth-darkMocha dark:text-swatch-peach-darkText" />
               <span>CI/CD GitHub Actions</span>
             </span>
           </div>

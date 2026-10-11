@@ -1,0 +1,28 @@
+# Build output & caches
+dist/
+build/
+*.tsbuildinfo
+.tmp/
+coverage/
+
+# Dependencies
+node_modules/
+
+# Metadata (never track or format)
+.agents/
+Agents.md
+directives/
+
+# Pipeline generated dynamic data (prevents Python JSON formatting clash)
+src/data/projects.json
+
+# Lockfiles
+package-lock.json
+
+# Test & audit artifacts
+.artifacts/
+
+# Documentation and governance files
+PROJECT.md
+TEST_INFRA.md
+TEST_READY.md

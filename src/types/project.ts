@@ -1,3 +1,10 @@
+export type ProjectVisualType =
+  | 'portfolio-hub'
+  | 'proyges-software-2'
+  | 'estructuras-datos-c'
+  | 'cs50-harvard'
+  | 'n8n-automation';
+
 export interface Project {
   id: string;
   repoName: string;
@@ -15,6 +22,9 @@ export interface Project {
   institution?: string;
   featured: boolean;
   status: string;
+  role?: string;
+  skillsDemonstrated?: string[];
+  visualType?: ProjectVisualType | string;
   updatedAt: string;
   stars: number;
   forks: number;
@@ -58,4 +68,3 @@ export interface PortfolioData {
   };
   projects: Project[];
 }
-

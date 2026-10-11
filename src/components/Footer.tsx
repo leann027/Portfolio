@@ -15,14 +15,14 @@ export const Footer: React.FC<FooterProps> = ({ githubUser }) => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-earth-sand dark:bg-earth-coffeeBorder text-earth-mocha dark:text-swatch-lavender-darkText flex items-center justify-center shadow-xs">
+            <div className="w-8 h-8 rounded-xl bg-earth-sand dark:bg-earth-coffeeBorder text-earth-darkMocha dark:text-swatch-lavender-darkText flex items-center justify-center shadow-xs">
               <Sparkles className="w-4 h-4" />
             </div>
             <div>
               <p className="text-xs sm:text-sm font-bold text-earth-ink-900 dark:text-stone-100">
                 Leandro (@{githubUser})
               </p>
-              <p className="text-[11px] text-earth-ink-500 dark:text-stone-400">
+              <p className="text-[11px] text-earth-ink-600 dark:text-stone-300">
                 Portfolio de Software • React, TypeScript & Tailwind CSS
               </p>
             </div>
@@ -49,7 +49,7 @@ export const Footer: React.FC<FooterProps> = ({ githubUser }) => {
           </div>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-earth-sand/60 dark:border-earth-coffeeBorder/60 flex flex-col sm:flex-row items-center justify-between text-[11px] text-earth-ink-500 dark:text-stone-400 gap-3">
+        <div className="mt-8 pt-6 border-t border-earth-sand/60 dark:border-earth-coffeeBorder/60 flex flex-col sm:flex-row items-center justify-between text-[11px] text-earth-ink-600 dark:text-stone-300 gap-3">
           <p>© {new Date().getFullYear()} Leandro. Todos los derechos reservados.</p>
           <p>Diseño Lo-Fi cálido & pastel relajante.</p>
         </div>

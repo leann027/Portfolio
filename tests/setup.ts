@@ -29,3 +29,6 @@ Object.defineProperty(window, 'localStorage', {
   writable: true,
 });
 
+if (typeof HTMLCanvasElement !== 'undefined') {
+  HTMLCanvasElement.prototype.getContext = () => null;
+}
