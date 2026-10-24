@@ -91,54 +91,55 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
     >
       <div
         ref={modalRef}
-        className="relative w-full max-w-2xl bg-earth-linen dark:bg-earth-coffeeCard border border-earth-sand dark:border-earth-coffeeBorder rounded-2xl shadow-2xl p-6 sm:p-8 overflow-hidden my-8 animate-fade-up max-h-[90vh] overflow-y-auto scrollbar-thin"
+        className="relative w-full max-w-2xl bg-earth-linen dark:bg-earth-coffeeCard border border-earth-sand dark:border-earth-coffeeBorder rounded-2xl shadow-2xl p-6 sm:p-8 overflow-hidden my-8 animate-fade-up max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close button */}
-        <button
-          ref={closeButtonRef}
-          onClick={onClose}
-          aria-label="Cerrar modal"
-          className="btn-tactile absolute top-5 right-5 p-2 rounded-full text-earth-ink-600 hover:text-earth-ink-900 dark:text-stone-400 dark:hover:text-stone-100 hover:bg-earth-sand/60 dark:hover:bg-earth-coffeeSubtle transition z-10"
-        >
-          <X className="w-5 h-5" />
-        </button>
+        {/* Top bar: Header tags + Close button (prevents overlap with ProjectVisual on 360px) */}
+        <div className="flex items-start justify-between gap-3 mb-4">
+          <div className="flex flex-wrap items-center gap-2 pt-1">
+            {project.featured && (
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-swatch-lavender-bg text-swatch-lavender-text dark:bg-swatch-lavender-border/20 dark:text-swatch-lavender-darkText border border-swatch-lavender-border/70">
+                <Sparkles className="w-3 h-3 text-swatch-lavender" aria-hidden="true" />
+                <span>Proyecto Insignia</span>
+              </span>
+            )}
+            {project.academic && (
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-swatch-lemon-bg text-swatch-lemon-text dark:bg-swatch-lemon-border/20 dark:text-swatch-lemon-darkText border border-swatch-lemon-border/70">
+                <GraduationCap className="w-3.5 h-3.5" aria-hidden="true" />
+                <span>{project.institution || 'Académico'}</span>
+              </span>
+            )}
+            <span className="text-xs font-medium text-earth-ink-700 dark:text-stone-200 px-2.5 py-0.5 rounded-full bg-earth-sand/60 dark:bg-earth-coffeeSubtle border border-earth-sand/70 dark:border-earth-coffeeBorder">
+              {project.status}
+            </span>
+          </div>
+
+          <button
+            ref={closeButtonRef}
+            onClick={onClose}
+            aria-label="Cerrar modal"
+            className="btn-tactile shrink-0 min-h-11 min-w-11 flex items-center justify-center rounded-full text-earth-ink-700 hover:text-earth-ink-900 dark:text-stone-300 dark:hover:text-stone-100 hover:bg-earth-sand/60 dark:hover:bg-earth-coffeeSubtle"
+          >
+            <X className="w-5 h-5" aria-hidden="true" />
+          </button>
+        </div>
 
         {/* Visual schematic preview */}
         {project.visualType && (
-          <div className="mb-6">
+          <div className="mb-5">
             <ProjectVisual
               visualType={project.visualType}
               projectId={project.id}
               title={project.title}
-              className="w-full h-44 sm:h-48"
+              className="w-full min-h-[11rem]"
             />
           </div>
         )}
 
-        {/* Header tags */}
-        <div className="flex flex-wrap items-center gap-2 mb-3">
-          {project.featured && (
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-swatch-lavender-bg text-swatch-lavender-text dark:bg-swatch-lavender-border/20 dark:text-swatch-lavender-darkText border border-swatch-lavender-border/70">
-              <Sparkles className="w-3 h-3 text-swatch-lavender" />
-              <span>Proyecto Insignia</span>
-            </span>
-          )}
-          {project.academic && (
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-swatch-lemon-bg text-swatch-lemon-text dark:bg-swatch-lemon-border/20 dark:text-swatch-lemon-darkText border border-swatch-lemon-border/70">
-              <GraduationCap className="w-3.5 h-3.5" />
-              <span>{project.institution || 'Académico'}</span>
-            </span>
-          )}
-          <span className="text-xs font-medium text-earth-ink-700 dark:text-stone-200 px-2.5 py-0.5 rounded-full bg-earth-sand/60 dark:bg-earth-coffeeSubtle border border-earth-sand/70 dark:border-earth-coffeeBorder">
-            {project.status}
-          </span>
-        </div>
-
         {/* Title */}
         <h2
           id="modal-project-title"
-          className="text-2xl sm:text-3xl font-extrabold text-earth-ink-900 dark:text-stone-100"
+          className="text-2xl sm:text-3xl font-extrabold text-earth-ink-900 dark:text-stone-100 text-balance"
         >
           {project.title}
         </h2>
@@ -151,7 +152,10 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
         {/* Recruiter Role Callout */}
         {project.role && (
           <div className="mt-4 p-3.5 rounded-2xl bg-swatch-mint-bg dark:bg-swatch-mint-border/15 border border-swatch-mint-border/50 flex items-center gap-3">
-            <Award className="w-4 h-4 text-swatch-mint-text dark:text-swatch-mint-darkText shrink-0" />
+            <Award
+              className="w-4 h-4 text-swatch-mint-text dark:text-swatch-mint-darkText shrink-0"
+              aria-hidden="true"
+            />
             <div>
               <span className="block text-[10px] font-bold uppercase tracking-wider text-swatch-mint-text dark:text-swatch-mint-darkText">
                 Rol del Desarrollador
@@ -171,16 +175,19 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
         {/* Key Highlights */}
         {project.highlights && project.highlights.length > 0 && (
           <div className="mt-6">
-            <h4 className="text-[11px] font-bold uppercase tracking-wider text-earth-darkMocha dark:text-swatch-lavender-darkText mb-3">
+            <h3 className="text-[11px] font-bold uppercase tracking-wider text-earth-darkMocha dark:text-swatch-lavender-darkText mb-3">
               Aspectos Destacados & Arquitectura
-            </h4>
+            </h3>
             <ul className="space-y-2">
               {project.highlights.map((item, idx) => (
                 <li
                   key={idx}
                   className="flex items-start gap-2.5 text-xs sm:text-sm text-earth-ink-700 dark:text-stone-200"
                 >
-                  <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-swatch-mint-darkText shrink-0 mt-0.5" />
+                  <CheckCircle
+                    className="w-4 h-4 text-swatch-mint-text dark:text-swatch-mint-darkText shrink-0 mt-0.5"
+                    aria-hidden="true"
+                  />
                   <span>{item}</span>
                 </li>
               ))}
@@ -191,9 +198,9 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
         {/* Demonstrated Skills Callout */}
         {project.skillsDemonstrated && project.skillsDemonstrated.length > 0 && (
           <div className="mt-6 pt-5 border-t border-earth-sand/70 dark:border-earth-coffeeBorder/70">
-            <h4 className="text-[11px] font-bold uppercase tracking-wider text-earth-ink-700 dark:text-stone-300 mb-2">
+            <h3 className="text-[11px] font-bold uppercase tracking-wider text-earth-ink-700 dark:text-stone-300 mb-2">
               Habilidades Técnicas Demostradas
-            </h4>
+            </h3>
             <div className="flex flex-wrap gap-1.5">
               {project.skillsDemonstrated.map((skill) => (
                 <span
@@ -209,9 +216,9 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
         {/* Technologies Grid */}
         <div className="mt-5 pt-4 border-t border-earth-sand/70 dark:border-earth-coffeeBorder/70">
-          <h4 className="text-[11px] font-bold uppercase tracking-wider text-earth-ink-700 dark:text-stone-300 mb-2">
+          <h3 className="text-[11px] font-bold uppercase tracking-wider text-earth-ink-700 dark:text-stone-300 mb-2">
             Tecnologías Empleadas
-          </h4>
+          </h3>
           <div className="flex flex-wrap gap-1.5">
             {project.technologies.map((tech) => (
               <span
@@ -227,7 +234,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
         {/* Metadata info */}
         <div className="mt-4 flex items-center gap-4 text-xs text-earth-ink-600 dark:text-stone-300">
           <span className="flex items-center gap-1">
-            <Calendar className="w-3.5 h-3.5" />
+            <Calendar className="w-3.5 h-3.5" aria-hidden="true" />
             <span>Última actualización: {project.updatedAt}</span>
           </span>
         </div>
@@ -240,9 +247,9 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                 href={project.demoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-tactile inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-earth-darkMocha hover:bg-earth-ink-800 text-white text-xs font-semibold shadow-soft"
+                className="btn-tactile min-h-11 inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-earth-darkMocha hover:bg-earth-ink-800 text-white text-xs font-semibold shadow-soft"
               >
-                <ExternalLink className="w-3.5 h-3.5" />
+                <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
                 <span>Demo en Vivo</span>
               </a>
             )}
@@ -252,14 +259,14 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-tactile inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-earth-sand/60 hover:bg-earth-taupe/40 dark:bg-earth-coffeeSubtle dark:hover:bg-earth-coffeeBorder text-earth-ink-800 dark:text-stone-200 text-xs font-semibold border border-earth-sand dark:border-earth-coffeeBorder transition"
+                className="btn-tactile min-h-11 inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-earth-sand/60 hover:bg-earth-taupe/40 dark:bg-earth-coffeeSubtle dark:hover:bg-earth-coffeeBorder text-earth-ink-800 dark:text-stone-200 text-xs font-semibold border border-earth-sand dark:border-earth-coffeeBorder"
               >
-                <Github className="w-3.5 h-3.5" />
+                <Github className="w-3.5 h-3.5" aria-hidden="true" />
                 <span>Ver en GitHub</span>
               </a>
             ) : (
-              <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-earth-sand/30 dark:bg-earth-coffeeSubtle/40 text-earth-ink-700 dark:text-stone-300 text-xs font-medium border border-earth-sand/50 dark:border-earth-coffeeBorder">
-                <Lock className="w-3.5 h-3.5" />
+              <div className="min-h-11 inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-earth-sand/30 dark:bg-earth-coffeeSubtle/40 text-earth-ink-700 dark:text-stone-300 text-xs font-medium border border-earth-sand/50 dark:border-earth-coffeeBorder">
+                <Lock className="w-3.5 h-3.5" aria-hidden="true" />
                 <span>Repositorio Académico / Privado — Código protegido</span>
               </div>
             )}
@@ -267,7 +274,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
           <button
             onClick={onClose}
-            className="btn-tactile px-4 py-2 rounded-xl text-xs font-medium text-earth-ink-700 hover:text-earth-ink-900 dark:text-stone-300 dark:hover:text-stone-100 transition"
+            className="btn-tactile min-h-11 px-4 py-2 rounded-xl text-xs font-medium text-earth-ink-700 hover:text-earth-ink-900 dark:text-stone-300 dark:hover:text-stone-100"
           >
             Cerrar
           </button>

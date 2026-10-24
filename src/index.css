@@ -3,63 +3,105 @@
 @tailwind utilities;
 
 @layer base {
+  :root,
   html {
     @apply scroll-smooth text-earth-ink-800 dark:text-stone-200;
+    color-scheme: light;
+    accent-color: theme('colors.earth.darkMocha');
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.earth.taupe') transparent;
     text-underline-offset: 3px;
   }
 
+  html.dark {
+    color-scheme: dark;
+    accent-color: theme('colors.swatch.lavender.DEFAULT');
+    scrollbar-color: theme('colors.earth.coffeeBorder') transparent;
+  }
+
   body {
-    @apply bg-earth-light text-earth-ink-800 dark:bg-earth-coffeeBg dark:text-stone-200 transition-colors duration-500 font-sans selection:bg-swatch-lavender/40 selection:text-earth-ink-900 dark:selection:bg-swatch-lavender/30 dark:selection:text-stone-100 antialiased;
+    @apply bg-earth-light text-earth-ink-800 dark:bg-earth-coffeeBg dark:text-stone-200 font-sans selection:bg-swatch-lavender/40 selection:text-earth-ink-900 dark:selection:bg-swatch-lavender/30 dark:selection:text-stone-100 antialiased;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11', 'tnum';
-    caret-color: #826049;
+    caret-color: theme('colors.earth.darkMocha');
   }
 
   .dark body {
-    caret-color: #c3a2e2;
+    caret-color: theme('colors.swatch.lavender.DEFAULT');
   }
 }
 
 /* Custom interactive tactile utilities & smooth transitions */
 @layer components {
   .btn-tactile {
-    @apply transition-all duration-200 ease-out active:scale-[0.98] hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-earth-darkMocha/60 dark:focus-visible:ring-swatch-lavender/60 focus-visible:ring-offset-earth-light dark:focus-visible:ring-offset-earth-coffeeBg cursor-pointer;
+    @apply transition-[transform,box-shadow,background-color,border-color,color] duration-200 ease-out active:scale-[0.98] hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-earth-darkMocha/60 dark:focus-visible:ring-swatch-lavender/60 focus-visible:ring-offset-earth-light dark:focus-visible:ring-offset-earth-coffeeBg cursor-pointer;
   }
 
   .card-lift {
-    @apply transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-soft-hover dark:hover:shadow-soft-dark-hover hover:border-earth-mocha/50 dark:hover:border-swatch-lavender/50;
+    @apply transition-[transform,box-shadow,border-color,background-color] duration-300 ease-out hover:-translate-y-1 hover:shadow-soft-hover dark:hover:shadow-soft-dark-hover hover:border-earth-mocha/50 dark:hover:border-swatch-lavender/50;
   }
 
   .badge-spring {
     @apply transition-transform duration-200 ease-out hover:scale-[1.03] active:scale-[0.97] inline-flex;
   }
+
+  .bg-blueprint-grid {
+    background-image: radial-gradient(rgba(130, 96, 73, 0.14) 1px, transparent 1px);
+    background-size: 16px 16px;
+  }
+
+  .dark .bg-blueprint-grid {
+    background-image: radial-gradient(rgba(217, 194, 240, 0.1) 1px, transparent 1px);
+    background-size: 16px 16px;
+  }
 }
 
-/* Custom Lo-Fi Earth Scrollbars */
-::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
+@media (forced-colors: active) {
+  .btn-tactile:focus-visible {
+    outline: 2px solid ButtonText;
+    outline-offset: 2px;
+  }
 }
 
-::-webkit-scrollbar-track {
-  background: transparent;
+/* Legacy fallback for WebKit/Blink browsers without standard scrollbar-color */
+@supports not (scrollbar-color: auto) {
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-earth-taupe/50 dark:bg-earth-coffeeBorder rounded-full hover:bg-earth-taupe dark:hover:bg-earth-mocha;
+  }
 }
 
-::-webkit-scrollbar-thumb {
-  @apply bg-earth-taupe/50 dark:bg-earth-coffeeBorder rounded-full hover:bg-earth-taupe dark:hover:bg-earth-mocha transition-colors;
-}
-
-/* Reduced Motion Support (WCAG 2.2 Success Criterion 2.3.3) */
+/* Reduced Motion Support (WCAG 2.2 SC 2.3.3):
+   Disables autonomous/spatial movement while preserving non-vestibular state feedback */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto !important;
   }
 
-  *,
-  ::before,
-  ::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  .animate-float-slow,
+  .animate-float-reverse,
+  .animate-float-drift,
+  .animate-ping,
+  .animate-pulse,
+  .animate-pulse-subtle,
+  .animate-fade-up {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .btn-tactile,
+  .card-lift,
+  .badge-spring {
+    transform: none !important;
+    transition-property: background-color, border-color, color, opacity, box-shadow !important;
+    transition-duration: 120ms !important;
   }
 }

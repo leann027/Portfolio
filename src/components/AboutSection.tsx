@@ -16,11 +16,16 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ user }) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Left Column: Bio */}
           <div className="lg:col-span-7">
-            <h2 className="text-3xl font-extrabold text-earth-ink-900 dark:text-stone-100 tracking-tight">
-              Sobre Mí
-            </h2>
+            <div className="flex items-center justify-between gap-4 pb-4 mb-6 border-b border-earth-sand/60 dark:border-earth-coffeeBorder/60">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-earth-ink-900 dark:text-stone-100 tracking-tight text-balance">
+                Sobre Mí
+              </h2>
+              <span className="font-mono text-[11px] font-semibold px-3 py-1 rounded-xl bg-earth-linen dark:bg-earth-coffeeCard text-earth-ink-700 dark:text-stone-300 border border-earth-sand dark:border-earth-coffeeBorder">
+                PERFIL // FORMACIÓN
+              </span>
+            </div>
 
-            <div className="mt-6 space-y-4 text-xs sm:text-sm text-earth-ink-600 dark:text-stone-300 leading-relaxed">
+            <div className="space-y-4 text-sm sm:text-base text-earth-ink-700 dark:text-stone-300 leading-relaxed max-w-[65ch]">
               <p>
                 Soy estudiante de la carrera de{' '}
                 <strong>Desarrollo de Software en el Terciario Urquiza</strong> (Rosario,
@@ -45,8 +50,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ user }) => {
             {/* Education Cards */}
             <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="card-lift p-4 rounded-2xl bg-earth-linen/85 dark:bg-earth-coffeeCard border border-earth-sand dark:border-earth-coffeeBorder shadow-soft">
-                <div className="flex items-center gap-2 text-emerald-800 dark:text-swatch-lemon-darkText font-semibold text-xs sm:text-sm mb-1">
-                  <GraduationCap className="w-4 h-4" />
+                <div className="flex items-center gap-2 text-swatch-lemon-text dark:text-swatch-lemon-darkText font-semibold text-xs sm:text-sm mb-1">
+                  <GraduationCap className="w-4 h-4" aria-hidden="true" />
                   <span>Terciario Urquiza</span>
                 </div>
                 <p className="text-[11px] text-earth-ink-700 dark:text-stone-300">
@@ -56,7 +61,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ user }) => {
 
               <div className="card-lift p-4 rounded-2xl bg-earth-linen/80 dark:bg-earth-coffeeCard border border-earth-sand dark:border-earth-coffeeBorder shadow-soft">
                 <div className="flex items-center gap-2 text-earth-darkMocha dark:text-swatch-peach-darkText font-semibold text-xs sm:text-sm mb-1">
-                  <Award className="w-4 h-4" />
+                  <Award className="w-4 h-4" aria-hidden="true" />
                   <span>CS50 Harvard University</span>
                 </div>
                 <p className="text-[11px] text-earth-ink-700 dark:text-stone-300">
@@ -85,7 +90,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ user }) => {
                   className="btn-tactile flex items-center gap-3.5 p-3 rounded-2xl bg-earth-sand/50 dark:bg-earth-coffeeSubtle hover:bg-earth-sand dark:hover:bg-earth-coffeeBorder text-xs sm:text-sm text-earth-ink-800 dark:text-stone-200 border border-earth-sand/70 dark:border-earth-coffeeBorder shadow-xs"
                 >
                   <div className="w-8 h-8 rounded-xl bg-swatch-lavender-bg text-swatch-lavender-text dark:bg-swatch-lavender-border/20 dark:text-swatch-lavender-darkText flex items-center justify-center shrink-0">
-                    <Mail className="w-4 h-4" />
+                    <Mail className="w-4 h-4" aria-hidden="true" />
                   </div>
                   <div className="min-w-0">
                     <span className="text-[10px] uppercase tracking-wider text-earth-ink-700 dark:text-stone-300 block font-semibold">
@@ -102,7 +107,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ user }) => {
                   className="btn-tactile flex items-center gap-3.5 p-3 rounded-2xl bg-earth-sand/50 dark:bg-earth-coffeeSubtle hover:bg-earth-sand dark:hover:bg-earth-coffeeBorder text-xs sm:text-sm text-earth-ink-800 dark:text-stone-200 border border-earth-sand/70 dark:border-earth-coffeeBorder shadow-xs"
                 >
                   <div className="w-8 h-8 rounded-xl bg-earth-mocha/20 text-earth-darkMocha dark:bg-earth-mocha/30 dark:text-swatch-peach-darkText flex items-center justify-center shrink-0">
-                    <Github className="w-4 h-4" />
+                    <Github className="w-4 h-4" aria-hidden="true" />
                   </div>
                   <div>
                     <span className="text-[10px] uppercase tracking-wider text-earth-ink-700 dark:text-stone-300 block font-semibold">
@@ -114,7 +119,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ user }) => {
 
                 <div className="flex items-center gap-3.5 p-3 rounded-2xl bg-earth-sand/50 dark:bg-earth-coffeeSubtle text-xs sm:text-sm text-earth-ink-800 dark:text-stone-200 border border-earth-sand/70 dark:border-earth-coffeeBorder shadow-xs">
                   <div className="w-8 h-8 rounded-xl bg-swatch-mint-bg text-swatch-mint-text dark:bg-swatch-mint-border/20 dark:text-swatch-mint-darkText flex items-center justify-center shrink-0">
-                    <MapPin className="w-4 h-4" />
+                    <MapPin className="w-4 h-4" aria-hidden="true" />
                   </div>
                   <div>
                     <span className="text-[10px] uppercase tracking-wider text-earth-ink-700 dark:text-stone-300 block font-semibold">
@@ -127,7 +132,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ user }) => {
 
               <div className="mt-6 pt-5 border-t border-earth-sand/70 dark:border-earth-coffeeBorder/70 flex items-center justify-between text-xs text-earth-ink-600 dark:text-stone-300">
                 <span className="flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span
+                    className="w-2 h-2 rounded-full bg-swatch-mint-text dark:bg-swatch-mint animate-pulse"
+                    aria-hidden="true"
+                  />
                   <span>Disponible para nuevos desafíos</span>
                 </span>
                 <span className="font-mono text-[11px]">2026</span>

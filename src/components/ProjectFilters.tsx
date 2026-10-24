@@ -40,16 +40,16 @@ export const ProjectFilters: React.FC<ProjectFiltersProps> = ({
             onChange={(e) => onSearchChange(e.target.value)}
             placeholder="Buscar por tecnología, lenguaje o nombre..."
             aria-label="Buscar proyectos por tecnología, lenguaje o nombre"
-            className="w-full pl-10 pr-9 py-2.5 text-xs sm:text-sm rounded-2xl bg-earth-linen/80 dark:bg-earth-coffeeCard border border-earth-sand dark:border-earth-coffeeBorder text-earth-ink-900 dark:text-stone-100 placeholder-earth-ink-500 dark:placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-earth-mocha/40 dark:focus:ring-swatch-lavender/40 shadow-xs transition"
+            className="w-full min-h-11 pl-10 pr-11 py-2.5 text-xs sm:text-sm rounded-2xl bg-earth-linen/80 dark:bg-earth-coffeeCard border border-earth-sand dark:border-earth-coffeeBorder text-earth-ink-900 dark:text-stone-100 placeholder-earth-ink-500 dark:placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-earth-mocha/40 dark:focus:ring-swatch-lavender/40 shadow-xs transition-colors"
           />
           {searchQuery && (
             <button
               type="button"
               onClick={() => onSearchChange('')}
-              className="absolute inset-y-0 right-0 pr-3 flex items-center text-earth-ink-600 hover:text-earth-ink-900 dark:text-stone-300 dark:hover:text-stone-100 transition-colors"
+              className="absolute inset-y-0 right-0 min-w-11 min-h-11 flex items-center justify-center text-earth-ink-600 hover:text-earth-ink-900 dark:text-stone-300 dark:hover:text-stone-100 transition-colors"
               aria-label="Limpiar búsqueda"
             >
-              <X className="w-4 h-4" />
+              <X className="w-4 h-4" aria-hidden="true" />
             </button>
           )}
         </div>
@@ -59,7 +59,7 @@ export const ProjectFilters: React.FC<ProjectFiltersProps> = ({
       <div
         role="group"
         aria-label="Filtro de categorías de proyectos"
-        className="flex gap-2 overflow-x-auto pb-1 sm:pb-0 sm:flex-wrap scrollbar-thin"
+        className="flex gap-2 overflow-x-auto pb-1 sm:pb-0 sm:flex-wrap"
       >
         {categories.map((cat) => {
           const count = projectCountsByCategory[cat.id] ?? 0;
@@ -71,7 +71,7 @@ export const ProjectFilters: React.FC<ProjectFiltersProps> = ({
               type="button"
               onClick={() => onSelectCategory(cat.id)}
               aria-pressed={isSelected}
-              className={`btn-tactile badge-spring shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-2xl text-xs sm:text-sm font-medium transition-all ${
+              className={`btn-tactile badge-spring shrink-0 min-h-11 inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-medium ${
                 isSelected
                   ? 'bg-earth-darkMocha text-white shadow-soft font-semibold scale-[1.02]'
                   : 'bg-earth-linen/85 dark:bg-earth-coffeeCard text-earth-ink-700 dark:text-stone-300 hover:bg-earth-sand dark:hover:bg-earth-coffeeSubtle border border-earth-sand dark:border-earth-coffeeBorder shadow-xs'

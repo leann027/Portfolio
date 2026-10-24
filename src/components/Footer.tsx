@@ -33,18 +33,19 @@ export const Footer: React.FC<FooterProps> = ({ githubUser }) => {
               href={`https://github.com/${githubUser}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-tactile p-2 rounded-xl text-earth-ink-600 hover:text-earth-ink-900 dark:text-stone-300 dark:hover:text-white hover:bg-earth-sand/60 dark:hover:bg-earth-coffeeCard transition-colors"
+              className="btn-tactile min-h-11 min-w-11 flex items-center justify-center rounded-xl text-earth-ink-600 hover:text-earth-ink-900 dark:text-stone-300 dark:hover:text-white hover:bg-earth-sand/60 dark:hover:bg-earth-coffeeCard"
               aria-label="Perfil de GitHub"
             >
-              <Github className="w-4 h-4" />
+              <Github className="w-4 h-4" aria-hidden="true" />
             </a>
 
             <button
+              type="button"
               onClick={scrollToTop}
-              className="btn-tactile flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-earth-linen dark:bg-earth-coffeeCard hover:bg-earth-sand/60 dark:hover:bg-earth-coffeeSubtle text-earth-ink-800 dark:text-stone-200 border border-earth-sand dark:border-earth-coffeeBorder shadow-xs"
+              className="btn-tactile min-h-11 inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold bg-earth-linen dark:bg-earth-coffeeCard hover:bg-earth-sand/60 dark:hover:bg-earth-coffeeSubtle text-earth-ink-800 dark:text-stone-200 border border-earth-sand dark:border-earth-coffeeBorder shadow-xs"
             >
               <span>Subir</span>
-              <ArrowUp className="w-3.5 h-3.5" />
+              <ArrowUp className="w-3.5 h-3.5" aria-hidden="true" />
             </button>
           </div>
         </div>

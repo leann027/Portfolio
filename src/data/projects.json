@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generatedAt": "2026-10-11T15:14:46.975044",
+    "generatedAt": "2026-10-24T17:53:04.732559",
     "totalProjects": 5,
     "featuredCount": 3
   },
@@ -110,7 +110,7 @@
         "Python"
       ],
       "technologies": [
-        "React 19",
+        "React 18",
         "TypeScript",
         "Tailwind CSS",
         "Vite",

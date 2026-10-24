@@ -84,6 +84,8 @@ export default {
         mono: ['JetBrains Mono', 'monospace'],
       },
       boxShadow: {
+        '2xs': '0 1px 1px 0 rgba(168, 130, 107, 0.05)',
+        xs: '0 1px 2px 0 rgba(168, 130, 107, 0.08)',
         soft: '0 4px 20px -2px rgba(168, 130, 107, 0.08)',
         'soft-hover': '0 12px 28px -4px rgba(168, 130, 107, 0.16)',
         'soft-dark': '0 4px 20px -2px rgba(0, 0, 0, 0.45)',

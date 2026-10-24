@@ -13,32 +13,32 @@ export const FlagshipProject: React.FC<FlagshipProjectProps> = ({ project, onOpe
     <article
       data-testid="flagship-project-card"
       aria-labelledby="flagship-project-title"
-      className="mb-12 rounded-2xl bg-earth-linen/95 dark:bg-earth-coffeeCard/95 border-2 border-swatch-lavender/40 dark:border-swatch-lavender/30 shadow-soft hover:shadow-rim-card-hover p-6 sm:p-8 lg:p-10 relative transition-all duration-300"
+      className="mb-12 rounded-2xl bg-earth-linen/95 dark:bg-earth-coffeeCard/95 border-2 border-swatch-lavender/40 dark:border-swatch-lavender/30 shadow-soft hover:shadow-rim-card-hover p-6 sm:p-8 lg:p-10 relative transition-[box-shadow,border-color] duration-300"
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         {/* Left Column: Project Overview & Meta */}
         <div className="lg:col-span-7 space-y-4">
           <div className="flex flex-wrap items-center gap-2">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-swatch-lavender-bg text-swatch-lavender-text dark:bg-swatch-lavender-border/20 dark:text-swatch-lavender-darkText border border-swatch-lavender-border/70 shadow-xs">
-              <Sparkles className="w-3.5 h-3.5 text-swatch-lavender" />
+              <Sparkles className="w-3.5 h-3.5 text-swatch-lavender" aria-hidden="true" />
               <span>Proyecto Insignia</span>
             </span>
 
             {project.role && (
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-swatch-mint-bg text-swatch-mint-text dark:bg-swatch-mint-border/20 dark:text-swatch-mint-darkText border border-swatch-mint-border/70 shadow-xs">
-                <Award className="w-3.5 h-3.5" />
+                <Award className="w-3.5 h-3.5" aria-hidden="true" />
                 <span>{project.role}</span>
               </span>
             )}
 
-            <span className="text-xs font-medium text-emerald-800 dark:text-swatch-mint-darkText px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/40">
+            <span className="text-xs font-medium text-swatch-lemon-text dark:text-swatch-lemon-darkText px-2.5 py-0.5 rounded-full bg-swatch-lemon-bg dark:bg-swatch-lemon-border/20 border border-swatch-lemon-border/70">
               {project.status}
             </span>
           </div>
 
           <h3
             id="flagship-project-title"
-            className="text-2xl sm:text-3xl font-extrabold text-earth-ink-900 dark:text-stone-100 tracking-tight"
+            className="text-2xl sm:text-3xl font-extrabold text-earth-ink-900 dark:text-stone-100 tracking-tight text-balance"
           >
             {project.title}
           </h3>
@@ -61,7 +61,10 @@ export const FlagshipProject: React.FC<FlagshipProjectProps> = ({ project, onOpe
                   key={idx}
                   className="flex items-start gap-2 text-xs text-earth-ink-700 dark:text-stone-300"
                 >
-                  <CheckCircle className="w-3.5 h-3.5 text-emerald-700 dark:text-swatch-mint-darkText shrink-0 mt-0.5" />
+                  <CheckCircle
+                    className="w-3.5 h-3.5 text-swatch-mint-text dark:text-swatch-mint-darkText shrink-0 mt-0.5"
+                    aria-hidden="true"
+                  />
                   <span>{item}</span>
                 </li>
               ))}
@@ -92,10 +95,10 @@ export const FlagshipProject: React.FC<FlagshipProjectProps> = ({ project, onOpe
             <button
               onClick={() => onOpenDetails(project)}
               data-testid={`btn-details-${project.id}`}
-              className="btn-tactile inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-earth-darkMocha hover:bg-earth-ink-900 text-white text-xs font-semibold shadow-soft"
+              className="btn-tactile min-h-11 inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-earth-darkMocha hover:bg-earth-ink-900 text-white text-xs font-semibold shadow-soft"
             >
               <span>Ver Especificaciones Técnicas</span>
-              <ArrowUpRight className="w-4 h-4" />
+              <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
             </button>
 
             {project.demoUrl && (
@@ -103,9 +106,12 @@ export const FlagshipProject: React.FC<FlagshipProjectProps> = ({ project, onOpe
                 href={project.demoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-tactile inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-earth-linen dark:bg-earth-coffeeCard text-earth-ink-800 dark:text-stone-200 hover:bg-earth-sand/70 dark:hover:bg-earth-coffeeSubtle border border-earth-sand dark:border-earth-coffeeBorder text-xs font-semibold shadow-xs"
+                className="btn-tactile min-h-11 inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-earth-linen dark:bg-earth-coffeeCard text-earth-ink-800 dark:text-stone-200 hover:bg-earth-sand/70 dark:hover:bg-earth-coffeeSubtle border border-earth-sand dark:border-earth-coffeeBorder text-xs font-semibold shadow-xs"
               >
-                <ExternalLink className="w-3.5 h-3.5 text-earth-darkMocha dark:text-swatch-peach-darkText" />
+                <ExternalLink
+                  className="w-3.5 h-3.5 text-earth-darkMocha dark:text-swatch-peach-darkText"
+                  aria-hidden="true"
+                />
                 <span>Demo en Vivo</span>
               </a>
             )}
@@ -114,9 +120,9 @@ export const FlagshipProject: React.FC<FlagshipProjectProps> = ({ project, onOpe
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-tactile inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-earth-linen dark:bg-earth-coffeeCard text-earth-ink-800 dark:text-stone-200 hover:bg-earth-sand/70 dark:hover:bg-earth-coffeeSubtle border border-earth-sand dark:border-earth-coffeeBorder text-xs font-semibold shadow-xs"
+              className="btn-tactile min-h-11 inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-earth-linen dark:bg-earth-coffeeCard text-earth-ink-800 dark:text-stone-200 hover:bg-earth-sand/70 dark:hover:bg-earth-coffeeSubtle border border-earth-sand dark:border-earth-coffeeBorder text-xs font-semibold shadow-xs"
             >
-              <Github className="w-3.5 h-3.5" />
+              <Github className="w-3.5 h-3.5" aria-hidden="true" />
               <span>Código en GitHub</span>
             </a>
           </div>

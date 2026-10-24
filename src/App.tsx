@@ -11,7 +11,7 @@ import { ProjectModal } from './components/ProjectModal';
 import { SkillsSection } from './components/SkillsSection';
 import { AboutSection } from './components/AboutSection';
 import { Footer } from './components/Footer';
-import { Sparkles, SearchX } from 'lucide-react';
+import { SearchX } from 'lucide-react';
 
 const data = portfolioDataRaw as unknown as PortfolioData;
 
@@ -104,7 +104,7 @@ export const App: React.FC = () => {
   }, [filteredProjects, showFlagship, flagshipProject]);
 
   return (
-    <div className="relative min-h-screen bg-earth-light/85 dark:bg-earth-coffeeBg text-earth-ink-800 dark:text-stone-200 flex flex-col font-sans transition-colors duration-500 selection:bg-swatch-lavender/50">
+    <div className="relative min-h-screen bg-earth-light/85 dark:bg-earth-coffeeBg text-earth-ink-800 dark:text-stone-200 flex flex-col font-sans selection:bg-swatch-lavender/50">
       {/* Skip to Main Content Link (Bypass Navigation) */}
       <a
         href="#proyectos"
@@ -128,27 +128,20 @@ export const App: React.FC = () => {
           className="py-16 sm:py-24 border-b border-earth-sand/70 dark:border-earth-coffeeBorder/70 relative focus:outline-none"
         >
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mb-8">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-swatch-lavender-bg text-swatch-lavender-text dark:bg-swatch-lavender-border/20 dark:text-swatch-lavender-darkText border border-swatch-lavender-border/70 mb-3 badge-spring shadow-xs">
-                <Sparkles className="w-3.5 h-3.5 text-swatch-lavender" />
-                <span>Explorador de Software</span>
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 pb-5 border-b border-earth-sand/60 dark:border-earth-coffeeBorder/60">
+              <div className="max-w-2xl">
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-earth-ink-900 dark:text-stone-100 tracking-tight text-balance">
+                  Proyectos & Desarrollos
+                </h2>
+                <p className="mt-2.5 text-earth-ink-600 dark:text-stone-300 text-xs sm:text-sm leading-relaxed">
+                  Catálogo de proyectos personales y académicos. Filtra por tecnología o busca por
+                  palabras clave para ver especificaciones y código.
+                </p>
               </div>
-              <h2 className="text-3xl font-extrabold text-earth-ink-900 dark:text-stone-100 tracking-tight">
-                Proyectos & Desarrollos
-              </h2>
-              <p className="mt-3 text-earth-ink-600 dark:text-stone-300 text-xs sm:text-sm leading-relaxed">
-                Catálogo de proyectos personales y académicos. Filtra por tecnología o busca por
-                palabras clave para ver especificaciones y código.
-              </p>
+              <div className="shrink-0 font-mono text-[11px] font-semibold px-3 py-1.5 rounded-xl bg-earth-linen dark:bg-earth-coffeeCard text-earth-ink-700 dark:text-stone-300 border border-earth-sand dark:border-earth-coffeeBorder self-start sm:self-auto">
+                CATÁLOGO // 0{data.projects.length} PROYECTOS
+              </div>
             </div>
-
-            {/* Flagship Project Dedicated Banner */}
-            {showFlagship && flagshipProject && (
-              <FlagshipProject
-                project={flagshipProject}
-                onOpenDetails={(p) => setSelectedProject(p)}
-              />
-            )}
 
             <ProjectFilters
               categories={data.categories}
@@ -159,9 +152,17 @@ export const App: React.FC = () => {
               projectCountsByCategory={categoryCounts}
             />
 
+            {/* Flagship Project Dedicated Banner */}
+            {showFlagship && flagshipProject && (
+              <FlagshipProject
+                project={flagshipProject}
+                onOpenDetails={(p) => setSelectedProject(p)}
+              />
+            )}
+
             {/* Projects Grid (Pure Visualization) */}
             {gridProjects.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-7">
                 {gridProjects.map((project, index) => (
                   <ProjectCard
                     key={project.id}
@@ -174,7 +175,7 @@ export const App: React.FC = () => {
             ) : (
               <div className="card-lift py-16 text-center rounded-3xl bg-earth-linen dark:bg-earth-coffeeCard border border-earth-sand dark:border-earth-coffeeBorder p-8 shadow-soft">
                 <div className="w-10 h-10 rounded-2xl bg-earth-sand/60 dark:bg-earth-coffeeSubtle flex items-center justify-center mx-auto text-earth-ink-600 dark:text-stone-300 mb-3">
-                  <SearchX className="w-5 h-5" />
+                  <SearchX className="w-5 h-5" aria-hidden="true" />
                 </div>
                 <h3 className="text-base font-bold text-earth-ink-900 dark:text-stone-100">
                   No se encontraron proyectos con ese criterio
@@ -187,7 +188,7 @@ export const App: React.FC = () => {
                     setSelectedCategory('all');
                     setSearchQuery('');
                   }}
-                  className="btn-tactile mt-4 px-5 py-2 rounded-2xl bg-earth-darkMocha hover:bg-earth-ink-800 text-white text-xs font-semibold shadow-soft"
+                  className="btn-tactile mt-4 min-h-11 px-5 py-2.5 rounded-2xl bg-earth-darkMocha hover:bg-earth-ink-800 text-white text-xs font-semibold shadow-soft"
                 >
                   Limpiar filtros
                 </button>
