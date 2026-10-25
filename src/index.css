@@ -33,25 +33,64 @@
 /* Custom interactive tactile utilities & smooth transitions */
 @layer components {
   .btn-tactile {
-    @apply transition-[transform,box-shadow,background-color,border-color,color] duration-200 ease-out active:scale-[0.98] hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-earth-darkMocha/60 dark:focus-visible:ring-swatch-lavender/60 focus-visible:ring-offset-earth-light dark:focus-visible:ring-offset-earth-coffeeBg cursor-pointer;
+    @apply transition-[transform,box-shadow,background-color,border-color,color] duration-200 ease-out active:scale-[0.98] hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-primary/60 dark:focus-visible:ring-brand-primary/60 focus-visible:ring-offset-earth-light dark:focus-visible:ring-offset-brand-bg cursor-pointer;
   }
 
   .card-lift {
-    @apply transition-[transform,box-shadow,border-color,background-color] duration-300 ease-out hover:-translate-y-1 hover:shadow-soft-hover dark:hover:shadow-soft-dark-hover hover:border-earth-mocha/50 dark:hover:border-swatch-lavender/50;
+    @apply transition-[transform,box-shadow,border-color,background-color] duration-300 ease-out hover:-translate-y-1 hover:shadow-soft-hover dark:hover:shadow-[0_0_24px_rgba(88,166,255,0.08)] hover:border-brand-primary/40 dark:hover:border-brand-primary/60;
   }
 
   .badge-spring {
     @apply transition-transform duration-200 ease-out hover:scale-[1.03] active:scale-[0.97] inline-flex;
   }
 
+  .grid-bg-glow {
+    background-image:
+      radial-gradient(ellipse 60% 40% at 50% -10%, rgba(88, 166, 255, 0.12), transparent 75%),
+      linear-gradient(to right, rgba(32, 42, 58, 0.45) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(32, 42, 58, 0.45) 1px, transparent 1px);
+    background-size:
+      100% 100%,
+      36px 36px,
+      36px 36px;
+  }
+
+  .dark .grid-bg-glow {
+    background-image:
+      radial-gradient(ellipse 60% 40% at 50% -10%, rgba(88, 166, 255, 0.14), transparent 75%),
+      linear-gradient(to right, rgba(32, 42, 58, 0.45) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(32, 42, 58, 0.45) 1px, transparent 1px);
+    background-size:
+      100% 100%,
+      36px 36px,
+      36px 36px;
+  }
+
   .bg-blueprint-grid {
-    background-image: radial-gradient(rgba(130, 96, 73, 0.14) 1px, transparent 1px);
-    background-size: 16px 16px;
+    background-image: radial-gradient(rgba(88, 166, 255, 0.18) 1px, transparent 1px);
+    background-size: 20px 20px;
   }
 
   .dark .bg-blueprint-grid {
-    background-image: radial-gradient(rgba(217, 194, 240, 0.1) 1px, transparent 1px);
-    background-size: 16px 16px;
+    background-image: radial-gradient(rgba(88, 166, 255, 0.12) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .commit-box {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    transition:
+      transform 0.15s ease,
+      outline 0.15s ease,
+      filter 0.15s ease;
+  }
+
+  .commit-box:hover {
+    transform: scale(1.35);
+    outline: 1.5px solid #58a6ff;
+    z-index: 10;
+    filter: brightness(1.2);
   }
 }
 

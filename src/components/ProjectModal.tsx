@@ -5,10 +5,10 @@ import {
   Github,
   Lock,
   CheckCircle,
-  Calendar,
   Sparkles,
   GraduationCap,
   Award,
+  ShieldCheck,
 } from 'lucide-react';
 import { Project } from '../types/project';
 import { ProjectVisual } from './ProjectVisual';
@@ -26,14 +26,11 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
   useEffect(() => {
     if (!project) return;
 
-    // Save previous active element for focus restoration
     previousFocusRef.current = document.activeElement as HTMLElement;
 
-    // Lock body scrolling
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
-    // Focus close button initially
     const timer = setTimeout(() => {
       closeButtonRef.current?.focus();
     }, 50);
@@ -44,7 +41,6 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
         return;
       }
 
-      // Focus trap
       if (e.key === 'Tab' && modalRef.current) {
         const focusableElements = modalRef.current.querySelectorAll<HTMLElement>(
           'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
@@ -74,7 +70,6 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
       clearTimeout(timer);
       window.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = originalOverflow;
-      // Restore focus
       previousFocusRef.current?.focus?.();
     };
   }, [project, onClose]);
@@ -86,198 +81,195 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-project-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-earth-ink-900/70 backdrop-blur-md overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#090d13]/80 backdrop-blur-md overflow-y-auto"
       onClick={onClose}
     >
       <div
         ref={modalRef}
-        className="relative w-full max-w-2xl bg-earth-linen dark:bg-earth-coffeeCard border border-earth-sand dark:border-earth-coffeeBorder rounded-2xl shadow-2xl p-6 sm:p-8 overflow-hidden my-8 animate-fade-up max-h-[90vh] overflow-y-auto"
+        className="relative w-full max-w-2xl bg-[#0c1017] border border-brand-border rounded-2xl shadow-2xl p-6 sm:p-8 overflow-hidden my-8 animate-fade-up max-h-[90vh] overflow-y-auto custom-scroll"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Top bar: Header tags + Close button (prevents overlap with ProjectVisual on 360px) */}
+        {/* Top Header Bar */}
         <div className="flex items-start justify-between gap-3 mb-4">
-          <div className="flex flex-wrap items-center gap-2 pt-1">
+          <div className="flex flex-wrap items-center gap-2 pt-1 font-mono text-xs">
             {project.featured && (
-              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-swatch-lavender-bg text-swatch-lavender-text dark:bg-swatch-lavender-border/20 dark:text-swatch-lavender-darkText border border-swatch-lavender-border/70">
-                <Sparkles className="w-3 h-3 text-swatch-lavender" aria-hidden="true" />
-                <span>Proyecto Insignia</span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-bold bg-brand-primary/10 text-brand-primary border border-brand-primary/30">
+                <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
+                <span>Insignia</span>
+              </span>
+            )}
+            {project.role && (
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-semibold bg-brand-secondary/10 text-brand-secondary border border-brand-secondary/30">
+                <Award className="w-3.5 h-3.5" aria-hidden="true" />
+                <span>{project.role}</span>
               </span>
             )}
             {project.academic && (
-              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-swatch-lemon-bg text-swatch-lemon-text dark:bg-swatch-lemon-border/20 dark:text-swatch-lemon-darkText border border-swatch-lemon-border/70">
+              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full font-medium bg-brand-amber/10 text-brand-amber border border-brand-amber/30">
                 <GraduationCap className="w-3.5 h-3.5" aria-hidden="true" />
                 <span>{project.institution || 'Académico'}</span>
               </span>
             )}
-            <span className="text-xs font-medium text-earth-ink-700 dark:text-stone-200 px-2.5 py-0.5 rounded-full bg-earth-sand/60 dark:bg-earth-coffeeSubtle border border-earth-sand/70 dark:border-earth-coffeeBorder">
-              {project.status}
-            </span>
           </div>
 
           <button
             ref={closeButtonRef}
+            type="button"
             onClick={onClose}
-            aria-label="Cerrar modal"
-            className="btn-tactile shrink-0 min-h-11 min-w-11 flex items-center justify-center rounded-full text-earth-ink-700 hover:text-earth-ink-900 dark:text-stone-300 dark:hover:text-stone-100 hover:bg-earth-sand/60 dark:hover:bg-earth-coffeeSubtle"
+            aria-label="Cerrar modal de detalles"
+            className="btn-tactile p-2 rounded-xl bg-brand-surface hover:bg-brand-surfaceAlt text-brand-textMuted hover:text-white border border-brand-border shrink-0 cursor-pointer"
           >
             <X className="w-5 h-5" aria-hidden="true" />
           </button>
         </div>
 
-        {/* Visual schematic preview */}
+        {/* Visual representation */}
         {project.visualType && (
-          <div className="mb-5">
+          <div className="mb-6">
             <ProjectVisual
               visualType={project.visualType}
               projectId={project.id}
               title={project.title}
-              className="w-full min-h-[11rem]"
+              className="w-full"
             />
           </div>
         )}
 
         {/* Title */}
-        <h2
+        <h3
           id="modal-project-title"
-          className="text-2xl sm:text-3xl font-extrabold text-earth-ink-900 dark:text-stone-100 text-balance"
+          className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight"
         >
           {project.title}
-        </h2>
+        </h3>
+
         {project.tagline && (
-          <p className="text-xs font-semibold text-earth-darkMocha dark:text-swatch-lavender-darkText mt-1">
+          <p className="mt-1 text-sm font-semibold font-mono text-brand-secondary">
             {project.tagline}
           </p>
         )}
 
-        {/* Recruiter Role Callout */}
-        {project.role && (
-          <div className="mt-4 p-3.5 rounded-2xl bg-swatch-mint-bg dark:bg-swatch-mint-border/15 border border-swatch-mint-border/50 flex items-center gap-3">
-            <Award
-              className="w-4 h-4 text-swatch-mint-text dark:text-swatch-mint-darkText shrink-0"
-              aria-hidden="true"
-            />
-            <div>
-              <span className="block text-[10px] font-bold uppercase tracking-wider text-swatch-mint-text dark:text-swatch-mint-darkText">
-                Rol del Desarrollador
-              </span>
-              <span className="text-xs font-semibold text-earth-ink-900 dark:text-stone-100">
-                {project.role}
-              </span>
-            </div>
-          </div>
-        )}
-
         {/* Full description */}
-        <div className="mt-5 text-xs sm:text-sm text-earth-ink-600 dark:text-stone-300 leading-relaxed space-y-3">
-          <p>{project.fullDescription}</p>
-        </div>
+        <p className="mt-4 text-xs sm:text-sm text-brand-textMuted leading-relaxed">
+          {project.fullDescription}
+        </p>
 
-        {/* Key Highlights */}
+        {/* Architecture & Highlights */}
         {project.highlights && project.highlights.length > 0 && (
-          <div className="mt-6">
-            <h3 className="text-[11px] font-bold uppercase tracking-wider text-earth-darkMocha dark:text-swatch-lavender-darkText mb-3">
+          <div className="mt-6 pt-5 border-t border-brand-border/60">
+            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-brand-primary mb-3">
               Aspectos Destacados & Arquitectura
-            </h3>
+            </h4>
             <ul className="space-y-2">
-              {project.highlights.map((item, idx) => (
+              {project.highlights.map((h, idx) => (
                 <li
                   key={idx}
-                  className="flex items-start gap-2.5 text-xs sm:text-sm text-earth-ink-700 dark:text-stone-200"
+                  className="flex items-start gap-2.5 text-xs text-brand-text leading-relaxed"
                 >
                   <CheckCircle
-                    className="w-4 h-4 text-swatch-mint-text dark:text-swatch-mint-darkText shrink-0 mt-0.5"
+                    className="w-4 h-4 text-brand-secondary shrink-0 mt-0.5"
                     aria-hidden="true"
                   />
-                  <span>{item}</span>
+                  <span>{h}</span>
                 </li>
               ))}
             </ul>
           </div>
         )}
 
-        {/* Demonstrated Skills Callout */}
+        {/* Skills Demonstrated */}
         {project.skillsDemonstrated && project.skillsDemonstrated.length > 0 && (
-          <div className="mt-6 pt-5 border-t border-earth-sand/70 dark:border-earth-coffeeBorder/70">
-            <h3 className="text-[11px] font-bold uppercase tracking-wider text-earth-ink-700 dark:text-stone-300 mb-2">
-              Habilidades Técnicas Demostradas
-            </h3>
-            <div className="flex flex-wrap gap-1.5">
-              {project.skillsDemonstrated.map((skill) => (
+          <div className="mt-6 pt-5 border-t border-brand-border/60">
+            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-brand-textDim mb-3">
+              Competencias Verificadas
+            </h4>
+            <div className="flex flex-wrap gap-2">
+              {project.skillsDemonstrated.map((s) => (
                 <span
-                  key={skill}
-                  className="badge-spring text-xs px-2.5 py-1 rounded-xl font-medium bg-earth-sand/60 dark:bg-earth-coffeeSubtle text-earth-ink-800 dark:text-stone-200 border border-earth-sand dark:border-earth-coffeeBorder"
+                  key={s}
+                  className="px-2.5 py-1 rounded-lg text-xs font-mono font-medium bg-brand-surface text-brand-text border border-brand-border"
                 >
-                  {skill}
+                  {s}
                 </span>
               ))}
             </div>
           </div>
         )}
 
-        {/* Technologies Grid */}
-        <div className="mt-5 pt-4 border-t border-earth-sand/70 dark:border-earth-coffeeBorder/70">
-          <h3 className="text-[11px] font-bold uppercase tracking-wider text-earth-ink-700 dark:text-stone-300 mb-2">
-            Tecnologías Empleadas
-          </h3>
-          <div className="flex flex-wrap gap-1.5">
-            {project.technologies.map((tech) => (
+        {/* Tech Stack Chips */}
+        <div className="mt-6 pt-5 border-t border-brand-border/60">
+          <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-brand-textDim mb-3">
+            Stack Tecnológico & Lenguajes
+          </h4>
+          <div className="flex flex-wrap gap-2">
+            {project.languages.map((l) => (
               <span
-                key={tech}
-                className="badge-spring text-xs px-2.5 py-1 rounded-xl font-medium bg-earth-sand/50 dark:bg-earth-coffeeSubtle text-earth-ink-700 dark:text-stone-200 border border-earth-sand dark:border-earth-coffeeBorder"
+                key={l}
+                className="px-2.5 py-1 rounded-lg text-xs font-mono font-bold bg-brand-primary/10 text-brand-primary border border-brand-primary/30"
               >
-                {tech}
+                {l}
+              </span>
+            ))}
+            {project.technologies.map((t) => (
+              <span
+                key={t}
+                className="px-2.5 py-1 rounded-lg text-xs font-mono font-medium bg-brand-surfaceAlt text-brand-text border border-brand-border"
+              >
+                {t}
               </span>
             ))}
           </div>
         </div>
 
-        {/* Metadata info */}
-        <div className="mt-4 flex items-center gap-4 text-xs text-earth-ink-600 dark:text-stone-300">
-          <span className="flex items-center gap-1">
-            <Calendar className="w-3.5 h-3.5" aria-hidden="true" />
-            <span>Última actualización: {project.updatedAt}</span>
-          </span>
-        </div>
+        {/* Action Buttons & Private Notice */}
+        <div className="mt-8 pt-5 border-t border-brand-border flex flex-wrap items-center justify-between gap-4">
+          <div className="text-xs font-mono">
+            {project.isPrivate ? (
+              <div className="flex items-center gap-2 text-brand-amber">
+                <Lock className="w-4 h-4 shrink-0" aria-hidden="true" />
+                <span>Repositorio Académico Privado</span>
+              </div>
+            ) : (
+              <span className="text-brand-secondary flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4" />
+                <span>Código Abierto Verificado</span>
+              </span>
+            )}
+          </div>
 
-        {/* Actions */}
-        <div className="mt-8 pt-5 border-t border-earth-sand/70 dark:border-earth-coffeeBorder/70 flex flex-wrap items-center justify-between gap-3">
-          <div className="flex flex-wrap items-center gap-2.5">
+          <div className="flex items-center gap-3">
+            {project.githubUrl && !project.isPrivate && (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-tactile inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-surface hover:bg-brand-surfaceAlt text-brand-text text-xs font-mono border border-brand-border hover:border-brand-primary"
+              >
+                <Github className="w-3.5 h-3.5" aria-hidden="true" />
+                <span>GitHub</span>
+              </a>
+            )}
+
             {project.demoUrl && (
               <a
                 href={project.demoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-tactile min-h-11 inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-earth-darkMocha hover:bg-earth-ink-800 text-white text-xs font-semibold shadow-soft"
+                className="btn-tactile inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-primary hover:bg-brand-primaryHover text-black text-xs font-mono font-bold"
               >
                 <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
                 <span>Demo en Vivo</span>
               </a>
             )}
 
-            {!project.isPrivate ? (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-tactile min-h-11 inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-earth-sand/60 hover:bg-earth-taupe/40 dark:bg-earth-coffeeSubtle dark:hover:bg-earth-coffeeBorder text-earth-ink-800 dark:text-stone-200 text-xs font-semibold border border-earth-sand dark:border-earth-coffeeBorder"
-              >
-                <Github className="w-3.5 h-3.5" aria-hidden="true" />
-                <span>Ver en GitHub</span>
-              </a>
-            ) : (
-              <div className="min-h-11 inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-earth-sand/30 dark:bg-earth-coffeeSubtle/40 text-earth-ink-700 dark:text-stone-300 text-xs font-medium border border-earth-sand/50 dark:border-earth-coffeeBorder">
-                <Lock className="w-3.5 h-3.5" aria-hidden="true" />
-                <span>Repositorio Académico / Privado — Código protegido</span>
-              </div>
-            )}
+            <button
+              type="button"
+              onClick={onClose}
+              className="btn-tactile px-4 py-2 rounded-xl bg-brand-surface hover:bg-brand-surfaceAlt text-brand-textMuted hover:text-white text-xs font-mono border border-brand-border cursor-pointer"
+            >
+              Cerrar
+            </button>
           </div>
-
-          <button
-            onClick={onClose}
-            className="btn-tactile min-h-11 px-4 py-2 rounded-xl text-xs font-medium text-earth-ink-700 hover:text-earth-ink-900 dark:text-stone-300 dark:hover:text-stone-100"
-          >
-            Cerrar
-          </button>
         </div>
       </div>
     </div>

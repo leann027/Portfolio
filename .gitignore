@@ -60,3 +60,4 @@ TEST_READY.md
 
 # Test & audit artifacts
 .artifacts/
+graphify-out/

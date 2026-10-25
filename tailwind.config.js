@@ -5,26 +5,49 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Paleta Neutra Terrosa / Lino (Extraída de la Imagen 1) con ajuste anti-fatiga ocular
+        // DevKernel Dark & Technical Glass System (Inspirado en Stitch)
+        brand: {
+          bg: '#090d13',
+          surface: '#0e141d',
+          surfaceAlt: '#141b26',
+          card: '#121924',
+          cardHover: '#182232',
+          border: '#202a3a',
+          borderHover: '#34455f',
+          primary: '#58a6ff',
+          primaryHover: '#79b8ff',
+          primaryGlow: 'rgba(88, 166, 255, 0.15)',
+          secondary: '#3fb950',
+          secondaryGlow: 'rgba(63, 185, 80, 0.15)',
+          purple: '#bc8cff',
+          purpleGlow: 'rgba(188, 140, 255, 0.15)',
+          amber: '#d29922',
+          amberGlow: 'rgba(210, 153, 34, 0.15)',
+          rose: '#f85149',
+          text: '#f0f6fc',
+          textMuted: '#9ba7b6',
+          textDim: '#8b96a5',
+        },
+        // Paleta Neutra Terrosa / Lino con soporte para modo claro & compatibilidad
         earth: {
-          light: '#F6F3EB', // Soft warm matte linen (descanso visual)
-          linen: '#ECE5D8', // Gentle oatmeal cream
-          sand: '#DFD6C5', // Muted warm sand
-          taupe: '#BCB19D', // Soft warm taupe
-          mocha: '#A8826B', // Warm caramel mocha accent
-          darkMocha: '#826049',
+          light: '#F8FAFC', // Slate 50 limpio para descanso visual
+          linen: '#F1F5F9', // Slate 100 suave
+          sand: '#E2E8F0', // Slate 200 border
+          taupe: '#94A3B8', // Slate 400
+          mocha: '#58A6FF', // Dev primary accent
+          darkMocha: '#0F172A', // Slate 900
           ink: {
-            900: '#1A1716', // Deep warm espresso heading
-            800: '#2D2826', // Warm charcoal body text
-            700: '#463F3C',
-            600: '#655C58', // Warm secondary text
-            500: '#8A807B',
-            400: '#ADA49E',
+            900: '#0F172A',
+            800: '#1E293B',
+            700: '#334155',
+            600: '#475569',
+            500: '#64748B',
+            400: '#94A3B8',
           },
-          coffeeBg: '#181519', // Dark mode nocturnal warm background
-          coffeeCard: '#221E25',
-          coffeeBorder: '#352E39',
-          coffeeSubtle: '#2A252E',
+          coffeeBg: '#090D13', // DevKernel dark canvas
+          coffeeCard: '#121924', // DevKernel card
+          coffeeBorder: '#202A3A', // DevKernel border
+          coffeeSubtle: '#141B26', // DevKernel subtle surface
         },
         // Acentos Pastel Curados (Extraídos de la Imagen 2)
         swatch: {

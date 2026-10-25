@@ -8,9 +8,12 @@ import { ProjectFilters } from './components/ProjectFilters';
 import { FlagshipProject } from './components/FlagshipProject';
 import { ProjectCard } from './components/ProjectCard';
 import { ProjectModal } from './components/ProjectModal';
+import { ArchitectureVisualizer } from './components/ArchitectureVisualizer';
+import { GitActivityHeatmap } from './components/GitActivityHeatmap';
 import { SkillsSection } from './components/SkillsSection';
 import { AboutSection } from './components/AboutSection';
 import { Footer } from './components/Footer';
+import { CliQuickfindModal } from './components/CliQuickfindModal';
 import { SearchX } from 'lucide-react';
 
 const data = portfolioDataRaw as unknown as PortfolioData;
@@ -29,7 +32,7 @@ const getInitialTheme = (): boolean => {
 };
 
 export const App: React.FC = () => {
-  // Dark mode state with safe persistence
+  // Dark mode state with safe persistence (DevKernel defaults to sleek dark mode)
   const [darkMode, setDarkMode] = useState<boolean>(getInitialTheme);
 
   useEffect(() => {
@@ -51,6 +54,21 @@ export const App: React.FC = () => {
   }, [darkMode]);
 
   const toggleDarkMode = () => setDarkMode((prev) => !prev);
+
+  // CLI Quickfind Modal state
+  const [cliQuickfindOpen, setCliQuickfindOpen] = useState<boolean>(false);
+
+  // Global ⌘K shortcut listener
+  useEffect(() => {
+    const handleGlobalKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setCliQuickfindOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleGlobalKeyDown);
+    return () => window.removeEventListener('keydown', handleGlobalKeyDown);
+  }, []);
 
   // Filter & Search states
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -78,11 +96,9 @@ export const App: React.FC = () => {
   // Filtered projects list
   const filteredProjects = useMemo(() => {
     return data.projects.filter((p) => {
-      // Category filter
       const matchesCategory = selectedCategory === 'all' || p.category === selectedCategory;
       if (!matchesCategory) return false;
 
-      // Search query filter
       if (!searchQuery.trim()) return true;
       const q = searchQuery.toLowerCase().trim();
       const matchTitle = p.title.toLowerCase().includes(q);
@@ -104,41 +120,56 @@ export const App: React.FC = () => {
   }, [filteredProjects, showFlagship, flagshipProject]);
 
   return (
-    <div className="relative min-h-screen bg-earth-light/85 dark:bg-earth-coffeeBg text-earth-ink-800 dark:text-stone-200 flex flex-col font-sans selection:bg-swatch-lavender/50">
+    <div className="relative min-h-screen bg-earth-light dark:bg-brand-bg text-earth-ink-800 dark:text-brand-text flex flex-col font-sans selection:bg-brand-primary selection:text-black">
       {/* Skip to Main Content Link (Bypass Navigation) */}
       <a
         href="#proyectos"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 px-4 py-2.5 rounded-xl bg-earth-darkMocha text-white text-xs font-semibold shadow-lg outline-none ring-2 ring-earth-sand ring-offset-2 transition-transform"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 px-4 py-2.5 rounded-xl bg-brand-primary text-black text-xs font-bold font-mono shadow-xl outline-none ring-2 ring-brand-secondary ring-offset-2 transition-transform"
       >
         Saltar al contenido principal
       </a>
 
-      {/* Dynamic Lo-Fi Ambient Background */}
+      {/* Dynamic Hardware-Accelerated Reactive Canvas Background */}
       <BackgroundAmbient />
 
-      <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} githubUser={data.user.github} />
+      {/* Navbar with DevKernel styling and CLI search */}
+      <Navbar
+        darkMode={darkMode}
+        toggleDarkMode={toggleDarkMode}
+        githubUser={data.user.github}
+        onOpenCliQuickfind={() => setCliQuickfindOpen(true)}
+      />
 
       <main className="flex-1">
-        <Hero user={data.user} totalProjects={data.projects.length} />
+        {/* Hero Section with Interactive Terminal */}
+        <Hero
+          user={data.user}
+          totalProjects={data.projects.length}
+          onOpenCliQuickfind={() => setCliQuickfindOpen(true)}
+        />
 
         {/* Projects Section */}
         <section
           id="proyectos"
           tabIndex={-1}
-          className="py-16 sm:py-24 border-b border-earth-sand/70 dark:border-earth-coffeeBorder/70 relative focus:outline-none"
+          className="py-16 sm:py-24 border-b border-brand-border/70 relative focus:outline-none"
         >
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 pb-5 border-b border-earth-sand/60 dark:border-earth-coffeeBorder/60">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 pb-5 border-b border-slate-200 dark:border-brand-border">
               <div className="max-w-2xl">
-                <h2 className="text-3xl sm:text-4xl font-extrabold text-earth-ink-900 dark:text-stone-100 tracking-tight text-balance">
+                <div className="flex items-center gap-2 text-xs font-mono text-blue-700 dark:text-brand-primary mb-1 font-semibold">
+                  <span className="material-symbols-outlined text-[16px]">folder_managed</span>
+                  <span>Open Source & Engineering Catalog</span>
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight text-balance">
                   Proyectos & Desarrollos
                 </h2>
-                <p className="mt-2.5 text-earth-ink-600 dark:text-stone-300 text-xs sm:text-sm leading-relaxed">
+                <p className="mt-2 text-slate-700 dark:text-brand-textMuted text-xs sm:text-sm leading-relaxed">
                   Catálogo de proyectos personales y académicos. Filtra por tecnología o busca por
                   palabras clave para ver especificaciones y código.
                 </p>
               </div>
-              <div className="shrink-0 font-mono text-[11px] font-semibold px-3 py-1.5 rounded-xl bg-earth-linen dark:bg-earth-coffeeCard text-earth-ink-700 dark:text-stone-300 border border-earth-sand dark:border-earth-coffeeBorder self-start sm:self-auto">
+              <div className="shrink-0 font-mono text-[11px] font-semibold px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-brand-surface text-emerald-700 dark:text-brand-secondary border border-slate-200 dark:border-brand-border self-start sm:self-auto">
                 CATÁLOGO // 0{data.projects.length} PROYECTOS
               </div>
             </div>
@@ -160,7 +191,7 @@ export const App: React.FC = () => {
               />
             )}
 
-            {/* Projects Grid (Pure Visualization) */}
+            {/* Projects Grid */}
             {gridProjects.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-7">
                 {gridProjects.map((project, index) => (
@@ -173,14 +204,14 @@ export const App: React.FC = () => {
                 ))}
               </div>
             ) : (
-              <div className="card-lift py-16 text-center rounded-3xl bg-earth-linen dark:bg-earth-coffeeCard border border-earth-sand dark:border-earth-coffeeBorder p-8 shadow-soft">
-                <div className="w-10 h-10 rounded-2xl bg-earth-sand/60 dark:bg-earth-coffeeSubtle flex items-center justify-center mx-auto text-earth-ink-600 dark:text-stone-300 mb-3">
+              <div className="card-lift py-16 text-center rounded-2xl bg-white dark:bg-brand-card border border-slate-200 dark:border-brand-border p-8 shadow-xl">
+                <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-brand-surface border border-slate-200 dark:border-brand-border flex items-center justify-center mx-auto text-slate-500 dark:text-brand-textMuted mb-3">
                   <SearchX className="w-5 h-5" aria-hidden="true" />
                 </div>
-                <h3 className="text-base font-bold text-earth-ink-900 dark:text-stone-100">
+                <h3 className="text-base font-bold text-slate-900 dark:text-white">
                   No se encontraron proyectos con ese criterio
                 </h3>
-                <p className="text-xs text-earth-ink-700 dark:text-stone-300 mt-1 max-w-sm mx-auto">
+                <p className="text-xs text-slate-600 dark:text-brand-textMuted mt-1 max-w-sm mx-auto">
                   Prueba modificando el texto de búsqueda o seleccionando otra categoría.
                 </p>
                 <button
@@ -188,7 +219,7 @@ export const App: React.FC = () => {
                     setSelectedCategory('all');
                     setSearchQuery('');
                   }}
-                  className="btn-tactile mt-4 min-h-11 px-5 py-2.5 rounded-2xl bg-earth-darkMocha hover:bg-earth-ink-800 text-white text-xs font-semibold shadow-soft"
+                  className="btn-tactile mt-4 min-h-11 px-5 py-2.5 rounded-xl bg-slate-900 text-white dark:bg-brand-primary dark:text-black text-xs font-mono font-bold shadow-md cursor-pointer hover:bg-slate-800 dark:hover:bg-brand-primaryHover"
                 >
                   Limpiar filtros
                 </button>
@@ -197,15 +228,33 @@ export const App: React.FC = () => {
           </div>
         </section>
 
+        {/* Technical Architecture & Memory Inspector */}
+        <ArchitectureVisualizer />
+
+        {/* Git Activity & Annual Commit Heatmap */}
+        <GitActivityHeatmap githubUser={data.user.github} />
+
+        {/* Skills & Domain Matrix */}
         <SkillsSection skills={data.skills} />
 
+        {/* About & Contact Section */}
         <AboutSection user={data.user} />
       </main>
 
+      {/* Footer */}
       <Footer githubUser={data.user.github} />
 
       {/* Details Modal */}
       <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+
+      {/* CLI Quickfind Modal */}
+      <CliQuickfindModal
+        isOpen={cliQuickfindOpen}
+        onClose={() => setCliQuickfindOpen(false)}
+        projects={data.projects}
+        onSelectProject={(p) => setSelectedProject(p)}
+        toggleDarkMode={toggleDarkMode}
+      />
     </div>
   );
 };
