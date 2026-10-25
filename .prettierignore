@@ -28,6 +28,7 @@ package-lock.json
 .artifacts/
 
 # Documentation and governance files
+*.md
 PROJECT.md
 TEST_INFRA.md
 TEST_READY.md

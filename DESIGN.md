@@ -88,15 +88,19 @@ components:
 # DevKernel Dark Design System
 
 ## 1. Filosofía de Diseño
+
 Inspirado en la estética **DevKernel Dark** generada en Google Stitch para perfiles técnicos de ingeniería de software. Combina el rigor de una estación de trabajo de sistemas (terminal, editor de código, telemetría Git) con componentes web modernos, fluidos y de altísimo contraste.
 
 ## 2. Fondos Reactivos (Hardware-Accelerated Canvas)
+
 Un sustrato interactivo implementado en HTML5 Canvas (`BackgroundAmbient.tsx`):
+
 - Mapea el cursor en tiempo real calculando la proximidad a nodos de una retícula técnica a intervalos regulares.
 - Dibuja conexiones tenues y pulsos de luz en azul cian (`#58A6FF`) y esmeralda (`#3FB950`).
 - Respeta la accesibilidad desactivando el bucle de renderizado cuando el sistema solicita `prefers-reduced-motion`.
 
 ## 3. Toques Únicos de Demostración de Conocimientos
+
 1. **Interactive Terminal Hero Widget:** Demuestra dominio de Valgrind, análisis de memoria dinámica en C y pipelines de automatización en Python con comandos ejecutables en un solo clic.
 2. **CLI Quickfind (⌘K):** Buscador tipo terminal y paleta de comandos interactiva con soporte de teclado y accesibilidad aria.
 3. **Inspección de Arquitectura de Memoria (Stack vs Heap):** Visualización interactiva de nodos enlazados, punteros y desasignación limpia para evitar dangling pointers y memory leaks.
