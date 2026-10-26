@@ -24,6 +24,7 @@ describe('Interactive Portfolio UI (Pure Visualization)', () => {
     render(<App />);
     expect(screen.getByText(/Hola, soy/i)).toBeInTheDocument();
     expect(screen.getAllByText(/Leandro/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/YourMusicVisualizer/i).length).toBeGreaterThan(0);
     expect(screen.getByText(/Portfolio Interactivo & Motor de Proyectos/i)).toBeInTheDocument();
   });
 
@@ -128,7 +129,7 @@ describe('Interactive Portfolio UI (Pure Visualization)', () => {
   it('renders flagship project showcase with distinctive insignia and recruiter information', () => {
     render(<App />);
     // Flagship project title
-    const flagshipTitle = screen.getByText(/Portfolio Interactivo & Motor de Proyectos/i);
+    const flagshipTitle = screen.getByText(/YourMusicVisualizer/i);
     expect(flagshipTitle).toBeInTheDocument();
 
     // Insignia badge
@@ -136,7 +137,7 @@ describe('Interactive Portfolio UI (Pure Visualization)', () => {
     expect(insigniaBadges.length).toBeGreaterThan(0);
 
     // Action button to view specs
-    expect(screen.getByTestId('btn-details-portfolio-hub')).toBeInTheDocument();
+    expect(screen.getByTestId('btn-details-your-music-visualizer')).toBeInTheDocument();
   });
 
   it('renders ambient background and status indicator', () => {

@@ -4,12 +4,90 @@
     "github": "leann027",
     "email": "leandro28rc@gmail.com",
     "title": "Desarrollador de Software",
-    "subtitle": "Especializado en Python, C, arquitectura limpia y desarrollo web moderno",
-    "bio": "Estudiante de Desarrollo de Software (Terciario Urquiza) y entusiasta de la informática con sólida base algorítmica (CS50, C, Python). Enfocado en construir software estructurado, determinista y escalable.",
+    "subtitle": "Especializado en React, Next.js, Three.js 3D, Python, C y desarrollo web moderno",
+    "bio": "Estudiante de Desarrollo de Software (Terciario Urquiza) y apasionado por la ingeniería de software. Combina desarrollo web interactivo (React 19, Three.js WebGL, Web Audio API) con sólidos fundamentos algorítmicos (C, Python, CS50).",
     "location": "Rosario, Argentina",
     "availableForHire": true
   },
   "projects": [
+    {
+      "id": "your-music-visualizer",
+      "repoName": "YourMusicVisualizer",
+      "title": "YourMusicVisualizer",
+      "tagline": "Cosmos 3D procedimental, audio-reactivo y galaxia interactiva en WebGL",
+      "shortDescription": "Sistema interactivo de exploración y renderizado 3D en WebGL que transforma bibliotecas musicales en un cosmos procedural con Web Audio API y React Three Fiber.",
+      "fullDescription": "Novafy / YourMusicVisualizer es una plataforma interactiva de exploración musical en tres dimensiones desarrollada con Next.js 16, React 19, React Three Fiber y Three.js. Modela canciones, artistas y géneros como cuerpos celestes, discos de acreción de plasma y nebulosas de gas ionizado que orbitan una singularidad central supermasiva. Incorpora shaders GLSL procedurales, análisis espectral de frecuencias de audio con la Web Audio API (FFT de 64 bandas), cinemáticas de vuelo en arco interpoladas con GSAP y una interfaz perimetral de cristal navegable a 60 FPS estables.",
+      "category": "web",
+      "languages": ["TypeScript", "GLSL", "JavaScript"],
+      "technologies": [
+        "Next.js 16",
+        "React 19",
+        "Three.js",
+        "React Three Fiber",
+        "Web Audio API",
+        "GLSL Shaders",
+        "Zustand",
+        "Tailwind CSS",
+        "GSAP"
+      ],
+      "githubUrl": "https://github.com/leann027/YourMusicVisualizer",
+      "demoUrl": "https://your-music-visualizer.vercel.app",
+      "isPrivate": false,
+      "academic": false,
+      "featured": true,
+      "status": "Producción / Insignia",
+      "role": "Creador & Desarrollador Frontend 3D / WebGL",
+      "skillsDemonstrated": [
+        "Renderizado 3D con Three.js & React Three Fiber",
+        "Shaders GLSL & Efectos Relativistas en GPU",
+        "Web Audio API & Análisis Espectral FFT",
+        "Arquitectura React 19 & Next.js 16 App Router",
+        "Cinemáticas de Cámara & GSAP",
+        "Gestión de Estado con Zustand a 60 FPS"
+      ],
+      "visualType": "your-music-visualizer",
+      "updatedAt": "2026-10-26",
+      "highlights": [
+        "Renderizado procedural 3D en tiempo real con singularidad central, disco de acreción relativista y lentes gravitacionales",
+        "Procesamiento acústico en tiempo real con Web Audio API mediante FFT de 64 bandas y pulsos reactivos",
+        "Cinemáticas de cámara en arco con GSAP, transiciones 'Warp-in' y seguimiento orbital determinista",
+        "HUD flotante de cristal optimizado para rendimiento sostenido a 60 FPS con mínimo overhead de draw calls",
+        "Integración Spotify con flujo de autenticación OAuth 2.0 PKCE y fallback a sintetizador Web Audio"
+      ]
+    },
+    {
+      "id": "algo-notebook",
+      "repoName": "AlgoNotebook",
+      "title": "AlgoNotebook — Engineering Lab & Visualizador DSA",
+      "tagline": "Laboratorio interactivo de estructuras de datos y algoritmos con código C y Python sincronizado",
+      "shortDescription": "Visualizador interactivo de estructuras de datos y algoritmos (DSA) con estética de cuaderno de laboratorio de ingeniería. Permite ejecución paso a paso con código sincronizado entre C (C99) y Python 3.",
+      "fullDescription": "AlgoNotebook es una plataforma interactiva de aprendizaje y experimentación en estructuras de datos y algoritmos. Diseñada bajo la estética táctil de un cuaderno de laboratorio de ingeniería, ofrece trazabilidad visual paso a paso, análisis asintótico de complejidad y ejecución con código sincronizado entre C (C99) y Python 3.",
+      "category": "algorithms",
+      "languages": ["TypeScript", "C", "Python"],
+      "technologies": ["React 19", "TypeScript", "Vite", "Tailwind CSS", "C99", "Python 3", "PWA"],
+      "githubUrl": "https://github.com/leann027/AlgoNotebook",
+      "demoUrl": null,
+      "isPrivate": false,
+      "academic": false,
+      "featured": false,
+      "status": "Laboratorio Activo",
+      "role": "Desarrollador de Software & Diseñador de Interfaces",
+      "skillsDemonstrated": [
+        "Visualización Interactiva de Algoritmos (DSA)",
+        "Sincronización Políglota C99 & Python 3",
+        "Arquitectura React 19 & Estado Reactivo",
+        "Diseño UI Estilo Cuaderno de Ingeniería",
+        "Optimización de Renderizado rAF (60 FPS)"
+      ],
+      "visualType": "algo-notebook",
+      "updatedAt": "2026-10-24",
+      "highlights": [
+        "Visualización paso a paso de algoritmos con trazabilidad de estado en tiempo real",
+        "Comparador interactivo de código sincronizado entre C de bajo nivel y Python 3",
+        "Motor de reproducción optimizado con requestAnimationFrame y transformaciones GPU",
+        "Estética táctil inspirada en cuadernos de ingeniería con soporte offline PWA"
+      ]
+    },
     {
       "id": "portfolio-hub",
       "repoName": "Portfolio",
@@ -31,9 +109,9 @@
       "demoUrl": "https://leann027.github.io/Portfolio/",
       "isPrivate": false,
       "academic": false,
-      "featured": true,
-      "status": "Producción / Insignia",
-      "role": "Desarrollador Frontend",
+      "featured": false,
+      "status": "Producción / Despliegue Activo",
+      "role": "Desarrollador Frontend & Arquitecto Web",
       "skillsDemonstrated": [
         "Arquitectura de Componentes React & TypeScript",
         "Diseño de Sistemas UI & Tailwind CSS",
@@ -42,7 +120,7 @@
         "Accesibilidad Web (a11y) & Testing"
       ],
       "visualType": "portfolio-hub",
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-10-25",
       "highlights": [
         "Arquitectura modular desacoplando fuentes de datos, validación y renderizado",
         "Pipeline de CI/CD automatizado con GitHub Actions para testing y despliegue a GitHub Pages",
@@ -206,8 +284,13 @@
       },
       {
         "name": "TypeScript / JavaScript",
+        "level": "Avanzado",
+        "description": "Desarrollo frontend moderno, tipado estático, React, Next.js"
+      },
+      {
+        "name": "GLSL / Shaders",
         "level": "Intermedio",
-        "description": "Desarrollo frontend moderno, tipado estático, React"
+        "description": "Shaders procedimentales WebGL, efectos relativistas, iluminación"
       },
       {
         "name": "SQL",
@@ -216,15 +299,32 @@
       }
     ],
     "frameworks": [
-      { "name": "React", "description": "Componentes funcionales, hooks, estado reactivo" },
-      { "name": "Tailwind CSS", "description": "Diseño UI utilitario, responsive, modo oscuro" },
-      { "name": "Vite", "description": "Bundling ultrarrápido, HMR, optimización de producción" },
+      {
+        "name": "React & Next.js",
+        "description": "Componentes funcionales, React 19, Next.js App Router, estado reactivo"
+      },
+      {
+        "name": "Three.js / React Three Fiber",
+        "description": "Gráficos 3D acelerados por GPU, geometrías complejas, shaders GLSL"
+      },
+      {
+        "name": "Tailwind CSS",
+        "description": "Diseño UI utilitario, responsive, sistemas de tokens, modo oscuro"
+      },
+      {
+        "name": "Vite",
+        "description": "Bundling ultrarrápido, HMR, optimización de producción"
+      },
       {
         "name": "Tkinter / GUI",
         "description": "Interfaces de escritorio para aplicaciones Python"
       }
     ],
     "tools": [
+      {
+        "name": "Web Audio API",
+        "description": "Análisis espectral en tiempo real, FFT 64 bandas, audio reactivo"
+      },
       {
         "name": "Git & GitHub",
         "description": "Control de versiones, ramas, pull requests, gh CLI"
@@ -234,10 +334,17 @@
         "description": "Pipelines CI/CD automatizados para testeo y despliegue"
       },
       {
+        "name": "GSAP & Lucide",
+        "description": "Cinemáticas de cámara, interpolación de trayectoria e iconografía"
+      },
+      {
         "name": "Linux / Bash",
         "description": "Terminal POSIX, scripts shell, gestión de entornos"
       },
-      { "name": "VS Code", "description": "Entorno principal de desarrollo y depuración" }
+      {
+        "name": "VS Code",
+        "description": "Entorno principal de desarrollo y depuración"
+      }
     ]
   }
 }

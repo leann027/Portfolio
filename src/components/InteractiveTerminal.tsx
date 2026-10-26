@@ -58,7 +58,7 @@ export const InteractiveTerminal: React.FC = () => {
   "core_competencies": {
     "low_level": "C (pointers, dynamic memory, structs, GCC)",
     "backend_data": "Python 3 (OOP, Tkinter, ReportLab, JSON)",
-    "frontend_web": "React 18, TypeScript, Tailwind CSS, Vite"
+    "frontend_web": "Next.js 16, React 19, Three.js (WebGL), TypeScript, Tailwind CSS"
   },
   "testing_methodology": "Vitest, axe-core (WCAG AA), GitHub Actions CI/CD"
 }`}
@@ -76,7 +76,7 @@ export const InteractiveTerminal: React.FC = () => {
             ❯ Reading config from data/projects_config.json...
           </div>
           <div className="text-brand-textMuted">
-            [ETL] Validating schema constraints for 5 projects...
+            [ETL] Validating schema constraints for 7 projects...
           </div>
           <div className="text-brand-secondary">
             ✓ Schema validated: all projects conform to ProjectModel

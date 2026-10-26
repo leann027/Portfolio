@@ -128,6 +128,8 @@ class TestPortfolioDataIntegrity(unittest.TestCase):
         self.assertGreater(len(projects), 0)
 
         valid_visual_types = {
+            "your-music-visualizer",
+            "algo-notebook",
             "portfolio-hub",
             "proyges-software-2",
             "estructuras-datos-c",

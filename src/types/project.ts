@@ -1,4 +1,6 @@
 export type ProjectVisualType =
+  | 'your-music-visualizer'
+  | 'algo-notebook'
   | 'portfolio-hub'
   | 'proyges-software-2'
   | 'estructuras-datos-c'

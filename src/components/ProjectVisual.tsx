@@ -20,6 +20,159 @@ export const ProjectVisual: React.FC<ProjectVisualProps> = ({
   className = '',
 }) => {
   switch (visualType) {
+    case 'your-music-visualizer':
+      return (
+        <div
+          role="img"
+          aria-label={`Visualización 3D y análisis de audio para ${title}`}
+          className={`relative overflow-hidden rounded-2xl bg-earth-sand/35 dark:bg-earth-coffeeSubtle/60 border border-earth-sand/80 dark:border-earth-coffeeBorder p-4 sm:p-5 flex flex-col justify-between gap-3 bg-blueprint-grid ${className}`}
+        >
+          {/* Header */}
+          <div className="flex items-center justify-between border-b border-earth-sand/70 dark:border-earth-coffeeBorder pb-2.5">
+            <div className="flex items-center gap-2">
+              <span
+                className="w-2.5 h-2.5 rounded-full bg-blue-600 dark:bg-brand-primary animate-pulse"
+                aria-hidden="true"
+              />
+              <span className="text-[11px] font-bold text-earth-ink-800 dark:text-stone-200 font-mono">
+                WebGL 3D · Novafy Engine
+              </span>
+            </div>
+            <span className="px-2 py-0.5 rounded bg-swatch-lavender-bg text-swatch-lavender-text dark:bg-swatch-lavender-border/20 dark:text-swatch-lavender-darkText border border-swatch-lavender-border/50 font-mono text-[10px] font-semibold">
+              Three.js + R3F
+            </span>
+          </div>
+
+          {/* Central 3D Cosmos & Audio Waveform Preview */}
+          <div className="p-3 rounded-xl bg-earth-linen/95 dark:bg-earth-coffeeCard/95 border border-earth-sand/70 dark:border-earth-coffeeBorder flex flex-col gap-2.5">
+            <div className="flex items-center justify-between text-[9px] font-mono uppercase tracking-wider">
+              <span className="font-bold text-earth-ink-800 dark:text-stone-200">
+                Espectro FFT 64 Bandas · Audio Reactivo
+              </span>
+              <span className="text-blue-700 dark:text-brand-primary font-semibold">
+                60 FPS GPU
+              </span>
+            </div>
+
+            {/* Stylized Simulated FFT Equalizer Bars */}
+            <div
+              className="flex items-end justify-between gap-1 h-12 px-2 py-1 bg-slate-900/5 dark:bg-black/30 rounded-lg"
+              aria-hidden="true"
+            >
+              {[35, 60, 85, 50, 95, 70, 100, 80, 55, 90, 65, 80, 45, 60].map((h, i) => (
+                <div
+                  key={i}
+                  className="w-full rounded-xs transition-all duration-300"
+                  style={{
+                    height: `${h}%`,
+                    backgroundColor: i === 6 ? '#58a6ff' : i % 2 === 0 ? '#3fb950' : '#bc8cff',
+                    opacity: 0.85,
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Orbital Parameters & Pipeline Row */}
+            <div className="grid grid-cols-3 gap-1.5 text-center font-mono text-[9px]">
+              <div className="p-1.5 rounded-lg bg-earth-sand/50 dark:bg-earth-coffeeSubtle border border-earth-sand/60 dark:border-earth-coffeeBorder">
+                <span className="text-earth-ink-600 dark:text-stone-400 block font-medium">
+                  Singularidad
+                </span>
+                <span className="font-bold text-earth-ink-900 dark:text-brand-primary">
+                  GLSL Shader
+                </span>
+              </div>
+              <div className="p-1.5 rounded-lg bg-earth-sand/50 dark:bg-earth-coffeeSubtle border border-earth-sand/60 dark:border-earth-coffeeBorder">
+                <span className="text-earth-ink-600 dark:text-stone-400 block font-medium">
+                  Cinemática
+                </span>
+                <span className="font-bold text-emerald-700 dark:text-brand-secondary">
+                  GSAP Arc
+                </span>
+              </div>
+              <div className="p-1.5 rounded-lg bg-earth-sand/50 dark:bg-earth-coffeeSubtle border border-earth-sand/60 dark:border-earth-coffeeBorder">
+                <span className="text-earth-ink-600 dark:text-stone-400 block font-medium">
+                  Audio Engine
+                </span>
+                <span className="font-bold text-purple-700 dark:text-brand-purple">Web Audio</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Footer Verification Strip */}
+          <div className="pt-2 border-t border-earth-sand/60 dark:border-earth-coffeeBorder flex items-center justify-between text-[9px] font-mono text-earth-ink-700 dark:text-stone-300">
+            <span>React 19 · Next.js 16 · Three.js</span>
+            <span className="text-emerald-700 dark:text-swatch-mint-darkText font-semibold">
+              ✓ Desplegado en Vercel
+            </span>
+          </div>
+        </div>
+      );
+
+    case 'algo-notebook':
+      return (
+        <div
+          role="img"
+          aria-label={`Laboratorio de algoritmos para ${title}`}
+          className={`relative overflow-hidden rounded-2xl bg-earth-sand/35 dark:bg-earth-coffeeSubtle/60 border border-earth-sand/80 dark:border-earth-coffeeBorder p-4 sm:p-5 flex flex-col justify-between gap-3 bg-blueprint-grid ${className}`}
+        >
+          {/* Header */}
+          <div className="flex items-center justify-between border-b border-earth-sand/70 dark:border-earth-coffeeBorder pb-2.5">
+            <span className="text-[11px] font-bold text-earth-ink-800 dark:text-stone-200 font-mono">
+              Engineering Lab · DSA Visualizer
+            </span>
+            <span className="px-2 py-0.5 rounded bg-swatch-lemon-bg text-swatch-lemon-text dark:bg-swatch-lemon-border/20 dark:text-swatch-lemon-darkText border border-swatch-lemon-border/50 font-mono text-[10px] font-semibold">
+              C99 & Python
+            </span>
+          </div>
+
+          {/* Dual Code / Visual Comparison */}
+          <div className="p-3 rounded-xl bg-earth-linen/95 dark:bg-earth-coffeeCard/95 border border-earth-sand/70 dark:border-earth-coffeeBorder space-y-2">
+            <div className="flex items-center justify-between text-[9px] font-mono text-earth-ink-600 dark:text-stone-300">
+              <span className="font-bold text-earth-ink-800 dark:text-stone-200">
+                Sincronización Políglota de Algoritmos
+              </span>
+              <span className="text-emerald-700 dark:text-swatch-mint-darkText font-semibold">
+                rAF 60 FPS
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2 text-[10px] font-mono">
+              <div className="p-2 rounded-lg bg-earth-sand/40 dark:bg-earth-coffeeSubtle border border-earth-sand/60 dark:border-earth-coffeeBorder">
+                <div className="text-[9px] text-blue-800 dark:text-swatch-sky-darkText font-bold mb-1">
+                  C (Bajo Nivel)
+                </div>
+                <div className="text-earth-ink-800 dark:text-stone-200 text-[10px]">
+                  <code>Node* next;</code>
+                  <div className="text-[9px] text-earth-ink-600 dark:text-stone-400">
+                    malloc / free
+                  </div>
+                </div>
+              </div>
+              <div className="p-2 rounded-lg bg-earth-sand/40 dark:bg-earth-coffeeSubtle border border-earth-sand/60 dark:border-earth-coffeeBorder">
+                <div className="text-[9px] text-amber-800 dark:text-swatch-peach-darkText font-bold mb-1">
+                  Python 3 (POO)
+                </div>
+                <div className="text-earth-ink-800 dark:text-stone-200 text-[10px]">
+                  <code>self.next = node</code>
+                  <div className="text-[9px] text-earth-ink-600 dark:text-stone-400">
+                    Garbage Collector
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Footer Verification Strip */}
+          <div className="pt-2 border-t border-earth-sand/60 dark:border-earth-coffeeBorder flex items-center justify-between text-[9px] font-mono text-earth-ink-700 dark:text-stone-300">
+            <span>React 19 · Vite · Tailwind · PWA</span>
+            <span className="text-emerald-700 dark:text-swatch-mint-darkText font-semibold">
+              ✓ Traza Paso a Paso
+            </span>
+          </div>
+        </div>
+      );
+
     case 'portfolio-hub':
       return (
         <div

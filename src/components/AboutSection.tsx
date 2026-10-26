@@ -45,9 +45,12 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ user }) => {
                 <strong className="text-slate-900 dark:text-white">Python</strong>.
               </p>
               <p>
-                Me enfoco en el desarrollo con arquitectura modular, diseño responsivo, pruebas
-                automatizadas e integración continua con GitHub Actions para entregar software
-                robusto y mantenible.
+                En desarrollo web, creo experiencias interactivas modernas con{' '}
+                <strong className="text-slate-900 dark:text-white">
+                  React 19, Next.js y Three.js / WebGL
+                </strong>
+                , combinando gráficos 3D en tiempo real, análisis de audio y arquitectura modular
+                con pruebas automatizadas e integración continua con GitHub Actions.
               </p>
             </div>
 
