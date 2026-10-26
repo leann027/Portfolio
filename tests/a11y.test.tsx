@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import { describe, it, expect, beforeEach } from 'vitest';
 import axe from 'axe-core';
 import { App } from '../src/App';
@@ -68,13 +68,10 @@ describe('Automated Accessibility Audits (axe-core)', () => {
       },
     });
 
-    // Progressive testability: During pre-M3 state, track aria-dialog-name as escalated defect
-    // while ensuring no other critical or serious violations exist.
     const severeViolations = results.violations.filter(
       (v) => v.impact === 'critical' || v.impact === 'serious'
     );
-    const nonAriaDialogViolations = severeViolations.filter((v) => v.id !== 'aria-dialog-name');
-    expect(nonAriaDialogViolations).toEqual([]);
+    expect(severeViolations).toEqual([]);
   });
 
   it('validates modal accessibility dialog contracts and flags pending M3 attributes', () => {
@@ -85,16 +82,69 @@ describe('Automated Accessibility Audits (axe-core)', () => {
     const dialog = screen.getByRole('dialog');
     expect(dialog).toBeInTheDocument();
     expect(dialog).toHaveAttribute('aria-modal', 'true');
+    expect(dialog).toHaveAttribute('aria-labelledby', 'modal-project-title');
+  });
 
-    // Document contract requirement for M3:
-    // PROJECT.md line 56: aria-labelledby="modal-project-title"
-    const hasLabel = dialog.hasAttribute('aria-labelledby') || dialog.hasAttribute('aria-label');
-    if (!hasLabel) {
-      // Escalated to orchestrator as pre-M3 implementation gap
-      expect(dialog).toHaveAttribute('role', 'dialog');
-    } else {
-      expect(hasLabel).toBe(true);
+  it('verifies 0 axe violations across all interactive terminal tabs', async () => {
+    const { container } = render(<App />);
+
+    const tabNames = [
+      /novafy_audio_glsl\.ts/i,
+      /valgrind_memcheck\.c/i,
+      /fetch_projects\.py/i,
+      /profile\.json/i,
+    ];
+
+    for (const name of tabNames) {
+      const tab = screen.getByRole('tab', { name });
+      await act(async () => {
+        fireEvent.click(tab);
+        await new Promise((resolve) => setTimeout(resolve, 200));
+      });
+      expect(tab).toHaveAttribute('aria-selected', 'true');
+
+      const results = await axe.run(container, {
+        rules: {
+          'color-contrast': { enabled: false },
+        },
+      });
+
+      const severeViolations = results.violations.filter(
+        (v) => v.impact === 'critical' || v.impact === 'serious'
+      );
+      expect(severeViolations).toEqual([]);
     }
+  });
+
+  it('supports keyboard navigation (ArrowRight, ArrowLeft, Home, End) across terminal tablist', () => {
+    render(<App />);
+
+    const webglTab = screen.getByRole('tab', { name: /novafy_audio_glsl\.ts/i });
+    const cTab = screen.getByRole('tab', { name: /valgrind_memcheck\.c/i });
+    const pyTab = screen.getByRole('tab', { name: /fetch_projects\.py/i });
+    const profileTab = screen.getByRole('tab', { name: /profile\.json/i });
+
+    expect(webglTab).toHaveAttribute('aria-selected', 'true');
+
+    // ArrowRight moves from webgl to cTab
+    fireEvent.keyDown(webglTab, { key: 'ArrowRight', code: 'ArrowRight' });
+    expect(cTab).toHaveAttribute('aria-selected', 'true');
+
+    // ArrowRight moves from cTab to pyTab
+    fireEvent.keyDown(cTab, { key: 'ArrowRight', code: 'ArrowRight' });
+    expect(pyTab).toHaveAttribute('aria-selected', 'true');
+
+    // ArrowLeft moves back to cTab
+    fireEvent.keyDown(pyTab, { key: 'ArrowLeft', code: 'ArrowLeft' });
+    expect(cTab).toHaveAttribute('aria-selected', 'true');
+
+    // End key moves to last tab (profileTab)
+    fireEvent.keyDown(cTab, { key: 'End', code: 'End' });
+    expect(profileTab).toHaveAttribute('aria-selected', 'true');
+
+    // Home key moves to first tab (webglTab)
+    fireEvent.keyDown(profileTab, { key: 'Home', code: 'Home' });
+    expect(webglTab).toHaveAttribute('aria-selected', 'true');
   });
 });
 

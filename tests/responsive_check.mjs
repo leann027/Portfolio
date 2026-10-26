@@ -172,16 +172,215 @@ async function runResponsiveAudit() {
           );
           if (!modalPassed) allPassed = false;
 
-          // Close modal
+          // Close modal with exit transition
           await page.keyboard.press('Escape');
-          await page.waitForTimeout(100);
+          await page.waitForSelector('[role="dialog"]', { state: 'detached', timeout: 2000 });
         }
       }
 
       await context.close();
     }
 
-    // 4. In-browser axe-core validation on live Chromium DOM
+    // 4. Verification of Purged Components (ArchitectureVisualizer & GitActivityHeatmap)
+    console.log(
+      '\n[DOM CHECK] Verifying removal of ArchitectureVisualizer and GitActivityHeatmap...'
+    );
+    const domCheckContext = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+    const domCheckPage = await domCheckContext.newPage();
+    await domCheckPage.goto(baseUrl, { waitUntil: 'networkidle' });
+
+    const purgedCheck = await domCheckPage.evaluate(() => {
+      const archEl = document.getElementById('architecture');
+      const gitEl = document.getElementById('actividad');
+      const archLinks = document.querySelectorAll('a[href="#architecture"]');
+      const gitLinks = document.querySelectorAll('a[href="#actividad"]');
+      const bodyText = document.body.innerText;
+      const hasArchText = bodyText.includes('Inspección de Arquitectura');
+      const hasGitText = bodyText.includes('Actividad de Desarrollo');
+
+      return {
+        passed:
+          archEl === null &&
+          gitEl === null &&
+          archLinks.length === 0 &&
+          gitLinks.length === 0 &&
+          !hasArchText &&
+          !hasGitText,
+        archEl: !!archEl,
+        gitEl: !!gitEl,
+        archLinks: archLinks.length,
+        gitLinks: gitLinks.length,
+        hasArchText,
+        hasGitText,
+      };
+    });
+
+    results.push({
+      viewport: 'DOM Content',
+      mode: 'Purged Components Check',
+      scrollWidth: 0,
+      innerWidth: 0,
+      passed: purgedCheck.passed,
+      screenshot: 'N/A',
+    });
+    console.log(
+      `  - Purged Components Removed: ${
+        purgedCheck.passed
+          ? 'PASS (0 references to ArchitectureVisualizer / GitActivityHeatmap)'
+          : `FAIL (${JSON.stringify(purgedCheck)})`
+      }`
+    );
+    if (!purgedCheck.passed) allPassed = false;
+
+    // 5. Verification of Live Demo Links Restriction
+    console.log('\n[DEMO CHECK] Verifying demo link buttons solely on operational deployments...');
+    const demoCheck = await domCheckPage.evaluate(() => {
+      const ymDemo = document.querySelector('[data-testid="demo-link-your-music-visualizer"]');
+      const portDemo = document.querySelector('[data-testid="demo-link-portfolio-hub"]');
+
+      const nonDeployedIds = [
+        'algo-notebook',
+        'proyges-software-2',
+        'estructuras-datos-c',
+        'cs50-harvard',
+        'n8n-automation',
+      ];
+      const leakedDemos = nonDeployedIds.filter((id) =>
+        document.querySelector(`[data-testid="demo-link-${id}"]`)
+      );
+
+      return {
+        passed:
+          ymDemo !== null &&
+          ymDemo.getAttribute('href') === 'https://your-music-visualizer.vercel.app' &&
+          portDemo !== null &&
+          portDemo.getAttribute('href') === 'https://leann027.github.io/Portfolio/' &&
+          leakedDemos.length === 0,
+        hasYmDemo: !!ymDemo,
+        hasPortDemo: !!portDemo,
+        leakedDemos,
+      };
+    });
+
+    // Check modal demo link absence for academic/non-deployed project
+    const algoBtn = await domCheckPage.$('[data-testid="btn-details-algo-notebook"]');
+    let modalNoDemoPassed = false;
+    if (algoBtn) {
+      await algoBtn.click();
+      await domCheckPage.waitForTimeout(150);
+      const modalDemo = await domCheckPage.$('[data-testid="modal-demo-link"]');
+      modalNoDemoPassed = modalDemo === null;
+      await domCheckPage.keyboard.press('Escape');
+      await domCheckPage.waitForSelector('[role="dialog"]', {
+        state: 'detached',
+        timeout: 2000,
+      });
+    }
+
+    const demoAllPassed = demoCheck.passed && modalNoDemoPassed;
+    results.push({
+      viewport: 'Card & Modal',
+      mode: 'Demo Links Restricted',
+      scrollWidth: 0,
+      innerWidth: 0,
+      passed: demoAllPassed,
+      screenshot: 'N/A',
+    });
+    console.log(
+      `  - Demo Links Restriction: ${
+        demoAllPassed
+          ? 'PASS (Exclusively present on your-music-visualizer & portfolio-hub)'
+          : `FAIL (card passed: ${demoCheck.passed}, modal passed: ${modalNoDemoPassed})`
+      }`
+    );
+    if (!demoAllPassed) allPassed = false;
+
+    // 6. Verification of Enhanced Interactive Terminal
+    console.log('\n[TERMINAL CHECK] Verifying enhanced interactive terminal in Chromium...');
+    const terminalTabsExist = await domCheckPage.evaluate(() => {
+      const tabs = [
+        'terminal-tab-webgl-audio',
+        'terminal-tab-c-memory',
+        'terminal-tab-pipeline',
+        'terminal-tab-profile',
+      ];
+      return tabs.every((id) => document.getElementById(id) !== null);
+    });
+
+    // Switch to C memory tab
+    await domCheckPage.click('#terminal-tab-c-memory');
+    await domCheckPage.waitForTimeout(220);
+    const cTabState = await domCheckPage.evaluate(() => {
+      const cTab = document.getElementById('terminal-tab-c-memory');
+      const isSelected = cTab && cTab.getAttribute('aria-selected') === 'true';
+      const bodyText = document.body.innerText;
+      const hasMemcheck = bodyText.includes('Memcheck, a memory error detector');
+      const hasHeapFree = bodyText.includes('All 1,024 heap blocks were freed');
+      return isSelected && hasMemcheck && hasHeapFree;
+    });
+
+    // Test copy feedback
+    const copyBtn = await domCheckPage.$('button[aria-label="Copiar comando al portapapeles"]');
+    let copyPassed = false;
+    if (copyBtn) {
+      await copyBtn.click();
+      await domCheckPage.waitForTimeout(100);
+      copyPassed = await domCheckPage.evaluate(() => {
+        return document.body.innerText.includes('¡Copiado!');
+      });
+    }
+
+    // Test quick command replay on active tab
+    const quickCBtn = await domCheckPage.$('button[aria-pressed="true"]');
+    let replayPassed = false;
+    if (quickCBtn) {
+      await quickCBtn.click();
+      await domCheckPage.waitForTimeout(200);
+      replayPassed = await domCheckPage.evaluate(() => {
+        const cTab = document.getElementById('terminal-tab-c-memory');
+        return cTab && cTab.getAttribute('aria-selected') === 'true';
+      });
+    }
+
+    // Verify button labels have clean extension stripping
+    const cleanLabelsPassed = await domCheckPage.evaluate(() => {
+      const btns = Array.from(document.querySelectorAll('button')).filter((b) =>
+        b.innerText.includes('▶')
+      );
+      return (
+        btns.length === 4 &&
+        btns.every(
+          (b) =>
+            !b.innerText.includes('.py') &&
+            !b.innerText.includes('.ts') &&
+            !b.innerText.includes('.c') &&
+            !b.innerText.includes('.json')
+        )
+      );
+    });
+
+    const terminalPassed =
+      terminalTabsExist && cTabState && copyPassed && replayPassed && cleanLabelsPassed;
+    results.push({
+      viewport: 'Terminal',
+      mode: 'Enhanced Terminal Functionality',
+      scrollWidth: 0,
+      innerWidth: 0,
+      passed: terminalPassed,
+      screenshot: 'N/A',
+    });
+    console.log(
+      `  - Enhanced Terminal: ${
+        terminalPassed
+          ? 'PASS (Tabs, C99 output, quick switches, replay, and copy feedback verified)'
+          : `FAIL (tabs: ${terminalTabsExist}, cTab: ${cTabState}, copy: ${copyPassed}, replay: ${replayPassed}, cleanLabels: ${cleanLabelsPassed})`
+      }`
+    );
+    if (!terminalPassed) allPassed = false;
+
+    await domCheckContext.close();
+
+    // 7. In-browser axe-core validation on live Chromium DOM
     console.log('\nRunning live axe-core audit inside Headless Chromium...');
     const a11yContext = await browser.newContext({ viewport: { width: 1280, height: 800 } });
     const a11yPage = await a11yContext.newPage();

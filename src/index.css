@@ -33,11 +33,11 @@
 /* Custom interactive tactile utilities & smooth transitions */
 @layer components {
   .btn-tactile {
-    @apply transition-[transform,box-shadow,background-color,border-color,color] duration-200 ease-out active:scale-[0.98] hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-primary/60 dark:focus-visible:ring-brand-primary/60 focus-visible:ring-offset-earth-light dark:focus-visible:ring-offset-brand-bg cursor-pointer;
+    @apply transition-[transform,box-shadow,background-color,border-color,color] duration-200 ease-out active:scale-[0.97] hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-primary/70 dark:focus-visible:ring-brand-primary/70 focus-visible:ring-offset-white dark:focus-visible:ring-offset-brand-bg cursor-pointer;
   }
 
   .card-lift {
-    @apply transition-[transform,box-shadow,border-color,background-color] duration-300 ease-out hover:-translate-y-1 hover:shadow-soft-hover dark:hover:shadow-[0_0_24px_rgba(88,166,255,0.08)] hover:border-brand-primary/40 dark:hover:border-brand-primary/60;
+    @apply transition-[transform,box-shadow,border-color,background-color] duration-300 ease-out hover:-translate-y-1.5 hover:shadow-xl dark:hover:shadow-[0_0_28px_rgba(88,166,255,0.12)] hover:border-blue-500/50 dark:hover:border-brand-primary/60;
   }
 
   .badge-spring {
@@ -74,23 +74,6 @@
   .dark .bg-blueprint-grid {
     background-image: radial-gradient(rgba(88, 166, 255, 0.12) 1px, transparent 1px);
     background-size: 20px 20px;
-  }
-
-  .commit-box {
-    width: 12px;
-    height: 12px;
-    border-radius: 2px;
-    transition:
-      transform 0.15s ease,
-      outline 0.15s ease,
-      filter 0.15s ease;
-  }
-
-  .commit-box:hover {
-    transform: scale(1.35);
-    outline: 1.5px solid #58a6ff;
-    z-index: 10;
-    filter: brightness(1.2);
   }
 }
 
@@ -130,7 +113,13 @@
   .animate-ping,
   .animate-pulse,
   .animate-pulse-subtle,
-  .animate-fade-up {
+  .animate-fade-up,
+  .animate-fade-in,
+  .animate-fade-out,
+  .animate-modal-pop,
+  .animate-modal-pop-out,
+  .animate-terminal-blink,
+  .animate-glow-pulse {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
@@ -141,6 +130,6 @@
   .badge-spring {
     transform: none !important;
     transition-property: background-color, border-color, color, opacity, box-shadow !important;
-    transition-duration: 120ms !important;
+    transition-duration: 0.01ms !important;
   }
 }

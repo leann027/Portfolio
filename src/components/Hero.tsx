@@ -98,7 +98,7 @@ export const Hero: React.FC<HeroProps> = ({ user, totalProjects, onOpenCliQuickf
                     className="w-4 h-4 text-purple-700 dark:text-brand-purple"
                     aria-hidden="true"
                   />
-                  <span>0{totalProjects}</span>
+                  <span>{String(totalProjects).padStart(2, '0')}</span>
                 </div>
                 <div className="text-[11px] text-slate-600 dark:text-brand-textMuted font-mono mt-0.5 font-medium">
                   Proyectos

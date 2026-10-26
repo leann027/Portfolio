@@ -158,6 +158,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails
               href={project.demoUrl}
               target="_blank"
               rel="noopener noreferrer"
+              data-testid={`demo-link-${project.id}`}
               className="p-1.5 rounded text-slate-600 hover:text-emerald-700 dark:text-brand-textMuted dark:hover:text-brand-secondary hover:bg-slate-100 dark:hover:bg-brand-surface border border-transparent hover:border-slate-200 dark:hover:border-brand-border transition-all"
               title="Ver demostración en vivo"
               aria-label={`Ver demo en vivo de ${project.title}`}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { X } from 'lucide-react';
 import { Project } from '../types/project';
 
@@ -17,16 +17,73 @@ export const CliQuickfindModal: React.FC<CliQuickfindModalProps> = ({
   onSelectProject,
   toggleDarkMode,
 }) => {
+  const [activeOpen, setActiveOpen] = useState<boolean>(isOpen);
+  const [isClosing, setIsClosing] = useState<boolean>(false);
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [inputVal, setInputVal] = useState<string>('');
   const [cliHistory, setCliHistory] = useState<Array<{ cmd: string; result: React.ReactNode }>>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    if (!isOpen) {
+    if (isOpen) {
+      if (!activeOpen) {
+        if (closeTimerRef.current) {
+          clearTimeout(closeTimerRef.current);
+          closeTimerRef.current = null;
+        }
+        setActiveOpen(true);
+        setIsClosing(false);
+      }
+    } else if (!isClosing) {
+      setActiveOpen(false);
+    }
+  }, [isOpen, activeOpen, isClosing]);
+
+  useEffect(() => {
+    return () => {
+      if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    };
+  }, []);
+
+  const handleClose = useCallback(() => {
+    if (isClosing) return;
+
+    const prefersReducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+
+    if (
+      prefersReducedMotion ||
+      (typeof process !== 'undefined' && process.env.NODE_ENV === 'test')
+    ) {
+      onClose();
+      setActiveOpen(false);
+      return;
+    }
+
+    setIsClosing(true);
+    if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    closeTimerRef.current = setTimeout(() => {
+      onClose();
+      setIsClosing(false);
+      setActiveOpen(false);
+    }, 160);
+  }, [onClose, isClosing]);
+
+  const handleCloseRef = useRef(handleClose);
+  handleCloseRef.current = handleClose;
+
+  useEffect(() => {
+    if (!activeOpen) {
       setInputVal('');
       return;
     }
+
+    previousFocusRef.current = document.activeElement as HTMLElement;
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
 
     const timer = setTimeout(() => {
       inputRef.current?.focus();
@@ -34,7 +91,30 @@ export const CliQuickfindModal: React.FC<CliQuickfindModalProps> = ({
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        onClose();
+        handleCloseRef.current();
+        return;
+      }
+
+      if (e.key === 'Tab' && containerRef.current) {
+        const focusableElements = containerRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusableElements.length === 0) return;
+
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            e.preventDefault();
+            lastElement.focus();
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            e.preventDefault();
+            firstElement.focus();
+          }
+        }
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -42,10 +122,12 @@ export const CliQuickfindModal: React.FC<CliQuickfindModalProps> = ({
     return () => {
       clearTimeout(timer);
       window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = originalOverflow;
+      previousFocusRef.current?.focus?.();
     };
-  }, [isOpen, onClose]);
+  }, [activeOpen]);
 
-  if (!isOpen) return null;
+  if (!activeOpen) return null;
 
   const handleCommandSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -191,12 +273,16 @@ export const CliQuickfindModal: React.FC<CliQuickfindModalProps> = ({
       role="dialog"
       aria-modal="true"
       aria-labelledby="cli-quickfind-title"
-      className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 p-4 bg-[#090d13]/80 backdrop-blur-md"
-      onClick={onClose}
+      className={`fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 p-4 bg-[#090d13]/80 backdrop-blur-md ${
+        isClosing ? 'animate-fade-out pointer-events-none' : 'animate-fade-in'
+      }`}
+      onClick={handleClose}
     >
       <div
         ref={containerRef}
-        className="w-full max-w-2xl rounded-2xl bg-[#0c1017] border border-brand-border shadow-2xl overflow-hidden font-mono text-xs flex flex-col max-h-[80vh] animate-fade-up"
+        className={`w-full max-w-2xl rounded-2xl bg-[#0c1017] border border-brand-border shadow-2xl overflow-hidden font-mono text-xs flex flex-col max-h-[80vh] ${
+          isClosing ? 'animate-modal-pop-out' : 'animate-modal-pop'
+        }`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* CLI Window Bar */}
@@ -213,7 +299,7 @@ export const CliQuickfindModal: React.FC<CliQuickfindModalProps> = ({
             </span>
           </div>
           <button
-            onClick={onClose}
+            onClick={handleClose}
             className="p-1 text-brand-textMuted hover:text-white transition-colors cursor-pointer"
             aria-label="Cerrar Quickfind"
           >

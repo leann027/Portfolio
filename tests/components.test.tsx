@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import { describe, it, expect, beforeEach } from 'vitest';
 import { App } from '../src/App';
 
@@ -138,6 +138,10 @@ describe('Interactive Portfolio UI (Pure Visualization)', () => {
 
     // Action button to view specs
     expect(screen.getByTestId('btn-details-your-music-visualizer')).toBeInTheDocument();
+
+    // Flagship card elevation micro-interaction
+    const flagshipCard = screen.getByTestId('flagship-project-card');
+    expect(flagshipCard).toHaveClass('card-lift');
   });
 
   it('renders ambient background and status indicator', () => {
@@ -145,5 +149,164 @@ describe('Interactive Portfolio UI (Pure Visualization)', () => {
     const ambientBg = container.querySelector('[aria-hidden="true"]');
     expect(ambientBg).toBeInTheDocument();
     expect(screen.getAllByText(/Desarrollador de Software/i).length).toBeGreaterThan(0);
+  });
+
+  it('removes ArchitectureVisualizer and GitActivityHeatmap from DOM and navigation', () => {
+    render(<App />);
+
+    // Assert that the removed sections are not present in the DOM
+    expect(screen.queryByText(/Inspección de Arquitectura/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Actividad de Desarrollo/i)).not.toBeInTheDocument();
+    expect(document.getElementById('architecture')).toBeNull();
+    expect(document.getElementById('actividad')).toBeNull();
+
+    // Assert that no navigation link targets these removed sections
+    const links = screen.getAllByRole('link');
+    const deadLinks = links.filter((link) => {
+      const href = link.getAttribute('href');
+      return href === '#architecture' || href === '#actividad';
+    });
+    expect(deadLinks.length).toBe(0);
+  });
+
+  it('restricts live demo links solely to active deployments (your-music-visualizer and portfolio-hub)', () => {
+    render(<App />);
+
+    // Live demo links MUST exist for your-music-visualizer
+    const yourMusicDemo = screen.getByTestId('demo-link-your-music-visualizer');
+    expect(yourMusicDemo).toBeInTheDocument();
+    expect(yourMusicDemo).toHaveAttribute('href', 'https://your-music-visualizer.vercel.app');
+
+    // Live demo link MUST exist for portfolio-hub
+    const portfolioDemo = screen.getByTestId('demo-link-portfolio-hub');
+    expect(portfolioDemo).toBeInTheDocument();
+    expect(portfolioDemo).toHaveAttribute('href', 'https://leann027.github.io/Portfolio/');
+
+    // Academic, algorithm, and desktop projects must NOT have live demo links in cards
+    const noDemoProjectIds = [
+      'algo-notebook',
+      'proyges-software-2',
+      'estructuras-datos-c',
+      'cs50-harvard',
+      'n8n-automation',
+    ];
+    noDemoProjectIds.forEach((id) => {
+      expect(screen.queryByTestId(`demo-link-${id}`)).not.toBeInTheDocument();
+    });
+
+    // Verify inside modal: modal for project without live demo does NOT render demo button
+    const algoDetailBtn = screen.getByTestId('btn-details-algo-notebook');
+    fireEvent.click(algoDetailBtn);
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+    expect(screen.queryByTestId('modal-demo-link')).not.toBeInTheDocument();
+
+    // Close modal
+    fireEvent.keyDown(window, { key: 'Escape' });
+
+    // Modal for project with live demo DOES render demo button
+    const portfolioDetailBtn = screen.getByTestId('btn-details-portfolio-hub');
+    fireEvent.click(portfolioDetailBtn);
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+    const modalDemoLink = screen.getByTestId('modal-demo-link');
+    expect(modalDemoLink).toBeInTheDocument();
+    expect(modalDemoLink).toHaveAttribute('href', 'https://leann027.github.io/Portfolio/');
+    fireEvent.keyDown(window, { key: 'Escape' });
+  });
+
+  it('renders enhanced interactive terminal with modern tabs, command switching and copy feedback', () => {
+    render(<App />);
+
+    // Verify tabs exist with engineering content
+    const webglTab = screen.getByRole('tab', { name: /novafy_audio_glsl\.ts/i });
+    const cTab = screen.getByRole('tab', { name: /valgrind_memcheck\.c/i });
+    const pyTab = screen.getByRole('tab', { name: /fetch_projects\.py/i });
+    const profileTab = screen.getByRole('tab', { name: /profile\.json/i });
+
+    expect(webglTab).toBeInTheDocument();
+    expect(cTab).toBeInTheDocument();
+    expect(pyTab).toBeInTheDocument();
+    expect(profileTab).toBeInTheDocument();
+
+    // Initial state: WebGL 3D & Audio reactive command and output
+    expect(webglTab).toHaveAttribute('aria-selected', 'true');
+    expect(screen.getByText(/--audio-reactive/i)).toBeInTheDocument();
+    const panel = screen.getByRole('tabpanel');
+    expect(within(panel).getByText(/Three\.js/i)).toBeInTheDocument();
+    expect(within(panel).getByText(/48,000 Hz/i)).toBeInTheDocument();
+
+    // Click C Memory tab
+    fireEvent.click(cTab);
+    expect(cTab).toHaveAttribute('aria-selected', 'true');
+    expect(within(panel).getByText(/Memcheck, a memory error detector/i)).toBeInTheDocument();
+    expect(within(panel).getByText(/malloc\(sizeof\(Node\) \* 1024\)/i)).toBeInTheDocument();
+    expect(within(panel).getByText(/All 1,024 heap blocks were freed/i)).toBeInTheDocument();
+
+    // Test Copy command feedback
+    const copyButton = screen.getByRole('button', { name: /copiar comando al portapapeles/i });
+    expect(copyButton).toBeInTheDocument();
+    fireEvent.click(copyButton);
+    expect(screen.getByText(/¡Copiado!/i)).toBeInTheDocument();
+
+    // Click quick execution badge for fetch_projects
+    const quickPythonBtn = screen.getByRole('button', { name: /▶ fetch_projects/i });
+    fireEvent.click(quickPythonBtn);
+    expect(pyTab).toHaveAttribute('aria-selected', 'true');
+    expect(within(panel).getByText(/projects_config\.json/i)).toBeInTheDocument();
+
+    // Click profile tab
+    fireEvent.click(profileTab);
+    expect(profileTab).toHaveAttribute('aria-selected', 'true');
+    expect(within(panel).getByText(/"rol_objetivo"/i)).toBeInTheDocument();
+    expect(
+      within(panel).getByText(/"60 FPS GPU · WCAG AA a11y · Vitest 100%"/i)
+    ).toBeInTheDocument();
+
+    // Click quick execution badge for novafy
+    const quickNovafyBtn = screen.getByRole('button', { name: /▶ novafy/i });
+    fireEvent.click(quickNovafyBtn);
+    expect(webglTab).toHaveAttribute('aria-selected', 'true');
+
+    // Test re-execution click on already active tab
+    fireEvent.click(quickNovafyBtn);
+    expect(webglTab).toHaveAttribute('aria-selected', 'true');
+
+    // Verify all quick execution buttons have extensions stripped cleanly
+    expect(screen.getByRole('button', { name: /^▶ novafy_audio_glsl$/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /^▶ valgrind_memcheck$/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /^▶ fetch_projects$/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /^▶ profile$/i })).toBeInTheDocument();
+  });
+
+  it('resiliently handles rapid project modal switching and preserves tabpanel a11y IDs', () => {
+    render(<App />);
+
+    // 1. Verify tabpanel and aria-controls match on InteractiveTerminal
+    const tabs = screen.getAllByRole('tab');
+    tabs.forEach((tab) => {
+      expect(tab).toHaveAttribute('aria-controls', 'terminal-tabpanel');
+    });
+    const panel = screen.getByRole('tabpanel');
+    expect(panel).toHaveAttribute('id', 'terminal-tabpanel');
+
+    // 2. Open first project
+    const btn1 = screen.getByTestId('btn-details-portfolio-hub');
+    fireEvent.click(btn1);
+    const dialog1 = screen.getByRole('dialog');
+    expect(dialog1).toBeInTheDocument();
+    expect(
+      within(dialog1).getByRole('heading', { level: 3, name: /Portfolio Interactivo/i })
+    ).toBeInTheDocument();
+
+    // 3. Close with escape
+    fireEvent.keyDown(window, { key: 'Escape' });
+
+    // 4. Immediately open second project
+    const btn2 = screen.getByTestId('btn-details-algo-notebook');
+    fireEvent.click(btn2);
+    const dialog2 = screen.getByRole('dialog');
+    expect(dialog2).toBeInTheDocument();
+    expect(
+      within(dialog2).getByRole('heading', { level: 3, name: /AlgoNotebook/i })
+    ).toBeInTheDocument();
   });
 });

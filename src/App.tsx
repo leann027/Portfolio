@@ -8,8 +8,6 @@ import { ProjectFilters } from './components/ProjectFilters';
 import { FlagshipProject } from './components/FlagshipProject';
 import { ProjectCard } from './components/ProjectCard';
 import { ProjectModal } from './components/ProjectModal';
-import { ArchitectureVisualizer } from './components/ArchitectureVisualizer';
-import { GitActivityHeatmap } from './components/GitActivityHeatmap';
 import { SkillsSection } from './components/SkillsSection';
 import { AboutSection } from './components/AboutSection';
 import { Footer } from './components/Footer';
@@ -120,7 +118,7 @@ export const App: React.FC = () => {
   }, [filteredProjects, showFlagship, flagshipProject]);
 
   return (
-    <div className="relative min-h-screen bg-earth-light dark:bg-brand-bg text-earth-ink-800 dark:text-brand-text flex flex-col font-sans selection:bg-brand-primary selection:text-black">
+    <div className="relative min-h-screen bg-earth-light dark:bg-brand-bg text-earth-ink-800 dark:text-brand-text flex flex-col font-sans selection:bg-brand-primary selection:text-black transition-colors duration-300">
       {/* Skip to Main Content Link (Bypass Navigation) */}
       <a
         href="#proyectos"
@@ -193,7 +191,10 @@ export const App: React.FC = () => {
 
             {/* Projects Grid */}
             {gridProjects.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-7">
+              <div
+                key={`${selectedCategory}-${searchQuery}`}
+                className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-7"
+              >
                 {gridProjects.map((project, index) => (
                   <ProjectCard
                     key={project.id}
@@ -227,12 +228,6 @@ export const App: React.FC = () => {
             )}
           </div>
         </section>
-
-        {/* Technical Architecture & Memory Inspector */}
-        <ArchitectureVisualizer />
-
-        {/* Git Activity & Annual Commit Heatmap */}
-        <GitActivityHeatmap githubUser={data.user.github} />
 
         {/* Skills & Domain Matrix */}
         <SkillsSection skills={data.skills} />

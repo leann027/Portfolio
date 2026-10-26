@@ -13,7 +13,7 @@ export const FlagshipProject: React.FC<FlagshipProjectProps> = ({ project, onOpe
     <article
       data-testid="flagship-project-card"
       aria-labelledby="flagship-project-title"
-      className="mb-12 rounded-2xl bg-white dark:bg-brand-card/95 border-2 border-blue-500/30 dark:border-brand-primary/40 shadow-xl hover:border-blue-600 dark:hover:border-brand-primary hover:shadow-[0_0_35px_rgba(88,166,255,0.12)] p-6 sm:p-8 lg:p-10 relative transition-all duration-300 group"
+      className="card-lift mb-12 rounded-2xl bg-white dark:bg-brand-card/95 border-2 border-blue-500/30 dark:border-brand-primary/40 shadow-xl hover:border-blue-600 dark:hover:border-brand-primary hover:shadow-[0_0_35px_rgba(88,166,255,0.12)] p-6 sm:p-8 lg:p-10 relative transition-all duration-300 group"
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         {/* Left Column: Project Overview & Meta */}
@@ -121,6 +121,7 @@ export const FlagshipProject: React.FC<FlagshipProjectProps> = ({ project, onOpe
                 href={project.demoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-testid={`demo-link-${project.id}`}
                 className="btn-tactile min-h-11 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white dark:bg-brand-surface hover:bg-slate-100 dark:hover:bg-brand-surfaceAlt text-slate-800 dark:text-brand-text text-xs font-mono font-medium border border-slate-200 dark:border-brand-border hover:border-emerald-500 dark:hover:border-brand-secondary"
               >
                 <ExternalLink

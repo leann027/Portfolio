@@ -121,6 +121,11 @@ export default {
       },
       animation: {
         'fade-up': 'fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        'fade-in': 'fadeIn 0.25s ease-out forwards',
+        'fade-out': 'fadeOut 0.16s ease-in forwards',
+        'modal-pop': 'modalPop 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        'modal-pop-out': 'modalPopOut 0.16s cubic-bezier(0.4, 0, 1, 1) forwards',
+        'terminal-blink': 'terminalBlink 1s infinite steps(1)',
         'pulse-subtle': 'pulseSubtle 3s ease-in-out infinite',
         'float-slow': 'floatSlow 18s ease-in-out infinite alternate',
         'float-reverse': 'floatReverse 22s ease-in-out infinite alternate',
@@ -131,6 +136,26 @@ export default {
         fadeUp: {
           '0%': { opacity: '0', transform: 'translateY(14px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        fadeOut: {
+          '0%': { opacity: '1' },
+          '100%': { opacity: '0' },
+        },
+        modalPop: {
+          '0%': { opacity: '0', transform: 'scale(0.95) translateY(10px)' },
+          '100%': { opacity: '1', transform: 'scale(1) translateY(0)' },
+        },
+        modalPopOut: {
+          '0%': { opacity: '1', transform: 'scale(1) translateY(0)' },
+          '100%': { opacity: '0', transform: 'scale(0.95) translateY(8px)' },
+        },
+        terminalBlink: {
+          '0%, 49%': { opacity: '1' },
+          '50%, 100%': { opacity: '0' },
         },
         pulseSubtle: {
           '0%, 100%': { opacity: '1', transform: 'scale(1)' },
