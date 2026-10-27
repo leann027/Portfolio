@@ -91,6 +91,21 @@ describe('Interactive Portfolio UI (Pure Visualization)', () => {
     ).toBeInTheDocument();
   });
 
+  it('runs the projects and skills commands advertised by CLI help', () => {
+    render(<App />);
+    fireEvent.keyDown(window, { key: 'k', ctrlKey: true });
+    const dialog = screen.getByRole('dialog');
+    const input = within(dialog).getByRole('textbox');
+
+    fireEvent.change(input, { target: { value: 'projects' } });
+    fireEvent.submit(input.closest('form')!);
+    expect(within(dialog).getByText(/Encontrados \d+ proyecto/i)).toBeInTheDocument();
+
+    fireEvent.change(input, { target: { value: 'skills' } });
+    fireEvent.submit(input.closest('form')!);
+    expect(within(dialog).getByText(/Herramientas & DevOps/i)).toBeInTheDocument();
+  });
+
   it('keeps the CLI modal open when reopened during its fade-out', () => {
     vi.useFakeTimers();
     try {

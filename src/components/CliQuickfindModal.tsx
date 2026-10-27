@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
-import { Project } from '../types/project';
+import { Project, SkillItem } from '../types/project';
 import { useDialogBehavior, useExitTransition } from '../hooks/useModal';
 
 interface CliQuickfindModalProps {
   isOpen: boolean;
   onClose: () => void;
   projects: Project[];
+  skills: Record<'languages' | 'frameworks' | 'tools', SkillItem[]>;
   onSelectProject: (project: Project) => void;
   toggleDarkMode: () => void;
 }
@@ -15,6 +16,7 @@ export const CliQuickfindModal: React.FC<CliQuickfindModalProps> = ({
   isOpen,
   onClose,
   projects,
+  skills,
   onSelectProject,
   toggleDarkMode,
 }) => {
@@ -98,6 +100,34 @@ export const CliQuickfindModal: React.FC<CliQuickfindModalProps> = ({
       return;
     }
 
+    if (query === 'skills') {
+      const groups: Array<[string, SkillItem[]]> = [
+        ['Lenguajes', skills.languages],
+        ['Frameworks & UI', skills.frameworks],
+        ['Herramientas & DevOps', skills.tools],
+      ];
+      setCliHistory((prev) => [
+        ...prev,
+        {
+          cmd: query,
+          result: (
+            <div className="space-y-2 text-xs font-mono">
+              {groups.map(([label, items]) => (
+                <div key={label}>
+                  <div className="text-brand-purple font-semibold">{label}</div>
+                  <div className="pl-3 text-brand-textMuted">
+                    {items.map((s) => s.name).join(' · ')}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ),
+        },
+      ]);
+      setInputVal('');
+      return;
+    }
+
     if (query === 'c-pointers') {
       setCliHistory((prev) => [
         ...prev,
@@ -127,12 +157,15 @@ export const CliQuickfindModal: React.FC<CliQuickfindModalProps> = ({
     }
 
     // Default search across projects
-    const matches = projects.filter(
-      (p) =>
-        p.title.toLowerCase().includes(query) ||
-        p.technologies.some((t) => t.toLowerCase().includes(query)) ||
-        p.languages.some((l) => l.toLowerCase().includes(query))
-    );
+    const matches =
+      query === 'projects'
+        ? projects
+        : projects.filter(
+            (p) =>
+              p.title.toLowerCase().includes(query) ||
+              p.technologies.some((t) => t.toLowerCase().includes(query)) ||
+              p.languages.some((l) => l.toLowerCase().includes(query))
+          );
 
     setCliHistory((prev) => [
       ...prev,

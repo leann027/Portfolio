@@ -238,6 +238,7 @@ export const App: React.FC = () => {
         isOpen={cliQuickfindOpen}
         onClose={() => setCliQuickfindOpen(false)}
         projects={data.projects}
+        skills={data.skills}
         onSelectProject={(p) => setSelectedProject(p)}
         toggleDarkMode={toggleDarkMode}
       />
