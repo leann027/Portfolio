@@ -1,5 +1,5 @@
-import { render, screen, fireEvent, within } from '@testing-library/react';
-import { describe, it, expect, beforeEach } from 'vitest';
+import { render, screen, fireEvent, within, waitFor, act } from '@testing-library/react';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { App } from '../src/App';
 
 describe('Interactive Portfolio UI (Pure Visualization)', () => {
@@ -51,7 +51,7 @@ describe('Interactive Portfolio UI (Pure Visualization)', () => {
     expect(screen.getByText(/No se encontraron proyectos con ese criterio/i)).toBeInTheDocument();
   });
 
-  it('opens and closes project details modal via button click', () => {
+  it('opens and closes project details modal via button click', async () => {
     render(<App />);
     const detailButton = screen.getByTestId('btn-details-portfolio-hub');
     fireEvent.click(detailButton);
@@ -64,10 +64,10 @@ describe('Interactive Portfolio UI (Pure Visualization)', () => {
     // Close modal
     const closeButton = screen.getByRole('button', { name: /Cerrar modal/i });
     fireEvent.click(closeButton);
-    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument());
   });
 
-  it('closes project details modal on Escape key press (keyboard navigation)', () => {
+  it('closes project details modal on Escape key press (keyboard navigation)', async () => {
     render(<App />);
     const detailButton = screen.getByTestId('btn-details-portfolio-hub');
     fireEvent.click(detailButton);
@@ -76,7 +76,29 @@ describe('Interactive Portfolio UI (Pure Visualization)', () => {
 
     // Fire Escape keydown on window
     fireEvent.keyDown(window, { key: 'Escape', code: 'Escape' });
-    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument());
+    expect(document.body.style.overflow).toBe('');
+  });
+
+  it('keeps the CLI modal open when reopened during its fade-out', () => {
+    vi.useFakeTimers();
+    try {
+      render(<App />);
+      fireEvent.keyDown(window, { key: 'k', ctrlKey: true });
+      expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+      // Close (starts fade-out) and reopen before the exit animation finishes
+      fireEvent.keyDown(window, { key: 'Escape' });
+      fireEvent.keyDown(window, { key: 'k', ctrlKey: true });
+      act(() => {
+        vi.advanceTimersByTime(500);
+      });
+
+      expect(screen.getByRole('dialog')).toBeInTheDocument();
+      expect(document.body.style.overflow).toBe('hidden');
+    } finally {
+      vi.useRealTimers();
+    }
   });
 
   it('suppresses code links for private repositories in project cards and displays private indicator', () => {
@@ -213,7 +235,7 @@ describe('Interactive Portfolio UI (Pure Visualization)', () => {
     fireEvent.keyDown(window, { key: 'Escape' });
   });
 
-  it('renders enhanced interactive terminal with modern tabs, command switching and copy feedback', () => {
+  it('renders enhanced interactive terminal with modern tabs, command switching and copy feedback', async () => {
     render(<App />);
 
     // Verify tabs exist with engineering content
@@ -244,8 +266,18 @@ describe('Interactive Portfolio UI (Pure Visualization)', () => {
     // Test Copy command feedback
     const copyButton = screen.getByRole('button', { name: /copiar comando al portapapeles/i });
     expect(copyButton).toBeInTheDocument();
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    Object.defineProperty(window, 'isSecureContext', { value: true, configurable: true });
+    Object.defineProperty(navigator, 'clipboard', { value: { writeText }, configurable: true });
     fireEvent.click(copyButton);
-    expect(screen.getByText(/¡Copiado!/i)).toBeInTheDocument();
+    expect(await screen.findByText(/¡Copiado!/i)).toBeInTheDocument();
+    expect(writeText).toHaveBeenCalledWith(expect.stringContaining('valgrind'));
+
+    // A failed copy must not claim success
+    writeText.mockRejectedValueOnce(new Error('denied'));
+    fireEvent.click(copyButton);
+    expect(await screen.findByText(/No se pudo copiar/i)).toBeInTheDocument();
+    expect(screen.queryByText(/¡Copiado!/i)).not.toBeInTheDocument();
 
     // Click quick execution badge for fetch_projects
     const quickPythonBtn = screen.getByRole('button', { name: /▶ fetch_projects/i });

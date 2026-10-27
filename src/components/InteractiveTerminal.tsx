@@ -21,9 +21,263 @@ interface TerminalTab {
   output: React.ReactNode;
 }
 
+// Static tab definitions, kept outside the component so they aren't rebuilt on every render
+const tabs: TerminalTab[] = [
+  {
+    id: 'webgl-audio',
+    label: 'novafy_audio_glsl.ts',
+    badge: 'WebGL 3D · Audio',
+    icon: Sparkles,
+    command: 'npx novafy --render=webgl3d --fft=64-band --audio-reactive',
+    commandTokens: [
+      { text: 'npx', colorClass: 'text-brand-purple font-semibold' },
+      { text: 'novafy', colorClass: 'text-brand-primary font-bold' },
+      { text: '--render=', colorClass: 'text-brand-textMuted' },
+      { text: 'webgl3d', colorClass: 'text-brand-secondary font-semibold' },
+      { text: '--fft=', colorClass: 'text-brand-textMuted' },
+      { text: '64-band', colorClass: 'text-amber-400 font-semibold' },
+      { text: '--audio-reactive', colorClass: 'text-brand-primaryHover' },
+    ],
+    execTime: '0.38ms',
+    output: (
+      <div className="space-y-1.5 font-mono text-[11px] sm:text-xs leading-relaxed text-brand-text break-words">
+        <div className="flex items-start gap-2 animate-fade-in">
+          <span className="shrink-0 px-1.5 py-0.2 rounded bg-brand-primary/15 text-brand-primary font-bold text-[10px] border border-brand-primary/30">
+            GPU::INIT
+          </span>
+          <span className="text-white">
+            WebGL 2.0 context mounted via <span className="text-brand-primary">Three.js</span> &{' '}
+            <span className="text-brand-purple">React Three Fiber</span> ... OK
+          </span>
+        </div>
+
+        <div className="flex items-start gap-2 animate-fade-in [animation-delay:40ms]">
+          <span className="shrink-0 px-1.5 py-0.2 rounded bg-brand-purple/15 text-brand-purple font-bold text-[10px] border border-brand-purple/30">
+            SHADERS
+          </span>
+          <span className="text-brand-text">
+            Compilando <code className="text-brand-primary">accretion_disk.frag</code> &{' '}
+            <code className="text-brand-primary">singularity.vert</code> (GLSL relativista) ...{' '}
+            <span className="text-brand-secondary font-semibold">0.42ms</span>
+          </span>
+        </div>
+
+        <div className="flex items-start gap-2 animate-fade-in [animation-delay:80ms]">
+          <span className="shrink-0 px-1.5 py-0.2 rounded bg-brand-secondary/15 text-brand-secondary font-bold text-[10px] border border-brand-secondary/30">
+            AUDIO::DSP
+          </span>
+          <span className="text-brand-text">
+            Web Audio API AudioContext linked @{' '}
+            <span className="text-brand-secondary font-semibold">48,000 Hz</span> (Analizador FFT{' '}
+            <span className="text-amber-400 font-semibold">64 bandas</span> activo)
+          </span>
+        </div>
+
+        <div className="flex items-start gap-2 animate-fade-in [animation-delay:120ms]">
+          <span className="shrink-0 px-1.5 py-0.2 rounded bg-amber-500/15 text-amber-400 font-bold text-[10px] border border-amber-500/30">
+            GSAP::ARC
+          </span>
+          <span className="text-brand-textMuted">
+            Cinemáticas orbitales calculadas: curvas Bézier en arco para vuelo 3D continuo
+          </span>
+        </div>
+
+        <div className="pt-2 mt-2 border-t border-brand-border/80 flex flex-wrap items-center justify-between gap-2 text-[10px] font-mono animate-fade-in [animation-delay:160ms]">
+          <span className="text-brand-secondary font-semibold flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-secondary animate-pulse" />
+            12,500 partículas instanciadas · 60.0 FPS estable
+          </span>
+          <span className="text-brand-textMuted">Draw calls: 4 | Latencia: 5.2ms</span>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: 'c-memory',
+    label: 'valgrind_memcheck.c',
+    badge: 'C99 · Memoria & DSA',
+    icon: Cpu,
+    command: 'gcc -std=c99 -Wall -Wextra dsa_tree.c -o dsa && valgrind --leak-check=full ./dsa',
+    commandTokens: [
+      { text: 'gcc', colorClass: 'text-brand-purple font-semibold' },
+      { text: '-std=c99', colorClass: 'text-amber-400 font-semibold' },
+      { text: '-Wall -Wextra', colorClass: 'text-brand-textMuted' },
+      { text: 'dsa_tree.c', colorClass: 'text-white' },
+      { text: '&&', colorClass: 'text-brand-primary' },
+      { text: 'valgrind', colorClass: 'text-brand-primary font-bold' },
+      { text: '--leak-check=full', colorClass: 'text-brand-secondary' },
+      { text: './dsa', colorClass: 'text-brand-purple font-semibold' },
+    ],
+    execTime: '1.24ms',
+    output: (
+      <div className="space-y-1.5 font-mono text-[11px] sm:text-xs leading-relaxed text-brand-text break-words">
+        <div className="text-brand-secondary font-semibold flex items-center gap-1 animate-fade-in">
+          <span>==48201==</span>
+          <span>Memcheck, a memory error detector (C99 & Valgrind)</span>
+        </div>
+
+        <div className="flex items-start gap-2 animate-fade-in [animation-delay:40ms]">
+          <span className="shrink-0 px-1.5 py-0.2 rounded bg-brand-primary/15 text-brand-primary font-bold text-[10px] border border-brand-primary/30">
+            ALLOC
+          </span>
+          <span className="text-white">
+            <code className="text-brand-primary font-bold">malloc(sizeof(Node) * 1024)</code> at
+            0x7ffe4b20 ...{' '}
+            <span className="text-brand-secondary font-semibold">OK (Bytes alineados)</span>
+          </span>
+        </div>
+
+        <div className="flex items-start gap-2 animate-fade-in [animation-delay:80ms]">
+          <span className="shrink-0 px-1.5 py-0.2 rounded bg-brand-purple/15 text-brand-purple font-bold text-[10px] border border-brand-purple/30">
+            TRAVERSE
+          </span>
+          <span className="text-brand-text">
+            Árbol binario balanceado: 1,024 nodos recorridos en{' '}
+            <span className="text-brand-purple font-semibold">O(log n)</span>
+          </span>
+        </div>
+
+        <div className="flex items-start gap-2 animate-fade-in [animation-delay:120ms]">
+          <span className="shrink-0 px-1.5 py-0.2 rounded bg-amber-500/15 text-amber-400 font-bold text-[10px] border border-amber-500/30">
+            FREE
+          </span>
+          <span className="text-brand-text">
+            Recorrido post-orden liberando memoria en heap de forma segura (sin dangling pointers)
+          </span>
+        </div>
+
+        <div className="pt-2 mt-2 border-t border-brand-border/80 flex flex-wrap items-center justify-between gap-2 text-[10px] font-mono animate-fade-in [animation-delay:160ms]">
+          <span className="text-brand-secondary font-bold flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-secondary" />
+            All 1,024 heap blocks were freed -- 0 leaks, 0 errors
+          </span>
+          <span className="text-brand-textMuted">ERROR SUMMARY: 0 errors from 0 contexts</span>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: 'pipeline',
+    label: 'fetch_projects.py',
+    badge: 'Python ETL · CI/CD',
+    icon: Workflow,
+    command: 'python3 execution/fetch_projects.py --verify-determinism',
+    commandTokens: [
+      { text: 'python3', colorClass: 'text-brand-purple font-semibold' },
+      { text: 'execution/fetch_projects.py', colorClass: 'text-brand-primary font-bold' },
+      { text: '--verify-determinism', colorClass: 'text-brand-secondary font-semibold' },
+    ],
+    execTime: '0.19ms',
+    output: (
+      <div className="space-y-1.5 font-mono text-[11px] sm:text-xs leading-relaxed text-brand-text break-words">
+        <div className="flex items-start gap-2 animate-fade-in">
+          <span className="shrink-0 px-1.5 py-0.2 rounded bg-brand-primary/15 text-brand-primary font-bold text-[10px] border border-brand-primary/30">
+            CONFIG
+          </span>
+          <span className="text-white">
+            Cargando esquema determinista desde{' '}
+            <code className="text-brand-primary">data/projects_config.json</code>
+          </span>
+        </div>
+
+        <div className="flex items-start gap-2 animate-fade-in [animation-delay:40ms]">
+          <span className="shrink-0 px-1.5 py-0.2 rounded bg-brand-secondary/15 text-brand-secondary font-bold text-[10px] border border-brand-secondary/30">
+            ETL
+          </span>
+          <span className="text-brand-text">
+            Validando constraints para 7 proyectos ...{' '}
+            <span className="text-brand-secondary font-semibold">100% Schema Conformance</span>
+          </span>
+        </div>
+
+        <div className="flex items-start gap-2 animate-fade-in [animation-delay:80ms]">
+          <span className="shrink-0 px-1.5 py-0.2 rounded bg-brand-purple/15 text-brand-purple font-bold text-[10px] border border-brand-purple/30">
+            HASH
+          </span>
+          <span className="text-brand-text">
+            Verificando checksum SHA-256: determinismo criptográfico validado
+          </span>
+        </div>
+
+        <div className="flex items-start gap-2 animate-fade-in [animation-delay:120ms]">
+          <span className="shrink-0 px-1.5 py-0.2 rounded bg-amber-500/15 text-amber-400 font-bold text-[10px] border border-amber-500/30">
+            EMIT
+          </span>
+          <span className="text-brand-textMuted">
+            Generando catálogo inmutable en{' '}
+            <code className="text-brand-text">src/data/projects.json</code>
+          </span>
+        </div>
+
+        <div className="pt-2 mt-2 border-t border-brand-border/80 flex flex-wrap items-center justify-between gap-2 text-[10px] font-mono animate-fade-in [animation-delay:160ms]">
+          <span className="text-brand-secondary font-semibold flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-secondary" />
+            Build ready: 0 errores · GitHub Actions deployment verificado
+          </span>
+          <span className="text-brand-textMuted">Exit Code: 0</span>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: 'profile',
+    label: 'profile.json',
+    badge: 'Stack · Perfil',
+    icon: Braces,
+    command: 'cat ~/.dev/profile.json | jq .focus',
+    commandTokens: [
+      { text: 'cat', colorClass: 'text-brand-purple font-semibold' },
+      { text: '~/.dev/profile.json', colorClass: 'text-white' },
+      { text: '|', colorClass: 'text-brand-primary' },
+      { text: 'jq', colorClass: 'text-brand-primary font-bold' },
+      { text: '.focus', colorClass: 'text-amber-400 font-semibold' },
+    ],
+    execTime: '0.08ms',
+    output: (
+      <div className="font-mono text-[11px] sm:text-xs leading-snug text-brand-text">
+        <pre className="p-1 font-mono text-[11px] sm:text-xs leading-snug animate-fade-in">
+          <span className="text-brand-textMuted">{'{'}</span>
+          {'\n  '}
+          <span className="text-brand-primary">"ingeniero"</span>
+          <span className="text-brand-textMuted">: </span>
+          <span className="text-emerald-300">"Leandro"</span>
+          <span className="text-brand-textMuted">,</span>
+          {'\n  '}
+          <span className="text-brand-primary">"rol_objetivo"</span>
+          <span className="text-brand-textMuted">: </span>
+          <span className="text-emerald-300">"Desarrollador de Software"</span>
+          <span className="text-brand-textMuted">,</span>
+          {'\n  '}
+          <span className="text-brand-primary">"especialidades"</span>
+          <span className="text-brand-textMuted">: {'['}</span>
+          {'\n    '}
+          <span className="text-amber-300">"WebGL 3D & Shaders GLSL (Three.js, R3F)"</span>
+          <span className="text-brand-textMuted">,</span>
+          {'\n    '}
+          <span className="text-amber-300">"Web Audio API & DSP (FFT Espectral)"</span>
+          <span className="text-brand-textMuted">,</span>
+          {'\n    '}
+          <span className="text-amber-300">"Sistemas C99 (Punteros, Memoria Heap, GCC)"</span>
+          <span className="text-brand-textMuted">,</span>
+          {'\n    '}
+          <span className="text-amber-300">"React 19, TypeScript & Tailwind CSS"</span>
+          {'\n  '}
+          <span className="text-brand-textMuted">{']'},</span>
+          {'\n  '}
+          <span className="text-brand-primary">"estandares_calidad"</span>
+          <span className="text-brand-textMuted">: </span>
+          <span className="text-brand-purple">"60 FPS GPU · WCAG AA a11y · Vitest 100%"</span>
+          {'\n'}
+          <span className="text-brand-textMuted">{'}'}</span>
+        </pre>
+      </div>
+    ),
+  },
+];
+
 export const InteractiveTerminal: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('webgl-audio');
-  const [copied, setCopied] = useState<boolean>(false);
+  const [copyStatus, setCopyStatus] = useState<'idle' | 'copied' | 'error'>('idle');
   const [isExecuting, setIsExecuting] = useState<boolean>(false);
   const [execKey, setExecKey] = useState<number>(0);
   const execTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -35,259 +289,6 @@ export const InteractiveTerminal: React.FC = () => {
       if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
     };
   }, []);
-
-  const tabs: TerminalTab[] = [
-    {
-      id: 'webgl-audio',
-      label: 'novafy_audio_glsl.ts',
-      badge: 'WebGL 3D · Audio',
-      icon: Sparkles,
-      command: 'npx novafy --render=webgl3d --fft=64-band --audio-reactive',
-      commandTokens: [
-        { text: 'npx', colorClass: 'text-brand-purple font-semibold' },
-        { text: 'novafy', colorClass: 'text-brand-primary font-bold' },
-        { text: '--render=', colorClass: 'text-brand-textMuted' },
-        { text: 'webgl3d', colorClass: 'text-brand-secondary font-semibold' },
-        { text: '--fft=', colorClass: 'text-brand-textMuted' },
-        { text: '64-band', colorClass: 'text-amber-400 font-semibold' },
-        { text: '--audio-reactive', colorClass: 'text-brand-primaryHover' },
-      ],
-      execTime: '0.38ms',
-      output: (
-        <div className="space-y-1.5 font-mono text-[11px] sm:text-xs leading-relaxed text-brand-text break-words">
-          <div className="flex items-start gap-2 animate-fade-in">
-            <span className="shrink-0 px-1.5 py-0.2 rounded bg-brand-primary/15 text-brand-primary font-bold text-[10px] border border-brand-primary/30">
-              GPU::INIT
-            </span>
-            <span className="text-white">
-              WebGL 2.0 context mounted via <span className="text-brand-primary">Three.js</span> &{' '}
-              <span className="text-brand-purple">React Three Fiber</span> ... OK
-            </span>
-          </div>
-
-          <div className="flex items-start gap-2 animate-fade-in [animation-delay:40ms]">
-            <span className="shrink-0 px-1.5 py-0.2 rounded bg-brand-purple/15 text-brand-purple font-bold text-[10px] border border-brand-purple/30">
-              SHADERS
-            </span>
-            <span className="text-brand-text">
-              Compilando <code className="text-brand-primary">accretion_disk.frag</code> &{' '}
-              <code className="text-brand-primary">singularity.vert</code> (GLSL relativista) ...{' '}
-              <span className="text-brand-secondary font-semibold">0.42ms</span>
-            </span>
-          </div>
-
-          <div className="flex items-start gap-2 animate-fade-in [animation-delay:80ms]">
-            <span className="shrink-0 px-1.5 py-0.2 rounded bg-brand-secondary/15 text-brand-secondary font-bold text-[10px] border border-brand-secondary/30">
-              AUDIO::DSP
-            </span>
-            <span className="text-brand-text">
-              Web Audio API AudioContext linked @{' '}
-              <span className="text-brand-secondary font-semibold">48,000 Hz</span> (Analizador FFT{' '}
-              <span className="text-amber-400 font-semibold">64 bandas</span> activo)
-            </span>
-          </div>
-
-          <div className="flex items-start gap-2 animate-fade-in [animation-delay:120ms]">
-            <span className="shrink-0 px-1.5 py-0.2 rounded bg-amber-500/15 text-amber-400 font-bold text-[10px] border border-amber-500/30">
-              GSAP::ARC
-            </span>
-            <span className="text-brand-textMuted">
-              Cinemáticas orbitales calculadas: curvas Bézier en arco para vuelo 3D continuo
-            </span>
-          </div>
-
-          <div className="pt-2 mt-2 border-t border-brand-border/80 flex flex-wrap items-center justify-between gap-2 text-[10px] font-mono animate-fade-in [animation-delay:160ms]">
-            <span className="text-brand-secondary font-semibold flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-secondary animate-pulse" />
-              12,500 partículas instanciadas · 60.0 FPS estable
-            </span>
-            <span className="text-brand-textMuted">Draw calls: 4 | Latencia: 5.2ms</span>
-          </div>
-        </div>
-      ),
-    },
-    {
-      id: 'c-memory',
-      label: 'valgrind_memcheck.c',
-      badge: 'C99 · Memoria & DSA',
-      icon: Cpu,
-      command: 'gcc -std=c99 -Wall -Wextra dsa_tree.c -o dsa && valgrind --leak-check=full ./dsa',
-      commandTokens: [
-        { text: 'gcc', colorClass: 'text-brand-purple font-semibold' },
-        { text: '-std=c99', colorClass: 'text-amber-400 font-semibold' },
-        { text: '-Wall -Wextra', colorClass: 'text-brand-textMuted' },
-        { text: 'dsa_tree.c', colorClass: 'text-white' },
-        { text: '&&', colorClass: 'text-brand-primary' },
-        { text: 'valgrind', colorClass: 'text-brand-primary font-bold' },
-        { text: '--leak-check=full', colorClass: 'text-brand-secondary' },
-        { text: './dsa', colorClass: 'text-brand-purple font-semibold' },
-      ],
-      execTime: '1.24ms',
-      output: (
-        <div className="space-y-1.5 font-mono text-[11px] sm:text-xs leading-relaxed text-brand-text break-words">
-          <div className="text-brand-secondary font-semibold flex items-center gap-1 animate-fade-in">
-            <span>==48201==</span>
-            <span>Memcheck, a memory error detector (C99 & Valgrind)</span>
-          </div>
-
-          <div className="flex items-start gap-2 animate-fade-in [animation-delay:40ms]">
-            <span className="shrink-0 px-1.5 py-0.2 rounded bg-brand-primary/15 text-brand-primary font-bold text-[10px] border border-brand-primary/30">
-              ALLOC
-            </span>
-            <span className="text-white">
-              <code className="text-brand-primary font-bold">malloc(sizeof(Node) * 1024)</code> at
-              0x7ffe4b20 ...{' '}
-              <span className="text-brand-secondary font-semibold">OK (Bytes alineados)</span>
-            </span>
-          </div>
-
-          <div className="flex items-start gap-2 animate-fade-in [animation-delay:80ms]">
-            <span className="shrink-0 px-1.5 py-0.2 rounded bg-brand-purple/15 text-brand-purple font-bold text-[10px] border border-brand-purple/30">
-              TRAVERSE
-            </span>
-            <span className="text-brand-text">
-              Árbol binario balanceado: 1,024 nodos recorridos en{' '}
-              <span className="text-brand-purple font-semibold">O(log n)</span>
-            </span>
-          </div>
-
-          <div className="flex items-start gap-2 animate-fade-in [animation-delay:120ms]">
-            <span className="shrink-0 px-1.5 py-0.2 rounded bg-amber-500/15 text-amber-400 font-bold text-[10px] border border-amber-500/30">
-              FREE
-            </span>
-            <span className="text-brand-text">
-              Recorrido post-orden liberando memoria en heap de forma segura (sin dangling pointers)
-            </span>
-          </div>
-
-          <div className="pt-2 mt-2 border-t border-brand-border/80 flex flex-wrap items-center justify-between gap-2 text-[10px] font-mono animate-fade-in [animation-delay:160ms]">
-            <span className="text-brand-secondary font-bold flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-secondary" />
-              All 1,024 heap blocks were freed -- 0 leaks, 0 errors
-            </span>
-            <span className="text-brand-textMuted">ERROR SUMMARY: 0 errors from 0 contexts</span>
-          </div>
-        </div>
-      ),
-    },
-    {
-      id: 'pipeline',
-      label: 'fetch_projects.py',
-      badge: 'Python ETL · CI/CD',
-      icon: Workflow,
-      command: 'python3 execution/fetch_projects.py --verify-determinism',
-      commandTokens: [
-        { text: 'python3', colorClass: 'text-brand-purple font-semibold' },
-        { text: 'execution/fetch_projects.py', colorClass: 'text-brand-primary font-bold' },
-        { text: '--verify-determinism', colorClass: 'text-brand-secondary font-semibold' },
-      ],
-      execTime: '0.19ms',
-      output: (
-        <div className="space-y-1.5 font-mono text-[11px] sm:text-xs leading-relaxed text-brand-text break-words">
-          <div className="flex items-start gap-2 animate-fade-in">
-            <span className="shrink-0 px-1.5 py-0.2 rounded bg-brand-primary/15 text-brand-primary font-bold text-[10px] border border-brand-primary/30">
-              CONFIG
-            </span>
-            <span className="text-white">
-              Cargando esquema determinista desde{' '}
-              <code className="text-brand-primary">data/projects_config.json</code>
-            </span>
-          </div>
-
-          <div className="flex items-start gap-2 animate-fade-in [animation-delay:40ms]">
-            <span className="shrink-0 px-1.5 py-0.2 rounded bg-brand-secondary/15 text-brand-secondary font-bold text-[10px] border border-brand-secondary/30">
-              ETL
-            </span>
-            <span className="text-brand-text">
-              Validando constraints para 7 proyectos ...{' '}
-              <span className="text-brand-secondary font-semibold">100% Schema Conformance</span>
-            </span>
-          </div>
-
-          <div className="flex items-start gap-2 animate-fade-in [animation-delay:80ms]">
-            <span className="shrink-0 px-1.5 py-0.2 rounded bg-brand-purple/15 text-brand-purple font-bold text-[10px] border border-brand-purple/30">
-              HASH
-            </span>
-            <span className="text-brand-text">
-              Verificando checksum SHA-256: determinismo criptográfico validado
-            </span>
-          </div>
-
-          <div className="flex items-start gap-2 animate-fade-in [animation-delay:120ms]">
-            <span className="shrink-0 px-1.5 py-0.2 rounded bg-amber-500/15 text-amber-400 font-bold text-[10px] border border-amber-500/30">
-              EMIT
-            </span>
-            <span className="text-brand-textMuted">
-              Generando catálogo inmutable en{' '}
-              <code className="text-brand-text">src/data/projects.json</code>
-            </span>
-          </div>
-
-          <div className="pt-2 mt-2 border-t border-brand-border/80 flex flex-wrap items-center justify-between gap-2 text-[10px] font-mono animate-fade-in [animation-delay:160ms]">
-            <span className="text-brand-secondary font-semibold flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-secondary" />
-              Build ready: 0 errores · GitHub Actions deployment verificado
-            </span>
-            <span className="text-brand-textMuted">Exit Code: 0</span>
-          </div>
-        </div>
-      ),
-    },
-    {
-      id: 'profile',
-      label: 'profile.json',
-      badge: 'Stack · Perfil',
-      icon: Braces,
-      command: 'cat ~/.dev/profile.json | jq .focus',
-      commandTokens: [
-        { text: 'cat', colorClass: 'text-brand-purple font-semibold' },
-        { text: '~/.dev/profile.json', colorClass: 'text-white' },
-        { text: '|', colorClass: 'text-brand-primary' },
-        { text: 'jq', colorClass: 'text-brand-primary font-bold' },
-        { text: '.focus', colorClass: 'text-amber-400 font-semibold' },
-      ],
-      execTime: '0.08ms',
-      output: (
-        <div className="font-mono text-[11px] sm:text-xs leading-snug text-brand-text">
-          <pre className="p-1 font-mono text-[11px] sm:text-xs leading-snug animate-fade-in">
-            <span className="text-brand-textMuted">{'{'}</span>
-            {'\n  '}
-            <span className="text-brand-primary">"ingeniero"</span>
-            <span className="text-brand-textMuted">: </span>
-            <span className="text-emerald-300">"Leandro"</span>
-            <span className="text-brand-textMuted">,</span>
-            {'\n  '}
-            <span className="text-brand-primary">"rol_objetivo"</span>
-            <span className="text-brand-textMuted">: </span>
-            <span className="text-emerald-300">"Desarrollador de Software"</span>
-            <span className="text-brand-textMuted">,</span>
-            {'\n  '}
-            <span className="text-brand-primary">"especialidades"</span>
-            <span className="text-brand-textMuted">: {'['}</span>
-            {'\n    '}
-            <span className="text-amber-300">"WebGL 3D & Shaders GLSL (Three.js, R3F)"</span>
-            <span className="text-brand-textMuted">,</span>
-            {'\n    '}
-            <span className="text-amber-300">"Web Audio API & DSP (FFT Espectral)"</span>
-            <span className="text-brand-textMuted">,</span>
-            {'\n    '}
-            <span className="text-amber-300">"Sistemas C99 (Punteros, Memoria Heap, GCC)"</span>
-            <span className="text-brand-textMuted">,</span>
-            {'\n    '}
-            <span className="text-amber-300">"React 19, TypeScript & Tailwind CSS"</span>
-            {'\n  '}
-            <span className="text-brand-textMuted">{']'},</span>
-            {'\n  '}
-            <span className="text-brand-primary">"estandares_calidad"</span>
-            <span className="text-brand-textMuted">: </span>
-            <span className="text-brand-purple">"60 FPS GPU · WCAG AA a11y · Vitest 100%"</span>
-            {'\n'}
-            <span className="text-brand-textMuted">{'}'}</span>
-          </pre>
-        </div>
-      ),
-    },
-  ];
 
   const currentTab = tabs.find((t) => t.id === activeTab) || tabs[0];
 
@@ -302,10 +303,11 @@ export const InteractiveTerminal: React.FC = () => {
     }, 180);
   };
 
-  const fallbackCopy = (text: string) => {
-    if (typeof document === 'undefined') return;
+  const fallbackCopy = (text: string): boolean => {
+    if (typeof document === 'undefined') return false;
+    const previousFocus = document.activeElement as HTMLElement | null;
+    const textArea = document.createElement('textarea');
     try {
-      const textArea = document.createElement('textarea');
       textArea.value = text;
       textArea.style.position = 'fixed';
       textArea.style.top = '0';
@@ -316,33 +318,37 @@ export const InteractiveTerminal: React.FC = () => {
       document.body.appendChild(textArea);
       textArea.focus();
       textArea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textArea);
+      return document.execCommand('copy');
     } catch {
-      // Ignored in headless/test environments
+      return false;
+    } finally {
+      textArea.remove();
+      // Return focus to the copy button so keyboard users keep their place
+      previousFocus?.focus?.();
     }
   };
 
-  const handleCopy = () => {
-    try {
-      if (
-        typeof navigator !== 'undefined' &&
-        navigator.clipboard?.writeText &&
-        typeof window !== 'undefined' &&
-        window.isSecureContext
-      ) {
-        navigator.clipboard.writeText(currentTab.command).catch(() => {
-          fallbackCopy(currentTab.command);
-        });
-      } else {
-        fallbackCopy(currentTab.command);
+  const handleCopy = async () => {
+    const text = currentTab.command;
+    let success = false;
+    if (
+      typeof navigator !== 'undefined' &&
+      navigator.clipboard?.writeText &&
+      typeof window !== 'undefined' &&
+      window.isSecureContext
+    ) {
+      try {
+        await navigator.clipboard.writeText(text);
+        success = true;
+      } catch {
+        success = fallbackCopy(text);
       }
-    } catch {
-      fallbackCopy(currentTab.command);
+    } else {
+      success = fallbackCopy(text);
     }
-    setCopied(true);
+    setCopyStatus(success ? 'copied' : 'error');
     if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
-    copyTimerRef.current = setTimeout(() => setCopied(false), 2000);
+    copyTimerRef.current = setTimeout(() => setCopyStatus('idle'), 2000);
   };
 
   const handleTabKeyDown = (e: React.KeyboardEvent, currentId: string) => {
@@ -487,20 +493,26 @@ export const InteractiveTerminal: React.FC = () => {
             <button
               onClick={handleCopy}
               className={`btn-tactile relative p-1.5 rounded-lg border transition-all cursor-pointer ${
-                copied
+                copyStatus === 'copied'
                   ? 'bg-brand-secondary/20 border-brand-secondary/60 text-brand-secondary'
-                  : 'bg-brand-surface border-brand-border text-brand-textMuted hover:text-brand-primary hover:border-brand-primary/50'
+                  : copyStatus === 'error'
+                    ? 'bg-brand-rose/20 border-brand-rose/60 text-brand-rose'
+                    : 'bg-brand-surface border-brand-border text-brand-textMuted hover:text-brand-primary hover:border-brand-primary/50'
               }`}
               title="Copiar comando"
               aria-label="Copiar comando al portapapeles"
             >
-              {copied ? (
+              {copyStatus === 'copied' ? (
                 <div className="flex items-center gap-1">
                   <Check className="w-3.5 h-3.5 text-brand-secondary" aria-hidden="true" />
                   <span className="text-[10px] font-bold text-brand-secondary pr-0.5">
                     ¡Copiado!
                   </span>
                 </div>
+              ) : copyStatus === 'error' ? (
+                <span className="text-[10px] font-bold text-brand-rose px-0.5">
+                  No se pudo copiar
+                </span>
               ) : (
                 <Copy className="w-3.5 h-3.5" aria-hidden="true" />
               )}

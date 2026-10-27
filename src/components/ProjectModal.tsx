@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useRef } from 'react';
 import {
   X,
   ExternalLink,
@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { Project } from '../types/project';
 import { ProjectVisual } from './ProjectVisual';
+import { useDialogBehavior, useExitTransition } from '../hooks/useModal';
 
 interface ProjectModalProps {
   project: Project | null;
@@ -19,112 +20,11 @@ interface ProjectModalProps {
 }
 
 export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
-  const [activeProject, setActiveProject] = useState<Project | null>(project);
-  const [isClosing, setIsClosing] = useState<boolean>(false);
+  const { shown: activeProject, isClosing } = useExitTransition(project);
   const modalRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
-  const previousFocusRef = useRef<HTMLElement | null>(null);
-  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  useEffect(() => {
-    if (project) {
-      if (project.id !== activeProject?.id) {
-        if (closeTimerRef.current) {
-          clearTimeout(closeTimerRef.current);
-          closeTimerRef.current = null;
-        }
-        setActiveProject(project);
-        setIsClosing(false);
-      }
-    } else if (!isClosing) {
-      setActiveProject(null);
-    }
-  }, [project, activeProject, isClosing]);
-
-  useEffect(() => {
-    return () => {
-      if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
-    };
-  }, []);
-
-  const handleClose = useCallback(() => {
-    if (isClosing) return;
-
-    const prefersReducedMotion =
-      typeof window !== 'undefined' &&
-      window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
-
-    if (
-      prefersReducedMotion ||
-      (typeof process !== 'undefined' && process.env.NODE_ENV === 'test')
-    ) {
-      onClose();
-      setActiveProject(null);
-      return;
-    }
-
-    setIsClosing(true);
-    if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
-    closeTimerRef.current = setTimeout(() => {
-      onClose();
-      setIsClosing(false);
-      setActiveProject(null);
-    }, 160);
-  }, [onClose, isClosing]);
-
-  const handleCloseRef = useRef(handleClose);
-  handleCloseRef.current = handleClose;
-
-  useEffect(() => {
-    if (!activeProject) return;
-
-    previousFocusRef.current = document.activeElement as HTMLElement;
-
-    const originalOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-
-    const timer = setTimeout(() => {
-      closeButtonRef.current?.focus();
-    }, 50);
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        handleCloseRef.current();
-        return;
-      }
-
-      if (e.key === 'Tab' && modalRef.current) {
-        const focusableElements = modalRef.current.querySelectorAll<HTMLElement>(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-        );
-        if (focusableElements.length === 0) return;
-
-        const firstElement = focusableElements[0];
-        const lastElement = focusableElements[focusableElements.length - 1];
-
-        if (e.shiftKey) {
-          if (document.activeElement === firstElement) {
-            e.preventDefault();
-            lastElement.focus();
-          }
-        } else {
-          if (document.activeElement === lastElement) {
-            e.preventDefault();
-            firstElement.focus();
-          }
-        }
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = originalOverflow;
-      previousFocusRef.current?.focus?.();
-    };
-  }, [activeProject]);
+  useDialogBehavior(activeProject !== null, modalRef, closeButtonRef, onClose);
 
   if (!activeProject) return null;
 
@@ -136,7 +36,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
       className={`fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#090d13]/80 backdrop-blur-md overflow-y-auto ${
         isClosing ? 'animate-fade-out pointer-events-none' : 'animate-fade-in'
       }`}
-      onClick={handleClose}
+      onClick={onClose}
     >
       <div
         ref={modalRef}
@@ -171,7 +71,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           <button
             ref={closeButtonRef}
             type="button"
-            onClick={handleClose}
+            onClick={onClose}
             aria-label="Cerrar modal de detalles"
             className="btn-tactile p-2 rounded-xl bg-brand-surface hover:bg-brand-surfaceAlt text-brand-textMuted hover:text-white border border-brand-border shrink-0 cursor-pointer"
           >
@@ -321,7 +221,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
             <button
               type="button"
-              onClick={handleClose}
+              onClick={onClose}
               className="btn-tactile px-4 py-2 rounded-xl bg-brand-surface hover:bg-brand-surfaceAlt text-brand-textMuted hover:text-white text-xs font-mono border border-brand-border cursor-pointer"
             >
               Cerrar

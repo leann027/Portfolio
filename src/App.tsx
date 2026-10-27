@@ -192,7 +192,7 @@ export const App: React.FC = () => {
             {/* Projects Grid */}
             {gridProjects.length > 0 ? (
               <div
-                key={`${selectedCategory}-${searchQuery}`}
+                key={selectedCategory}
                 className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-7"
               >
                 {gridProjects.map((project, index) => (
