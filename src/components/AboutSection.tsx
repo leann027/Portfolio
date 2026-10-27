@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, MapPin, Github, GraduationCap, Award } from 'lucide-react';
+import { Mail, Github } from 'lucide-react';
 import { UserProfile } from '../types/project';
 
 interface AboutSectionProps {
@@ -16,14 +16,9 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ user }) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Left Column: Bio & Academics */}
           <div className="lg:col-span-7">
-            <div className="flex items-center justify-between gap-4 pb-4 mb-6 border-b border-slate-200 dark:border-brand-border">
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight text-balance">
-                Sobre Mí
-              </h2>
-              <span className="font-mono text-[11px] font-semibold px-3 py-1 rounded-xl bg-slate-100 dark:bg-brand-surface text-blue-700 dark:text-brand-primary border border-slate-200 dark:border-brand-border">
-                PERFIL // FORMACIÓN
-              </span>
-            </div>
+            <h2 className="mb-6 text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight text-balance">
+              Sobre Mí
+            </h2>
 
             <div className="space-y-4 text-sm sm:text-base text-slate-700 dark:text-brand-textMuted leading-relaxed max-w-[65ch]">
               <p>
@@ -52,29 +47,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ user }) => {
                 , combinando gráficos 3D en tiempo real, análisis de audio y arquitectura modular
                 con pruebas automatizadas e integración continua con GitHub Actions.
               </p>
-            </div>
-
-            {/* Education Cards */}
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="card-lift p-4 rounded-xl bg-white dark:bg-brand-card border border-slate-200 dark:border-brand-border shadow-md">
-                <div className="flex items-center gap-2 text-emerald-700 dark:text-brand-secondary font-semibold text-xs sm:text-sm mb-1 font-mono">
-                  <GraduationCap className="w-4 h-4" aria-hidden="true" />
-                  <span>Terciario Urquiza</span>
-                </div>
-                <p className="text-[11px] text-slate-600 dark:text-brand-textMuted font-mono">
-                  Tecnicatura Superior en Desarrollo de Software
-                </p>
-              </div>
-
-              <div className="card-lift p-4 rounded-xl bg-white dark:bg-brand-card border border-slate-200 dark:border-brand-border shadow-md">
-                <div className="flex items-center gap-2 text-amber-700 dark:text-brand-amber font-semibold text-xs sm:text-sm mb-1 font-mono">
-                  <Award className="w-4 h-4" aria-hidden="true" />
-                  <span>CS50 Harvard University</span>
-                </div>
-                <p className="text-[11px] text-slate-600 dark:text-brand-textMuted font-mono">
-                  Fundamentos Computacionales, Algoritmos & C
-                </p>
-              </div>
             </div>
           </div>
 
@@ -129,20 +101,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ user }) => {
                     </span>
                   </div>
                 </a>
-
-                <div className="flex items-center gap-3.5 p-3 rounded-xl bg-slate-50 dark:bg-brand-surface/60 border border-slate-200 dark:border-brand-border/60">
-                  <div className="w-8 h-8 rounded-lg bg-amber-100 dark:bg-brand-amber/10 text-amber-700 dark:text-brand-amber flex items-center justify-center shrink-0 border border-amber-300 dark:border-brand-amber/30">
-                    <MapPin className="w-4 h-4" aria-hidden="true" />
-                  </div>
-                  <div className="min-w-0">
-                    <span className="text-[10px] uppercase tracking-wider text-slate-500 dark:text-brand-textDim block font-semibold">
-                      Ubicación
-                    </span>
-                    <span className="font-medium text-slate-800 dark:text-brand-text truncate block">
-                      {user.location}
-                    </span>
-                  </div>
-                </div>
               </div>
             </div>
           </section>

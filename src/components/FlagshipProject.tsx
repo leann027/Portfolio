@@ -33,10 +33,6 @@ export const FlagshipProject: React.FC<FlagshipProjectProps> = ({ project, onOpe
                 <span>{project.role}</span>
               </span>
             )}
-
-            <span className="text-xs font-mono font-medium text-amber-800 dark:text-brand-amber px-2.5 py-0.5 rounded-full bg-amber-100 dark:bg-brand-amber/10 border border-amber-300 dark:border-brand-amber/30">
-              {project.status}
-            </span>
           </div>
 
           <h3

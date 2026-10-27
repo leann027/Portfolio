@@ -140,11 +140,7 @@ export const App: React.FC = () => {
 
       <main className="flex-1">
         {/* Hero Section with Interactive Terminal */}
-        <Hero
-          user={data.user}
-          totalProjects={data.projects.length}
-          onOpenCliQuickfind={() => setCliQuickfindOpen(true)}
-        />
+        <Hero user={data.user} />
 
         {/* Projects Section */}
         <section
@@ -153,23 +149,14 @@ export const App: React.FC = () => {
           className="py-16 sm:py-24 border-b border-brand-border/70 relative focus:outline-none"
         >
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 pb-5 border-b border-slate-200 dark:border-brand-border">
-              <div className="max-w-2xl">
-                <div className="flex items-center gap-2 text-xs font-mono text-blue-700 dark:text-brand-primary mb-1 font-semibold">
-                  <span className="material-symbols-outlined text-[16px]">folder_managed</span>
-                  <span>Open Source & Engineering Catalog</span>
-                </div>
-                <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight text-balance">
-                  Proyectos & Desarrollos
-                </h2>
-                <p className="mt-2 text-slate-700 dark:text-brand-textMuted text-xs sm:text-sm leading-relaxed">
-                  Catálogo de proyectos personales y académicos. Filtra por tecnología o busca por
-                  palabras clave para ver especificaciones y código.
-                </p>
-              </div>
-              <div className="shrink-0 font-mono text-[11px] font-semibold px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-brand-surface text-emerald-700 dark:text-brand-secondary border border-slate-200 dark:border-brand-border self-start sm:self-auto">
-                CATÁLOGO // 0{data.projects.length} PROYECTOS
-              </div>
+            <div className="max-w-2xl mb-8">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight text-balance">
+                Proyectos & Desarrollos
+              </h2>
+              <p className="mt-2 text-slate-700 dark:text-brand-textMuted text-sm leading-relaxed">
+                Proyectos personales y académicos. Cada uno documenta el rol, la arquitectura y las
+                decisiones técnicas detrás del código.
+              </p>
             </div>
 
             <ProjectFilters
@@ -230,7 +217,11 @@ export const App: React.FC = () => {
         </section>
 
         {/* Skills & Domain Matrix */}
-        <SkillsSection skills={data.skills} />
+        <SkillsSection
+          skills={data.skills}
+          projects={data.projects}
+          onOpenProject={(p) => setSelectedProject(p)}
+        />
 
         {/* About & Contact Section */}
         <AboutSection user={data.user} />

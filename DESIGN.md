@@ -1,6 +1,6 @@
 ---
 name: Leandro Software Engineering Portfolio - DevKernel Dark
-description: Rediseño técnico de alto nivel basado en la arquitectura DevKernel Dark y Technical Glass Minimalism de Stitch, con fondos interactivos reactivos por hardware, terminal interactivo en vivo, matriz de actividad Git y visualizador de arquitectura de memoria en C y pipelines Python.
+description: Sistema DevKernel Dark para un portfolio técnico de solo lectura. Fondo reactivo por canvas, terminal interactiva en el hero, catálogo de proyectos con esquemas en código y una matriz de tecnologías enlazada a los proyectos que las demuestran.
 colors:
   # DevKernel Dark Canvas & Surfaces (Inspirado en Stitch)
   canvas: '#090D13'
@@ -38,13 +38,13 @@ colors:
   light-secondary: '#047857'
 typography:
   display:
-    fontFamily: 'Inter, system-ui, sans-serif'
+    fontFamily: 'Plus Jakarta Sans, Inter, system-ui, sans-serif'
     fontSize: 'clamp(2.5rem, 5vw, 4rem)'
     fontWeight: 800
     lineHeight: 1.12
     letterSpacing: '-0.03em'
   headline:
-    fontFamily: 'Inter, system-ui, sans-serif'
+    fontFamily: 'Plus Jakarta Sans, Inter, system-ui, sans-serif'
     fontSize: '2rem'
     fontWeight: 700
     lineHeight: 1.2
@@ -73,16 +73,16 @@ components:
     motion-support: 'Desactivado automáticamente bajo prefers-reduced-motion'
   interactive-terminal:
     shell: 'zsh — leann027@portfolio-edge'
-    tabs: ['valgrind_memcheck.c', 'profile.json', 'fetch_projects.py']
-    features: 'Ejecución interactiva con simulación de heap allocation y Valgrind 0 leaks'
+    tabs: ['novafy_audio_glsl.ts', 'valgrind_memcheck.c', 'fetch_projects.py', 'profile.json']
+    features: 'Pestañas con navegación por flechas, salida coloreada por tokens y copia del comando con estado real de éxito o error'
   cli-quickfind:
-    trigger: '⌘K / Ctrl+K o clic en botón de búsqueda'
-    commands: ['help', 'projects', 'c-pointers', 'skills', 'theme', 'clear']
-  architecture-visualizer:
-    modes: ['Gestión de Memoria en C', 'Pipeline Python Determinista', 'POO & Tkinter']
-  activity-heatmap:
-    matrix: '52 semanas x 7 días con 5 niveles de luminancia'
-    telemetry: 'Racha activa, commits anuales y tasa de aprobación de pruebas'
+    trigger: '⌘K / Ctrl+K o botón Buscar de la barra de navegación'
+    commands: ['help', 'c-pointers', 'theme', 'clear', '<búsqueda por título, tecnología o lenguaje>']
+  skills-evidence:
+    layout: 'Lista agrupada (Lenguajes, Frameworks & UI, Herramientas & DevOps) sin tarjetas: nombre, nivel, descripción y proyectos'
+    evidence: 'Cada tecnología enlaza a los proyectos cuyo technologies/languages la incluye; el clic abre su ProjectModal'
+  modals:
+    behavior: 'useExitTransition (fade-out de 160ms, el estado del padre es la única fuente de verdad) y useDialogBehavior (focus trap, Escape, bloqueo de scroll con contador compartido)'
 ---
 
 # DevKernel Dark Design System
@@ -101,7 +101,13 @@ Un sustrato interactivo implementado en HTML5 Canvas (`BackgroundAmbient.tsx`):
 
 ## 3. Toques Únicos de Demostración de Conocimientos
 
-1. **Interactive Terminal Hero Widget:** Demuestra dominio de Valgrind, análisis de memoria dinámica en C y pipelines de automatización en Python con comandos ejecutables en un solo clic.
-2. **CLI Quickfind (⌘K):** Buscador tipo terminal y paleta de comandos interactiva con soporte de teclado y accesibilidad aria.
-3. **Inspección de Arquitectura de Memoria (Stack vs Heap):** Visualización interactiva de nodos enlazados, punteros y desasignación limpia para evitar dangling pointers y memory leaks.
-4. **Matriz Anual de Actividad Git:** Mapa de calor de 52 semanas con 5 niveles de luminancia y tooltips interactivos.
+1. **Interactive Terminal Hero Widget:** Demuestra WebGL/audio, análisis de memoria en C con Valgrind y el pipeline de datos en Python mediante comandos ejecutables en un clic.
+2. **CLI Quickfind (⌘K):** Paleta de comandos tipo terminal con búsqueda de proyectos, soporte de teclado y semántica de diálogo accesible.
+3. **Matriz de tecnologías con evidencia:** Cada tecnología lista los proyectos donde se aplica, de modo que toda afirmación del perfil es verificable en un clic.
+4. **Esquemas de proyecto en código (`ProjectVisual`):** Diagramas SVG/Tailwind por proyecto (heap y punteros en C, pipeline determinista, flujo de webhooks) en lugar de capturas.
+
+## 4. Reglas de Contenido
+
+- Cada dato aparece una sola vez: disponibilidad en el hero, ubicación en el hero, contacto en `#contacto`.
+- Sin métricas sobre el propio sitio (porcentajes de tests, cumplimiento WCAG) presentadas como logros en la interfaz; esa evidencia vive en el proyecto `portfolio-hub` y en el repositorio.
+- Sin etiquetas decorativas sobre los títulos de sección ni chapitas de conteo (`CATÁLOGO // 07`); el título y una descripción breve bastan.

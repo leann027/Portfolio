@@ -80,6 +80,17 @@ describe('Interactive Portfolio UI (Pure Visualization)', () => {
     expect(document.body.style.overflow).toBe('');
   });
 
+  it('links each skill to the projects that use it', () => {
+    render(<App />);
+    const skills = screen
+      .getByRole('heading', { level: 2, name: /Tecnologías/i })
+      .closest('section')!;
+    fireEvent.click(within(skills).getByRole('button', { name: /\(CS50\), donde se aplica SQL/i }));
+    expect(
+      within(screen.getByRole('dialog')).getByRole('heading', { level: 3, name: /CS50/i })
+    ).toBeInTheDocument();
+  });
+
   it('keeps the CLI modal open when reopened during its fade-out', () => {
     vi.useFakeTimers();
     try {
@@ -151,7 +162,9 @@ describe('Interactive Portfolio UI (Pure Visualization)', () => {
   it('renders flagship project showcase with distinctive insignia and recruiter information', () => {
     render(<App />);
     // Flagship project title
-    const flagshipTitle = screen.getByText(/YourMusicVisualizer/i);
+    const flagshipTitle = within(screen.getByTestId('flagship-project-card')).getByRole('heading', {
+      name: /YourMusicVisualizer/i,
+    });
     expect(flagshipTitle).toBeInTheDocument();
 
     // Insignia badge

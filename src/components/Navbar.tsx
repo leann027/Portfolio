@@ -45,11 +45,6 @@ export const Navbar: React.FC<NavbarProps> = ({
             <span className="text-emerald-700 dark:text-brand-secondary">&gt;</span>
             <span>dev://{githubUser}</span>
           </a>
-
-          <div className="hidden xl:flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-brand-surface border border-emerald-600/30 dark:border-brand-secondary/30 text-[11px] font-mono text-emerald-800 dark:text-brand-secondary font-medium">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-brand-secondary animate-pulse" />
-            <span>disponible para desarrollo</span>
-          </div>
         </div>
 
         {/* Desktop Navigation Links (hidden on mobile/tablet to eliminate horizontal overflow) */}

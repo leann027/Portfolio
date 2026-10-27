@@ -7,6 +7,7 @@ import {
   GraduationCap,
   ArrowUpRight,
   Award,
+  ChevronRight,
 } from 'lucide-react';
 import { Project } from '../types/project';
 import { ProjectVisual } from './ProjectVisual';
@@ -18,6 +19,14 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails, index = 0 }) => {
+  // Languages already named by a technology chip ("Python 3", "TypeScript") aren't repeated
+  const visibleTechs = project.technologies.slice(0, 4);
+  const shownNames = project.technologies.map((t) => t.toLowerCase());
+  const visibleLanguages = project.languages.filter(
+    (lang) =>
+      !shownNames.some((t) => t === lang.toLowerCase() || t.startsWith(`${lang.toLowerCase()} `))
+  );
+
   return (
     <article
       style={{ animationDelay: `${index * 60}ms` }}
@@ -62,17 +71,11 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails
             )}
           </div>
 
-          <div className="text-[11px] font-mono">
-            {project.isPrivate ? (
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-slate-100 dark:bg-brand-surface border border-slate-200 dark:border-brand-border text-slate-700 dark:text-brand-textMuted font-medium">
-                <Lock className="w-3 h-3" aria-hidden="true" /> Privado
-              </span>
-            ) : (
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-100 dark:bg-brand-secondary/10 border border-emerald-300 dark:border-brand-secondary/30 text-emerald-800 dark:text-brand-secondary font-semibold">
-                Público
-              </span>
-            )}
-          </div>
+          {project.isPrivate && (
+            <span className="shrink-0 inline-flex items-center gap-1 px-2 py-0.5 rounded bg-slate-100 dark:bg-brand-surface border border-slate-200 dark:border-brand-border text-slate-700 dark:text-brand-textMuted text-[11px] font-mono font-medium">
+              <Lock className="w-3 h-3" aria-hidden="true" /> Privado
+            </span>
+          )}
         </div>
 
         {/* Title */}
@@ -94,22 +97,22 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails
 
         {/* Key Highlights box */}
         {project.highlights && project.highlights.length > 0 && (
-          <div className="mt-3 p-3 rounded-lg bg-slate-50 dark:bg-brand-surface/80 border border-slate-200 dark:border-brand-border/60 text-[11px] font-mono space-y-1">
+          <ul className="mt-3 space-y-1.5 text-xs leading-relaxed">
             {project.highlights.slice(0, 2).map((h, idx) => (
-              <div
-                key={idx}
-                className="flex items-start gap-1.5 text-slate-700 dark:text-brand-text"
-              >
-                <span className="text-blue-600 dark:text-brand-primary font-bold">›</span>
-                <span className="truncate">{h}</span>
-              </div>
+              <li key={idx} className="flex items-start gap-2 text-slate-800 dark:text-brand-text">
+                <ChevronRight
+                  className="w-3.5 h-3.5 mt-0.5 shrink-0 text-blue-700 dark:text-brand-primary"
+                  aria-hidden="true"
+                />
+                <span>{h}</span>
+              </li>
             ))}
-          </div>
+          </ul>
         )}
 
         {/* Tech stack pills */}
         <div className="mt-3.5 flex flex-wrap gap-1.5 font-mono text-[11px]">
-          {project.technologies.slice(0, 4).map((tech) => (
+          {visibleTechs.map((tech) => (
             <span
               key={tech}
               className="px-2 py-0.5 rounded bg-slate-100 dark:bg-brand-surfaceAlt border border-slate-200 dark:border-brand-border text-slate-700 dark:text-brand-text font-medium"
@@ -117,7 +120,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails
               {tech}
             </span>
           ))}
-          {project.languages.map((lang) => (
+          {visibleLanguages.map((lang) => (
             <span
               key={lang}
               className="px-2 py-0.5 rounded bg-blue-50 dark:bg-brand-primary/10 border border-blue-200 dark:border-brand-primary/30 text-blue-800 dark:text-brand-primary font-semibold"
