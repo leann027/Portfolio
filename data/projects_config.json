@@ -67,7 +67,7 @@
       "technologies": ["React 19", "TypeScript", "Vite", "Tailwind CSS", "C99", "Python 3", "PWA"],
       "githubUrl": "https://github.com/leann027/AlgoNotebook",
       "demoUrl": null,
-      "isPrivate": false,
+      "isPrivate": true,
       "academic": false,
       "featured": false,
       "status": "Laboratorio Activo",

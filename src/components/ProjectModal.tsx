@@ -183,7 +183,9 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             {activeProject.isPrivate ? (
               <div className="flex items-center gap-2 text-brand-amber">
                 <Lock className="w-4 h-4 shrink-0" aria-hidden="true" />
-                <span>Repositorio Académico Privado</span>
+                <span>
+                  {activeProject.academic ? 'Repositorio Académico Privado' : 'Repositorio Privado'}
+                </span>
               </div>
             ) : (
               <span className="text-brand-secondary flex items-center gap-1.5">
