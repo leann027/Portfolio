@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generatedAt": "2026-10-26T15:31:42.596177",
+    "generatedAt": "2026-11-04T17:41:11.804718",
     "totalProjects": 7,
     "featuredCount": 3
   },
@@ -155,7 +155,7 @@
         "Gestión de Estado con Zustand a 60 FPS"
       ],
       "visualType": "your-music-visualizer",
-      "updatedAt": "2026-10-26",
+      "updatedAt": "2026-11-04",
       "stars": 0,
       "forks": 0,
       "highlights": [
@@ -190,7 +190,7 @@
       ],
       "githubUrl": "https://github.com/leann027/AlgoNotebook",
       "demoUrl": null,
-      "isPrivate": false,
+      "isPrivate": true,
       "academic": false,
       "institution": null,
       "featured": false,
@@ -204,7 +204,7 @@
         "Optimización de Renderizado rAF (60 FPS)"
       ],
       "visualType": "algo-notebook",
-      "updatedAt": "2026-10-14",
+      "updatedAt": "2026-11-04",
       "stars": 0,
       "forks": 0,
       "highlights": [
@@ -250,7 +250,7 @@
         "Accesibilidad Web (a11y) & Testing"
       ],
       "visualType": "portfolio-hub",
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-11-04",
       "stars": 0,
       "forks": 0,
       "highlights": [
@@ -428,7 +428,7 @@
         "Configuración y Gestión de Webhooks en Tiempo Real"
       ],
       "visualType": "n8n-automation",
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-01-14",
       "stars": 0,
       "forks": 0,
       "highlights": [
